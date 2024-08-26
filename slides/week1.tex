@@ -735,10 +735,14 @@ Given a Datalog program $P$:
     derivable from $P$.
 \end{itemize}
 
+\pause
+
 An \textbf{extensional} definition defines an object by \textbf{enumeration}.
 \begin{itemize}
     \item E.g. a fruit is an apple, or an apricot, or an avocado, or a banana, or …
 \end{itemize}
+
+\pause
 
 An \textbf{intensional} definition defines an object by its \textbf{necessary
 and sufficient conditions}.
@@ -758,6 +762,8 @@ in terms of interpretations and models. Briefly,
             \item We think of the minimal model as the solution to a Datalog program.
         \end{itemize}
 \end{itemize}
+
+\pause
 
 The model-theoretic semantics describes the \textbf{\emph{what}}, not the
 \textbf{\emph{how}}.
@@ -873,11 +879,15 @@ I = \left\{
 \end{array}\right\}
 $$
 
+\pause
+
 The ground atom:
 $$
 \textsf{Parent}(\textsf{"Lisa"}, \textsf{"Homer"})
 $$
 is true.
+
+\pause
 
 Moreover, the ground rule:
 $$
@@ -889,6 +899,8 @@ is true.
 \begin{frame}{Models}
 A \textbf{model} $M$ of a Datalog program $P$ is an interpretation $I$ that
 makes each ground instance of each constraint in $P$ true.
+
+\pause
 
 A \emph{ground instance} of a rule is obtained by replacing every variable in a
 rule with a constant from the Herbrand universe. For example, the
@@ -908,7 +920,11 @@ is a model of the program.
 A model $M$ is \textbf{minimal} if there is no other model $M'$ such that $M'
 \subset M$.
 
+\pause
+
 For example, the interpretation on the previous slide was a minimal model.
+
+\pause
 
 On other hand, the interpretation:
 $$
@@ -920,6 +936,8 @@ M = \left\{
 \end{array}\right\}
 $$
 is a \textbf{model}, but it is \textbf{not minimal}.
+
+\pause
 
 Intuition: A model satisfies the constraints, but may contain superfluous facts.
 \end{frame}
@@ -942,6 +960,8 @@ We now have the mathematical foundations to answer questions such as:
 \item When is a model minimal?
 \item What is the solution to a Datalog program?
 \end{itemize}
+
+\pause
 
 What we \emph{lack} is method to \textbf{compute} the minimal model of a program.
 \begin{itemize}
@@ -990,16 +1010,22 @@ Formally, we compute the \textbf{least fixpoint} of $T_P$.
 \textbf{Theorem}: The least fixpoint of the immediate consequence operator $T_P$
 is equivalent to the minimal model.
 
+\pause
+
 Using the immediate consequence operator to compute the minimal model of a
 Datalog program is an example of \textbf{bottom-up evaluation}.
+
+\pause
 
 Using $T_P$ to compute the minimal model is called \textbf{na\"ive
 evaluation}.
 
+\pause
+
 A better strategy, used in practice, is called \textbf{semi-na\"ve evaluation}.
 \begin{itemize}
     \item We shall not discuss it further, but the core idea is to propagate
-    delta sets (i.e. set differences) which faster than propagating full sets.
+    delta sets (i.e. set differences) which is faster than propagating full sets.
 \end{itemize}
 \end{frame}
 
@@ -1012,6 +1038,8 @@ What if we had the program:
 Path(x, y) :- Edge(x, y).
 Path(x, z) :- Path(x, y), Edge(y, z).
 \end{lstlisting}
+
+\pause
 
 And we wanted to compute pairs the $(x, y$) which are not connected by a path?
 We can achieve this by using negation:
@@ -1051,6 +1079,8 @@ A Datalog program $P$ which uses negation is \textbf{safe} if:
     in a \emph{positive} body atom.
 \end{enumerate}
 
+\pause
+
 For example:
 \begin{lstlisting}[language=flix,xleftmargin=0.8cm]
 A(x) :- not B(x).        // unsafe, violates (3)
@@ -1065,6 +1095,8 @@ Unfortunately, \emph{unrestricted} negation causes problems. Consider the progra
 P(x) \Leftarrow \textbf{not} \, Q(x). \\ 
 Q(x) \Leftarrow \textbf{not} \, P(x).
 \end{align*}
+
+\pause
 
 Assume that the program contains the constant $42$. 
 
@@ -1124,6 +1156,8 @@ Path(x, z) :- Path(x, y), Edge(y, z).
 Unconnected(x, y) :- Vertex(x), Vertex(y), not Path(x, y).
 \end{lstlisting}
 
+\pause
+
 is stratified as shown by the partition:
 %
 $$
@@ -1142,6 +1176,8 @@ Given a Datalog program $P$, we define the precedence graph $\mathcal{PG}$:
     \item If there is a rule $A \Leftarrow \cdots, \textbf{not} \, B, \cdots$
     then there is an edge $A \stackrel{-}\leftarrow B$.
 \end{itemize}
+
+\pause
 
 \textbf{Theorem.} A Datalog program $P$ is stratifiable if and only if its
 precedence graph $\mathcal{PG}$ contains no cycle with an edge labeled $-$.
@@ -1214,6 +1250,8 @@ We can use the precedence graph $\mathcal{PG}$ to compute the strata:
 
 \medskip
 
+\pause
+
 \centering
 \tikzset{node/.style={circle, fill=black!20, minimum size=4em, align=center, style={font=\scriptsize}}}
 \begin{tikzpicture}
@@ -1244,10 +1282,14 @@ Declarative Programming
     \item the \textbf{\emph{what}}, not the \textbf{\emph{how}}.
 \end{itemize}
 
+\pause
+
 Logic programming
 \begin{itemize}
     \item programs as logic constraints: \textbf{\emph{facts}} and \textbf{\emph{rules}}.
 \end{itemize}
+
+\pause
 
 \textbf{Datalog} is a simple, yet powerful \emph{declarative} \emph{logic}
 programming language.
