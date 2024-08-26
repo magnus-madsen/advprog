@@ -101,6 +101,8 @@ without requiring the programmer to specify an exact procedure to be followed.''
 \bigskip
 \bigskip
 
+\pause
+
 \begin{quote}
 \centering
 \LARGE ``The \textbf{\emph{what}}, not the \textbf{\emph{how}}.''
@@ -129,6 +131,8 @@ $$
 
 Describes the set of strings consisting of any number of ab's or a single c.
 
+\pause
+
 We may want to ask: Is the string ``aba'' in the language of $r$?
 
 We can compute the answer to this question in multiple ways:
@@ -146,14 +150,18 @@ In high-school you may have seen complex equations of the form:
 \]
 We can compute the solution to such an equation by various means.
 
+\pause
+
 \begin{itemize}
     \item Guess! (Yes, why not?) 
-    \item Use algebraic simplifications (subtract $x$ on both sides, and so on).
-    \item Rewrite the equation to a system of linear equalities and use
+    \pause \item Use algebraic simplifications (subtract $x$ on both sides, and so on).
+    \pause \item Rewrite the equation to a system of linear equalities and use
     Gauss-Jordan Elimination (reduction to row echelon form).
-    \item Rewrite the equation to a system of linear inequalities and use
+    \pause \item Rewrite the equation to a system of linear inequalities and use
     Fourier--Motzkin Elimination.
 \end{itemize}
+
+\pause
 
 \textbf{Upshot}: We agree on the meaning of the equation and we can \emph{check}
 whether a proposed solution is a \emph{valid} solution.
@@ -178,6 +186,8 @@ domain.''
 \begin{frame}{Declarative Logic Programming}
 The programmer writes a collection of \textbf{logic constraints}.
 
+\pause
+
 The compiler and runtime \textbf{computes the solution} to the constraints.
 
 \begin{itemize}
@@ -187,17 +197,21 @@ The compiler and runtime \textbf{computes the solution} to the constraints.
     \end{itemize}
 \end{itemize}
 
+\pause
+
 Declarative logic programming offers several benefits:
 
 \begin{itemize}
-    \item no side-effects + no explicit control-flow
+    \pause \item no side-effects + no explicit control-flow
     \begin{itemize}
         \item Programs are easy to understand.
         \item Programs are easy to modify and extend.
         \item Programs can be structured in any order.
     \end{itemize}
-    \item Strong guarantees about termination.
+    \pause \item Strong guarantees about termination.
 \end{itemize}
+
+\pause
 
 \textbf{Challenge}: Logic programming requires a different mindset.
 \end{frame}
@@ -207,11 +221,13 @@ Declarative logic programming offers several benefits:
 \begin{frame}{Datalog}
 \textbf{Datalog} is a simple, yet powerful declarative logic programming language.
 \begin{itemize}
-    \item Research on Datalog goes back to the 1970s in the fields of artificial
+    \pause \item Research on Datalog goes back to the 1970s in the fields of artificial
     intelligence, deductive databases, and knowledge representation.
-    \item Datalog (and Prolog) are cornerstones of classical A.I. based on
+    \pause \item Datalog (and Prolog) are cornerstones of classical A.I. based on
     symbolic reasoning --- before the golden age of machine learning.
 \end{itemize}
+
+\pause
 
 A Datalog program is essentially a collection of \emph{Horn clauses}:
 %
@@ -219,6 +235,8 @@ $$
 \forall x_1, \cdots, x_n. \, P_0(t \cdots) \Leftarrow P_1(t \cdots), \cdots, P_m(t \cdots).
 $$
 which allow us to derive new knowledge from existing knowledge.
+
+\pause
 
 Datalog and Prolog are closely related, but should not be confused.
 \end{frame}
@@ -231,6 +249,8 @@ Datalog has been successfully used in a range of applications:
     \item as an alternative foundation for the Rust borrow checker.
     \item to identify misconfigurations or security vulnerabilities in AWS networks.
 \end{itemize}
+
+\pause
 
 Datalog is a surgical instrument: You use it when the problem calls for it. 
 \end{frame}
@@ -259,6 +279,8 @@ Route(x, airline, z) :-
 OneWay(airline) :- Route("YYZ", airline, "BLL").
 \end{lstlisting}
 
+\pause
+
 Find a \textbf{round-trip} from Toronto to Billund with the same airline.
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
@@ -277,7 +299,11 @@ p \in \textsl{Program} = c_1 \cdots c_n
 \end{align*}
 }
 
+\pause
+
 The order of constraints is immaterial.
+
+\pause
 
 Note: The shortest Datalog program is the empty sequence of constraints.
 \end{frame}
@@ -291,9 +317,15 @@ c \in \textsl{Constraint} = A_0 \Leftarrow A_1, \cdots, A_n.
 \end{align*}
 }
 
+\pause
+
 Each $A_i$ is an atom. The atom $A_0$ is the head. The atoms $A_1, \cdots, A_N$ are the body. 
 
+\pause
+
 The sequence of body atoms may be empty.
+
+\pause
 
 A \textbf{fact} is a constraint with an empty body.
 
@@ -311,6 +343,8 @@ A \in \textsl{Atom} = p(t_1, \cdots, t_n)
 }
 
 A predicate symbol $p$ is an identifier, i.e. a name. 
+
+\pause
 
 A term $t$ is either a constant $k$ or a variable $x$:
 %
@@ -396,6 +430,8 @@ Datalog has several important theoretical properties:
 \end{itemize}
 
 \medskip
+
+\pause
 
 \textbf{Upshot}: Debugging is easy! 
 
@@ -483,6 +519,8 @@ We study Datalog in its purest form: as a minimal calculus.
     \item Similarly, no one writes logic programs in pure Datalog.
 \end{itemize}
 
+\pause
+
 In practice, we want a \emph{programming language} with amenities like:
 \begin{itemize}
     \item extensions that increase the expressive power.
@@ -498,10 +536,14 @@ There are many object-oriented languages:
     \item E.g. Java, C\#, JavaScript, Python, Smalltalk, ...
 \end{itemize}
 
+\pause
+
 There are many relational database management systems:
 \begin{itemize}
     \item E.g. MSSQL, MySQL, Oracle DBMS, IBM DB2, SQLite, ...
 \end{itemize}
+
+\pause
 
 In the same vein, there are also many Datalog dialects and solvers:
 
@@ -598,11 +640,15 @@ Declarative Programming
     \item the \textbf{\emph{what}}, not the \textbf{\emph{how}}.
 \end{itemize}
 
+\pause
+
 Logic programming
 \begin{itemize}
     \item programs as logic constraints: \textbf{\emph{facts}} and \textbf{\emph{rules}}.
     \item infer new knowledge from existing knowledge.
 \end{itemize}
+
+\pause
 
 \textbf{Datalog} is a simple, yet powerful \emph{declarative} \emph{logic}
 programming language.
