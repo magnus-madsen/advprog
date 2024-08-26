@@ -1,0 +1,10 @@
+[book]
+authors = ["Magnus Madsen"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Advanced Programming"
+
+[output.html]
+git-repository-url = "https://github.com/magnus-madsen/course-advprog"
+edit-url-template  = "https://github.com/magnus-madsen/course-advprog/edit/master/{path}"

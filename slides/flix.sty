@@ -1,0 +1,89 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{flix}[2021/11/24 Flix]
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+
+\definecolor{linenumber-color}{RGB}{170, 170, 170}
+\definecolor{code-color}{RGB}{0, 0, 0}
+\definecolor{keyword-color}{RGB}{155, 70, 147}
+\definecolor{type-color}{RGB}{72, 118, 158}
+\definecolor{comment-color}{RGB}{150, 150, 150}
+\definecolor{background-color}{RGB}{248, 248, 248}
+\definecolor{string-color}{RGB}{80, 160, 80}
+
+\lstdefinelanguage{flix}{
+  basicstyle        = \ttfamily\footnotesize\color{code-color},
+  numberstyle       = \footnotesize\color{linenumber-color},
+  keywordstyle      = \color{keyword-color}\bfseries,
+  commentstyle      = \color{comment-color},
+  identifierstyle   = \color{black},
+  stringstyle       = \color{string-color},
+  backgroundcolor   = \color{background-color},
+  emph              = [1]{
+    Unit, Bool, Char, Float32, Float64, Int8, Int16, Int32, Int64, String,
+    Expr, Map, ParsedAst, TypedAst, LiftedAst, EverythingAst, Code, Option,
+    List, Nel, Seq, Type, Letter
+  },
+  emphstyle         = [1]{\color{type-color}},
+  showspaces        = false,
+  showstringspaces  = false,
+  tabsize           = 4,
+  numbers           = none,
+  xleftmargin       = 0cm,
+  morecomment       = [l]{//},
+  morecomment       = [n]{/*}{*/},
+  morestring        = [b]",
+  morestring        = [b]',
+  morestring        = [b]""",
+  morekeywords      = {
+    alias,
+    and,
+    as,
+    case,
+    chan,
+    choose,
+    class,
+    def,
+    deref,
+    do,
+    eff,
+    else,
+    enum,
+    false,
+    fix,
+    force,
+    from,
+    if,
+    instance,
+    into,
+    law,
+    lazy,
+    let,
+    match,
+    namespace,
+    new,
+    not,
+    of,
+    opaque,
+    or,
+    project,
+    pub,
+    query,
+    ref,
+    region,
+    select,
+    solve,
+    spawn,
+    true,
+    try,
+    type,
+    use,
+    with,
+    inject,
+    where,
+    unsafe,
+    throw,
+    new
+  },
+}

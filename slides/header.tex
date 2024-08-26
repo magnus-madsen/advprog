@@ -1,0 +1,59 @@
+% compile with xelatex
+% !TeX program = xelatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Compile with:
+%
+% $ latexmk -xelatex -pvc slides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This document has the following requirements:
+% - Fira Code
+%   - see https://github.com/tonsky/FiraCode/wiki/Installing
+% - Xelatex
+%   - This should be automatically activated by the magic comment above,
+%     But VSCode prevents this. Use the following setting to allow the
+%     magic comment to work:
+%     latex-workshop.latex.build.forceRecipeUsage: false
+%     This setting should already be set by the workspace settings
+%
+% The manual is here:
+% https://mirrors.dotsrc.org/ctan/macros/latex/contrib/beamer-contrib/themes/metropolis/doc/metropolistheme.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Trouble shotting:
+%
+% If you get this error:
+%
+%   Couldn't open `Fira Mono .cfg'
+%   Sorry, but miktex-maketfm did not succeed.
+%
+% then go to: https://github.com/mozilla/Fira
+% and download the repository, and
+% install the fonts in the OTF folder.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[aspectratio=169]{beamer}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{datetime}
+\usepackage{flix}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{lstfiracode}
+\usepackage{microtype}
+\usepackage{multicol}
+\usepackage{oubraces}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\input{macro.tex}
+
+\usetheme{metropolis}
