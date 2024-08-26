@@ -12,7 +12,7 @@ as part of the _Advanced Topics in Programming Languages_ course.
 All material in this course is freely available under the Apache 2.0 license.
 
 You can edit this course! The source for the book and slides are available on
-[GitHub](https://github.com/magnus-madsen/course-advprog)!
+[GitHub](https://github.com/magnus-madsen/advprog)!
 
 Thanks to everyone who has helped improve the material:
 

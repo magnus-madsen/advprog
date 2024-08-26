@@ -6,5 +6,5 @@ src = "src"
 title = "Advanced Programming"
 
 [output.html]
-git-repository-url = "https://github.com/magnus-madsen/course-advprog"
-edit-url-template  = "https://github.com/magnus-madsen/course-advprog/edit/master/{path}"
+git-repository-url = "https://github.com/magnus-madsen/advprog"
+edit-url-template  = "https://github.com/magnus-madsen/advprog/edit/master/{path}"
