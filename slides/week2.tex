@@ -1160,8 +1160,8 @@ B(1; Pos).
 The program:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-P(x; l) :- A(x, l).
-P(x; l) :- B(x, l).
+P(x; l) :- A(x; l).
+P(x; l) :- B(x; l).
 Q(x; l) :- A(x; l), B(x; l).
 \end{lstlisting}
 
