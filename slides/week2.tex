@@ -1015,7 +1015,9 @@ def disconnected(): #{ Edge(t, t), Disconnected(t, t) | r} =
 
 \pause
 
-\textbf{But this does not work.} Consider:
+\textbf{But this does not work.} Why?
+
+\pause
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 let p1 = #(A) -> (#{ Edge(123, 456). } <+> disconnected());
