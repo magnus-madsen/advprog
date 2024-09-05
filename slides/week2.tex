@@ -970,8 +970,12 @@ def disconnected():
     }
 \end{lstlisting}
 
+\pause
+
 \textbf{Observation:} The \Code{Vertex} and \Code{Path} relations are really
 internally implementations.
+
+\pause
 
 \textbf{Idea:} What do we usually do with internal implementation details? \textbf{\emph{We hide them.}}
 \end{frame}
@@ -983,13 +987,15 @@ We introduce \emph{rho abstraction} as a mechanism to \emph{hide} predicate symb
 \begin{itemize}
     \item A rho abstraction is of the form \Code{#(A, ...) -> e} where $e$ must
     be a Datalog expression.
-    \item A rho abstraction hides, by renaming, all predicate symbols \emph{not}
+    \pause \item A rho abstraction hides, by renaming, all predicate symbols \emph{not}
     listed in the argument list. 
-    \item The row type of a rho abstraction includes only those predicates in
+    \pause \item The row type of a rho abstraction includes only those predicates in
     the argument list. 
-    \item Evaluation of a rho abstraction renames all hidden predicate symbols
+    \pause \item Evaluation of a rho abstraction renames all hidden predicate symbols
     with fresh names. 
 \end{itemize}
+
+\pause
 
 \textbf{Example:} \Code|#(A, B) -> #{A(123). C("a").}| evaluates to \Code|#{A(123). C17("a").}|. 
 where \Code{C17} is a fresh predicate symbol that has never been used before.
@@ -1006,6 +1012,8 @@ def disconnected(): #{ Edge(t, t), Disconnected(t, t) | r} =
         // ... omitted for brevity ...
     }
 \end{lstlisting}
+
+\pause
 
 \textbf{But this does not work.} Consider:
 
@@ -1033,6 +1041,8 @@ query p1, p2 ...
 
 where there is no longer any type error between \Code{Vertex17(123)} and \Code{Vertex18("a")}.
 
+\pause
+
 \textbf{Upshot:} The abstracted predicate symbols have become truely local.
 \end{frame}
 
@@ -1050,6 +1060,8 @@ def reach(origin: t, edges: List[(t, t)]): Vector[t] with Order[t] =
     };
     query db, pr select x from Reach(x)
 \end{lstlisting}
+
+\pause
 
 But, what if we wanted to compute the \textbf{shortest distance} to every vertex
 from an origin, i.e. \emph{single-source shortest distance} (SSSD)?
@@ -1082,9 +1094,9 @@ A lot is going on, so let us break it down.
 The fact: \Code{Dist(origin; Down(0)).}
 
 \begin{itemize}
-    \item Asserts that \Code{Dist} is a (map) lattice, and \emph{not} a relation (the semicolon).
-    \item Asserts that the distance to the origin is at most zero. 
-    \item The \Code{Down} data type, which wraps zero, \emph{reverses} the order
+    \pause \item Asserts that \Code{Dist} is a (map) lattice, and \emph{not} a relation (the semicolon).
+    \pause \item Asserts that the distance to the origin is at most zero. 
+    \pause \item The \Code{Down} data type, which wraps zero, \emph{reverses} the order
     on \Code{Int32}.
 \end{itemize}
 \end{frame}
@@ -1093,13 +1105,15 @@ The fact: \Code{Dist(origin; Down(0)).}
 The rule: \Code|Dist(y; d1 + Down(d2)) :- Dist(x; d1), Edge(x, d2, y).|
 %
 \begin{itemize}
-    \item Asserts that \Code{Dist} is a (map) lattice, and \emph{not} a relation (as before).
-    \item Asserts that the distance to \Code{y} is \emph{at
+    \pause \item Asserts that \Code{Dist} is a (map) lattice, and \emph{not} a relation (as before).
+    \pause \item Asserts that the distance to \Code{y} is \emph{at
     most}\footnote{Technically, it asserts that the distance is \emph{at least},
     but since the lattice order is reversed, \emph{at least} becomes \emph{at
     most}.} \Code{d1 + Down(d2)} \emph{if} the distance to \Code{x} is \Code{d1}
     and the distance on the edge from \Code{x} to \Code{y} is \Code{d2}.
 \end{itemize}
+
+\pause 
 
 What if there are two paths leading to \Code{y} but with different distances?
 In that case, we compute their \emph{join} which, according the reversed lattice
@@ -1115,6 +1129,8 @@ We have seen that Flix supports \emph{constraints on relations}.
 \end{itemize}
 
 We use the semicolon \Code{;} to indicate when we want lattice semantics.
+
+\pause
 
 A lattice has the following components:
 
@@ -1147,6 +1163,8 @@ P(x; l) :- B(x, l).
 Q(x; l) :- A(x; l), B(x; l).
 \end{lstlisting}
 
+\pause
+
 Evaluates to a minimal model with:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
@@ -1173,6 +1191,8 @@ P(1; Top).
 
 \medskip
 
+\pause
+
 {
 \small
 \textbf{Warning:} Do not mistake \Code{,} for \Code{;}. We must use \Code{;}
@@ -1198,7 +1218,7 @@ It defines instances for the traits \Code{PartialOrder}, \Code{LowerBound},
 \begin{frame}[fragile]{The \texttt{Down} Lattice (2/2)}
 For example, here are two instances:
 
-\begin{lstlisting}[language=flix, xleftmargin=0.4cm]
+\begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 instance PartialOrder[Down[a]] with PartialOrder[a] {
     pub def lessEqual(x: Down[a], y: Down[a]): Bool = 
         match (x, y) {
@@ -1228,8 +1248,12 @@ Layer(n; Set#{ x })    :- fix Degree(x; n).
 Count(n, Set.size(s))  :- fix Layer(n; s)
 \end{lstlisting}
 
+\pause
+
 This Datalog program computes how many actors are separated from Kevin Bacon by
 $1, 2, 3, \cdots$ degrees. 
+
+\pause
 
 Importantly, the use of \Code{fix} enforces that \Code{Degree} is computed
 before \Code{Layer} which is computed before \Code{Count}.
@@ -1255,7 +1279,9 @@ Reach(origin, Nil; Down(0)).
 Reach(y, y :: p; d1 + Down(d2)) :- Reach(x, p; d1), Edge(x, d2, y).
 \end{lstlisting}
 
-What does this compute?
+\textbf{Question:} What does this compute?
+
+\pause
 
 \textbf{Oops:} What if there are cycles?
 \end{frame}
@@ -1267,10 +1293,12 @@ We define a lattice on \emph{paths}:
 
 \begin{itemize}
     \item The bottom element is the set of all infinite paths.
-    \item The top element is the empty path.
-    \item A path is smaller than another path if it is \emph{longer}, i.e. as we
+    \pause \item The top element is the empty path.
+    \pause \item A path is smaller than another path if it is \emph{longer}, i.e. as we
     move \emph{up} the lattice, paths get shorter. 
 \end{itemize}
+
+\pause
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 Reach(origin; P(Nil)).
@@ -1300,7 +1328,13 @@ instance JoinLattice[P] {
 }
 \end{lstlisting}
 
-\textbf{Problem:} Comparing the two paths or computing their join is stupidly expensive!
+\pause
+
+\textbf{Question:} Do you see any problems here?
+
+\pause
+
+\textbf{Answer:} Comparing the two paths or computing their join is stupidly expensive!
 \end{frame}
 
 \begin{frame}[fragile]{Shortest Paths: Attempt III}
@@ -1317,6 +1351,8 @@ enum P {
     case Bottom
 }
 \end{lstlisting}
+
+\pause 
 
 \textbf{Exercise:} Add instances for \Code{PartialOrder}, \Code{JoinLattice}, etc. for \Code{P}.
 \end{frame}
