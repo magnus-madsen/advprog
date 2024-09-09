@@ -73,10 +73,9 @@ Assume we have a relation `StarsWith(Actor, Actor)`:
 ```flix
 let p1 = #{ A(x, y) :- B(x, x), C(y). };
 let p2 = #{ C(x) :- F(x, y), G(y, x) }.;
-let p3 = p1 <+> p2;
 ```
 
-- What is the row type of `p1`, `p2`, and `p3`?
+- What are the row types of `p1` and `p2`?
 
 **Exercise 02.05**: Implement Ullman's Algorithm with a Flix function that has
 the signature: 
@@ -167,8 +166,8 @@ issues):
 
 ```flix
 enum P {
-    case Bot
     case Path(Int32, List[Int32])
+    case Bot
 }
 ```
 

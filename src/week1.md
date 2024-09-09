@@ -147,6 +147,8 @@ What is its *Herbrand Universe* and the *Herbrand Base*?
 
 **Hint:** The Herbrand Base will be large. You may want to write them up in a table.
 
+**Note**: You do not have to submit the complete table. An excerpt is sufficient.
+
 **Exercise 01.08**: Given the Datalog program:
 
 ```datalog
@@ -158,7 +160,9 @@ Happy(x) :- Loves(x, y), Loves(y, x).
 
 What are all the possible the interpretations?
 
-**Hint**: There are many. You may want to write them up in a table.
+**Hint**: There are many. You may want to write them up in a table. 
+
+**Note**: You do not have to submit the complete table. An excerpt is sufficient.
 
 **Exercise 01.09**: Given the Datalog program above with the interpretation:
 
@@ -179,8 +183,6 @@ Happy("Jack") :- Loves("Rose", "Jack"), Loves("Caledon", "Caledon")?
 Happy("Caledon") :- Loves("Caledon", "Caledon"), Loves("Caledon", "Caledon")?
 ```
 
-which of the above rules is *not* a *ground instance* of the original program?
-
 **Exercise 01.10**: Given the Datalog program above which of these
 interpretations are *models*?
 
@@ -199,7 +201,7 @@ I5 = { Loves("Rose", "Jack"), Loves("Jack", "Rose"), Loves("Caledon", "Rose"),
        Happy("Rose"), Happy("Jack"), Happy("Caledon") }
 ```
 
-Which model is minimal?
+and which model is minimal?
 
 **Exercise 01.11**: Given the Datalog program:
 
