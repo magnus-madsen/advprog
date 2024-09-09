@@ -86,6 +86,8 @@ Datalog is based on \emph{bottom-up} evaluation:
     \item Limited expressive power.
 \end{itemize}
 
+\pause
+
 Prolog is based on \emph{top-down} search:
 
 \begin{itemize}
@@ -93,6 +95,8 @@ Prolog is based on \emph{top-down} search:
     \item Prolog programs are imperative: the order of evaluation matters.
     \item Prolog is Turing-complete -- and hence programs may fail to terminate.
 \end{itemize}
+
+\pause
 
 Prolog \emph{is} a logic programming language, but it is like the C of logic languages.
 \end{frame}
@@ -137,16 +141,66 @@ parent(emma, daniela).
 \textbf{Warning:} You will screw this up. Remember to check your casing. 
 \end{frame}
 
-\begin{frame}{Simple Query}
+\begin{frame}[fragile]{A Few Simple Queries (1/3)}
+Given the facts:
 
-    Ask a query that has yes/no answer.
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+parent(emma, magnus).
+parent(emma, daniela).
+\end{lstlisting}
 
-    You can see the roots in experts systems.
-    
-    Example: Non recursive query
-    Show how we can get more solutions out.
+\pause
 
-    \end{frame}
+We can ask:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+?- parent(emma, magnus).
+yes
+?- parent(emma, euclid).
+\end{lstlisting}
+
+\pause
+
+And we can ask:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+?- parent(emma, augustus).
+no
+\end{lstlisting}
+
+Every query has a \textbf{yes}/\textbf{no} answer.
+\end{frame}
+
+\begin{frame}[fragile]{A Few Simple Queries (2/3)}
+We can also ask:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+?- parent(emma, X).
+X = magnus ? ;
+X = daniela ? ;
+no
+\end{lstlisting}
+
+We use the semicolon \textbf{;} to prompt Prolog for additional solutions.
+
+Prolog says \textbf{no} at the end because there are no more solutions!
+\end{frame}
+
+\begin{frame}[fragile]{A Few Simple Queries (3/3)}
+In Prolog \Code{parent} is a relation, not a function, so we can also ask:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+?- parent(X, magnus).
+X = emma ? ;
+no
+\end{lstlisting}
+
+Note that we are asking for ``an input'' that matches ``an output''.
+
+\pause
+
+\textbf{Question}: What is the answer to the query \Code{parent(X, Y)}?
+\end{frame}
 
 \begin{frame}{Recursive Query}
 
