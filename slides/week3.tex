@@ -78,7 +78,7 @@ Prolog grew out of research on Artificial Intelligence!
 \end{frame}    
 
 \begin{frame}{From Datalog to Prolog: A Shift in Perspective}
-Datalog is based on \emph{bottom-up} evaluation:
+Datalog is based on \emph{bottom-up} tabling:
 
 \begin{itemize}
     \item Datalog has a unique minimal model.
@@ -115,13 +115,13 @@ Prolog \emph{is} a logic programming language, but it is like the C of logic lan
 \end{frame}
 
 \begin{frame}[fragile]{Syntax Update}
-In Flix a Datalog rule looks like:
+In Flix, the syntax of a Datalog rule is:
     
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 Path(x, z) :- Edge(x, y), Path(y, z).
 \end{lstlisting}
 
-In Prolog syntax the casing is inverted:
+In the Prolog, the syntax of the same rule is:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 path(X, Z) :- edge(X, Y), path(Y, Z).
@@ -215,7 +215,7 @@ Note that we are asking for ``an input'' that matches ``an output''.
 \end{frame}
 
 \begin{frame}[fragile]{Recursion in Prolog (1/2)}
-We can still write recursive queries:
+Prolog supports recursion:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 edge(a, b).
@@ -438,7 +438,7 @@ k \in \textsl{Constants}    & = \text{is a finite set of constants.}
 \section{Unification}
 
 \begin{frame}[fragile]{Matching a Goal to a Rule}
-Assume we have a Prolog program with the rules:
+Assume we have a Prolog program with the facts and rules:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 len([], 0).
@@ -459,8 +459,9 @@ which is really:
 ? len([1 | [2 | []]], X).
 \end{lstlisting}
 
-\textbf{Question:} How does Prolog know which rule to evaluate and what the
-values of the variables should be?
+\textbf{Question:} How does Prolog know which rule to evaluate?
+
+\textbf{Question:} And what should be the values of the variables in the rule?
 
 \pause 
 
@@ -488,21 +489,45 @@ if $t = node(X, X, Y)$ then
 \]
 \end{frame}  
 
-\begin{frame}{What is Unification (2/2)}
+\begin{frame}{What is Unification? (1/2)}
+A \textbf{\emph{substitution}} is a map from variables to terms.
 
-The \textbf{\emph{Unification Problem}} is: Given two terms $t_1$ and $t_2$,
-find a substitution $s$ such that:
+\pause
+
+For example, we can have the substitution:
+\[
+    s = \{ X \mapsto 21, Y \mapsto [1, 2, 3, W] \} 
+\]
+
+\pause
+
+We can apply a substitution to a term. For example: 
+
+If $t = node(X, X, Y)$ then 
+\[
+    s(t) = node(21, 21, [1, 2, 3, W])
+\]
+\end{frame}  
+
+\begin{frame}{What is Unification? (2/2)}
+\textbf{Unification}: Given two terms $t_1$ and $t_2$, find a substitution $s$
+such that:
+%
 \[
     s(t_1) = s(t_2)
 \]
-That is, the substitution, when applied to both terms, makes them syntactically equal. 
+%
+The substitution, when applied to both terms, makes them \emph{syntactically} equal. 
+%
+\begin{itemize}
+    \item We call such a substitution a \emph{unifier}. It may not always exist.
+    \item But if there is a unifier then there is a \emph{most-general unifier} (MGU).
+\end{itemize}
 
-Such a substition may not always exist. But, if it exists, it is unique.
+\pause
 
-\medskip
-
-A cool idea, which we shall not see, is when $=$ is replaced by $\equiv$ leading
-to E-unification, i.e. unification modulo some equational theory. 
+\textbf{Sidenote:} A cool idea is when $=$ is replaced by $\equiv$ leading to
+\textbf{E-unification}, i.e. unification modulo some equational theory. 
 \end{frame}  
 
 \begin{frame}[fragile]{A Unification Algorithm (in Flix) (1/6)}
@@ -530,7 +555,7 @@ type alias Subst = Map[String, Term]
 
 \pause
 
-And we define a function that applies a substition to a term:
+And we define a function that applies a substitution to a term:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 def applySubst(s: Subst, t: Term): Term = match t {
@@ -545,9 +570,9 @@ def applySubst(s: Subst, t: Term): Term = match t {
 \begin{frame}[fragile]{A Unification Algorithm (in Flix) (3/6)}
 Given two substitutions $s_1$ and $s_2$, we define a function to compose them.
 
-The idea is that the new substition should morally have the effect of applying
-$s_1$ to the term and then applying $s_2$ to that, i.e. we want:
-
+The new substitution should morally have the effect of applying $s_1$ to the
+term and then applying $s_2$ to that, i.e. we want:
+%
 \[
     \text{compose}(s_1, s_2)(t) = s_2(s_1(t))
 \]
@@ -584,14 +609,14 @@ Lets try it out:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 unify(Cst(123), Var("x")) 
-  => Map#{x => Cst(123)}
+    => Map#{x => Cst(123)}
 \end{lstlisting}
 
 \pause 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 unify(Pair(Var("x"), Var("x")), Pair(Cst(123), Var("y"))) 
-  => Map#{x => Cst(123), y => Cst(123)}
+    => Map#{x => Cst(123), y => Cst(123)}
 \end{lstlisting}
 
 \pause 
@@ -600,12 +625,12 @@ What about:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 unify(Var("x"), Pair(Cst(123), Var("x")))
-  => Map#{x => Pair(Cst(123), Var(x))}
+    => Map#{x => Pair(Cst(123), Var(x))}
 \end{lstlisting}
 
 \pause 
 
-\textbf{Ooops!} This is incorrect. What's the problem?
+\textbf{Ooos!} This is incorrect. What's the problem?
 
 \end{frame}
 
@@ -622,15 +647,14 @@ case (Term.Var(x), t2) =>
 // The other case is symmetric.
 \end{lstlisting}
 
-This so-called \textbf{\emph{occurs check}} ensures that we do not construct
-unifiers (i.e. substitutions) where a variable occurs recursively within the term
-it is unified with. 
+Here the \Code{freeVars} function is defined in the obvious way.
 
-Here the \Code{freeVars} function is defined in the natural way. 
+The \textbf{occurs check} ensures that we do not construct substitutions where a
+variable occurs recursively within the term it is unified with. 
 
 \pause
 
-\textbf{Note:} The occurs check is expensive, so some Prolog implementations skip it.
+\textbf{Note:} The occurs check is expensive, so some Prolog implementations omit it.
 \end{frame}  
 
 \begin{frame}[fragile]{Matching a Goal to a Rule -- Continued (1/2)}
@@ -641,21 +665,25 @@ len([], 0).
 len([_Head|Tail], R) :- len(Tail, N), R is N + 1.
 \end{lstlisting}
 
+\pause
+
 And we ask: 
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 ? len([1 | [2 | []]], X).
 \end{lstlisting}
 
+\pause
+
 Prolog uses unification to the determine that:
 
 \begin{enumerate}
     \item We cannot unify $[]$ with $[1 | [2 | []]]$ so the first rule (fact) is
-    not applicable.
+    not applicable. \pause 
     \item We \emph{can} unify $[\_Head|Tail]$ with $[1 | [2 | []]]$ using the
-    substitution $\{ \text{\_Head} \mapsto 1, \text{Tail} \mapsto [2 | []] \}$. 
-    \item We then apply the substition to the rule body to obtain the new goals:
-    $\text{len}([2 | []], R)$ and $R \text{ is } X + 1$, and recurse.
+    substitution $\{ \text{\_Head} \mapsto 1, \text{Tail} \mapsto [2 | []] \}$. \pause
+    \item We then apply the substitution to the rule body to obtain the new
+    goals: $\text{len}([2 | []], R)$ and $R \text{ is } X + 1$, and recurse.
 \end{enumerate}
 \end{frame}
 
@@ -663,15 +691,69 @@ Prolog uses unification to the determine that:
 To recap:
 
 \begin{itemize}
-    \item Prolog searches for a rule (or fact) \emph{from top to bottom} where the
-    goal unifies with the head atom.
+    \item Prolog searches for a fact or rule \emph{from top to bottom} of the
+    file where the current goal unifies with the head atom.
     \item If a match is found, Prolog applies the found substition to the rule
     body which now become the sub-goals of the query. 
     \item The sub-goals are evaluated from left to right.
-    \item A goal is satisfied once we reach a fact (i.e. a base case). 
+    \item A goal is satisfied once we reach a fact.
 \end{itemize}
 
 Hence: Be careful about evaluation order. It matters!
+\end{frame}
+
+\begin{frame}[fragile]{Print Debugging is Back! (1/2)}
+If we write: 
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+edge(1, 2).
+edge(2, 3).
+path(X, Y) :- edge(X, Y), write('rule1\n').
+path(X, Z) :- edge(X, Y), path(Y, Z), write('rule2\n').
+\end{lstlisting}
+
+And ask:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+-? path(1, 3).
+\end{lstlisting}
+
+Prolog prints:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+rule1
+rule2
+yes
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Print Debugging is Back! (2/2)}
+We can explore Prolog's evaluation order by writing:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+path(X, Z) :- write('A'), edge(X, Y), write('B'), path(Y, Z), write('C').
+\end{lstlisting}
+
+And asking:
+
+\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
+-? path(1, 3).
+\end{lstlisting}
+
+\textbf{Question:} What does this print?
+\end{frame}
+
+\begin{frame}{Prolog Extensions}
+Prolog comes with several extensions:
+
+\begin{itemize}
+    \item Cuts (a mechanism to control backtracking)
+    \item Higher-order predicates (e.g. \Code{findall})
+    \item Reflection (e.g. \Code{clause})
+    \item Tabling (ala Datalog)
+\end{itemize}
+
+You will most likely need some of these for any serious Prolog programming. 
 \end{frame}
 
 \section{A Larger Example}
@@ -692,10 +774,11 @@ Via Wikipedia:
 \bigskip
 
 \begin{quote}
-``A farmer with a wolf, a goat, and a cabbage must cross a river by boat. The
-boat can carry only the farmer and a single item. If left unattended together,
-the wolf would eat the goat, or the goat would eat the cabbage. How can they
-cross the river without anything being eaten?''
+``A \textbf{farmer} with \textbf{a wolf}, \textbf{a goat}, and \textbf{a
+cabbage} must cross a river by boat. The boat can carry only the farmer and a
+single item. If left unattended together, the wolf would eat the goat, or the
+goat would eat the cabbage. How can they cross the river without anything being
+eaten?''
 \end{quote}
 
 \bigskip
@@ -704,12 +787,12 @@ We can solve this problem with Prolog.
 
 \pause
 
-But can you solve it with your brain? (And some paper...)
+\textbf{Question:} But can you solve it with your brain? (and some paper...)
 \end{frame}
 
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (1/8)}
-We consider the river to have two sides the west bank (\Code{w}) and east bank
-(\Code{e}).
+We consider the river to have two sides: the \textbf{west bank} (\Code{w}) and
+\textbf{east bank} (\Code{e}).
 
 Initially, everyone will be on the west bank.
 
@@ -723,7 +806,6 @@ travel(e, w).
 We further assume we have three constants: \Code{farmer}, \Code{wolf},
 \Code{goat}, \Code{cabbage}.
 \end{frame}
-
 
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (2/8)}
 We define a configuration of the problem as a 4-tuple (using a list):
@@ -741,7 +823,7 @@ We order the travelers as: \Code{farmer}, \Code{wolf}, \Code{goat},
     NOT OKAY!
 \end{itemize}
 \end{frame}
-   
+    
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (3/8)}
 We now define a ternary relation: \texttt{move(state1, moved, state2)}:
 
@@ -749,7 +831,7 @@ If the farmer and wolf are on the west bank then they can travel to the east ban
 
 The goat and cabbage stay where they are. 
 
-We can capture this with the rule:
+We can capture this with the fact:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 move([w, w, G, C], wolf, [e, e, G, C]).
@@ -779,6 +861,8 @@ We have:
 move([X, X, G, C], wolf, [Y, Y, G, C]) :- travel(X, Y).
 \end{lstlisting}
 
+\pause
+
 and we need three more rules:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
@@ -805,15 +889,20 @@ We define the states that are safe. There are two cases:
 safe([X, _, X, _]).  // Recall: farmer, wolf, goat, cabbage
 \end{lstlisting}
 
-(2) And the wolf and cabbage are on the same bank as the farmer:
+(2) Or the wolf and cabbage are on the same bank as the farmer:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 safe([X, X, _, X]).
 \end{lstlisting}
+
+\pause 
+
+\textbf{Question:} Are (1) and (2) equivalent to (a) and (b)?
+
 \end{frame}
 
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (6/8)}
-We can now define a solution: A solution is a pair of a state and a sequence of
+We can now define a solution: A solution is a pair of a state and a list of
 moves that brings everyone safely to the east bank.
 
 \pause
@@ -826,7 +915,7 @@ solution([e, e, e, e], []).
 
 \pause 
 
-Otherwise, we make a move to new state provided that it is (i) safe and (ii) solvable:
+We can move to a new state provided that it is (i) safe and (ii) solvable:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 solution(State, [FirstMove | OtherMoves]) :- 
@@ -872,7 +961,9 @@ How? We fix the length of the list with moves:
 ? length(X, 7), solution([w, w, w, w], X).
 \end{lstlisting}
 
-Prolog reports:
+\pause
+
+Prolog now answers:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 X = [goat, nothing, wolf, goat, cabbage, nothing, goat]
@@ -880,7 +971,7 @@ X = [goat, nothing, wolf, goat, cabbage, nothing, goat]
 
 \pause
 
-\textbf{Question:} Why did I choose 7? How do I know what number to choose?
+\textbf{Question:} Why did I choose 7? How did I know what number to choose?
 
 \pause
 
@@ -890,49 +981,33 @@ X = [goat, nothing, wolf, goat, cabbage, nothing, goat]
 Example inspired by UCSD: {\tiny \url{https://cseweb.ucsd.edu/classes/fa09/cse130/misc/prolog/goat_etc.html}}
 \end{frame}
 
-\begin{frame}{Prolog Extensions}
-Like Datalog, Prolog comes with many extensions. 
-
-We will not see them here, but some important are:
-
-\begin{itemize}
-    \item (\textbf{Cuts})   -- A mechanism to prevent backtracking across a goal. 
-    \item (\textbf{IO})     -- Reading and writing files using logic predicates. 
-    \item (\textbf{FP})     -- Integration with functional programming, e.g. Mercury.
-\end{itemize}
-\end{frame}
-
-\section{Prolog Implementations}
+\section{Getting Started with Prolog}
 
 \begin{frame}{Prolog Dialects and Implementations}
+As with Datalog there are many Prolog dialects and implementations.
 
-As with Datalog, there are many Prolog dialects and implementations.
-
-The most popular Prolog implementations are:
+The most popular and battle-tested Prolog implementations are:
 
 \begin{itemize}
-    \item \textbf{Ciao Prolog} is an open-source research project from UPM and
-    IMDEA {\small \url{https://ciao-lang.org/}}
-    \item \textbf{Gnu Prolog} is an open-source Prolog implementation \linebreak
-    {\small \url{http://www.gprolog.org/}}
-    \item \textbf{SWI Prolog} is an open-source Prolog implementation {\small
-    \url{https://www.swi-prolog.org/}}
+    \item \textbf{Ciao Prolog} is an open-source research project from UPM and IMDEA 
+        \linebreak {\small \url{https://ciao-lang.org/}}
+    \item \textbf{Gnu Prolog} is an open-source Prolog implementation 
+        \linebreak {\small \url{http://www.gprolog.org/}}
+    \item \textbf{SWI Prolog} is an open-source Prolog implementation 
+        \linebreak {\small \url{https://www.swi-prolog.org/}}
     \item \textbf{XSB Prolog} is a commercial Prolog implementation with tabling
-    {\small \url{https://xsb.com/xsb-prolog/}}
+        \linebreak {\small \url{https://xsb.com/xsb-prolog/}}
 \end{itemize}
-
-Wikipedia, as always, has an extensive list of Prolog implementations: {\small
-\url{https://en.wikipedia.org/wiki/Comparison_of_Prolog_implementations}}
 \end{frame}
 
 \begin{frame}{Ciao Prolog}
-I recommend that you use \textbf{Ciao Prolog} with SWI Prolog as a suitable alternative.
+I recommend that you use \textbf{Ciao Prolog} (with SWI Prolog as backup)
 \begin{columns}
 \begin{column}{.7\textwidth}
 \begin{itemize}
     \item Ciao has been developed for more than 40 years.
-    \item A large research project with many cool ideas. 
-    \item Runs in the browser via WebAssembly: {\small \url{https://ciao-lang.org/playground/}}
+    \item Ciao is large research project with many cool ideas. 
+    \item Runs in the browser via WebAssembly: \linebreak {\small \url{https://ciao-lang.org/playground/}}
 \end{itemize}
 \end{column}
 \begin{column}{.3\textwidth}
@@ -942,15 +1017,21 @@ I recommend that you use \textbf{Ciao Prolog} with SWI Prolog as a suitable alte
 \end{columns}
 \end{frame}
 
-\begin{frame}{Ciao Playground (1/2)}
-\includegraphics[width=\textwidth]{img/ciao-playground.png}
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+    \node[at=(current page.center)] {
+        \includegraphics[keepaspectratio,
+                        width=\paperwidth,
+                        height=\paperheight]{img/ciao-playground.png}
+    };
+\end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Ciao Playground (2/2)}
+\begin{frame}{Ciao Playground}
 Your first task:
 
 \Large
-Run the Wolf, Goat, and Cabbage Program on the playground.
+Run the Wolf, Goat, and Cabbage program on the playground.
 
 \bigskip
 
@@ -959,7 +1040,7 @@ Run the Wolf, Goat, and Cabbage Program on the playground.
 \end{frame}
 
 \begin{frame}{Summary}
-Prolog is a goal-driven logic programming language:
+\textbf{Prolog} is a \textbf{goal-driven} logic programming language:
 %
 \begin{itemize}
     \item Datalog is for tabling. Prolog is for search. 
@@ -971,10 +1052,11 @@ Prolog is Turing-complete. We get the good and the bad:
     \item We can express what we want, but programs may fail to terminate.
 \end{itemize}
 
-Prolog feels imperative: the order of rules and clauses matter. 
+Prolog is less declarative than Datalog: evaluation order matters.
 
-Prolog supports complex data (lists, trees, ...) which are destructed using unification. 
+Prolog supports compound data types (lists, trees, ...).
 \end{frame}
+    
     
 \begin{frame}[standout]
 % blank
