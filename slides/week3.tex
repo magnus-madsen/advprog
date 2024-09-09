@@ -69,12 +69,6 @@
 \begin{frame}{Prolog}
 \Large
 Prolog: \emph{Pro}gramming \emph{Log}ic
-
-\pause
-
-\bigskip
-
-Prolog grew out of research on Artificial Intelligence!
 \end{frame}    
 
 \begin{frame}{From Datalog to Prolog: A Shift in Perspective}
@@ -115,13 +109,13 @@ Prolog \emph{is} a logic programming language, but it is like the C of logic lan
 \end{frame}
 
 \begin{frame}[fragile]{Syntax Update}
-In Flix, the syntax of a Datalog rule is:
-    
+In Flix the syntax of a rule is:
+
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 Path(x, z) :- Edge(x, y), Path(y, z).
 \end{lstlisting}
 
-In the Prolog, the syntax of the same rule is:
+In Prolog the syntax of the same rule is:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 path(X, Z) :- edge(X, Y), path(Y, Z).
