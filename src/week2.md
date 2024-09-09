@@ -4,7 +4,6 @@
 
 - [Flix: A Meta Programming Language for Datalog](https://ceur-ws.org/Vol-3203/short8.pdf)
 - [Fixpoints for the Masses: Programming with First-Class Datalog Constraints](https://dl.acm.org/doi/10.1145/3428193)
-- [Datalog Programming in Flix](#)
 
 ### Slides
 
