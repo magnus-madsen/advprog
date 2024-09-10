@@ -404,7 +404,7 @@ And then we update our implementation of \Code{appnd}:
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 appnd(nil, Ys, Ys) :- is_list(Ys).
 appnd(cons(X, Xss), Ys, cons(X, Rs)) :- 
-    appnd(Xss, Ys, Rs), is_list(Xss), is_list(Ys), is_list(Rs).
+   is_list(Xss), is_list(Ys), is_list(Rs),  appnd(Xss, Ys, Rs).
 \end{lstlisting}
 
 Now our silly query \Code{?- appnd(nil, apple, R)} returns \textbf{no}.
