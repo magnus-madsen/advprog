@@ -1,0 +1,28 @@
+name: Build
+
+on: [pull_request, merge_group]
+
+# Cancel previous runs if the PR is updated
+concurrency:
+  cancel-in-progress: true
+  group: build-${{ github.ref }}
+
+jobs:
+  build-slides:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out master
+        uses: actions/checkout@v4
+      - name: Make slides
+        run: cd slides/ && make
+
+  build-mdbook:
+    runs-in: ubuntu-latest
+    steps:
+      - name: Check out master
+        uses: actions/checkout@v4
+      - name: Install mdbook
+        run: cargo install mdbook
+      - name: Test mdbook
+        run: mdbook test
+
