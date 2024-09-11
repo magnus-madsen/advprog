@@ -8,4 +8,6 @@
 - [A Unified Approach to Solving Seven Programming Problems (Functional Pearl)](https://dl.acm.org/doi/10.1145/3110252) - Byrd et al.
 - [Constraint Logic Programming](https://dl.acm.org/doi/10.1145/41625.41635) - Jaffar and Lassez.
 - [The Stable Model Semantics for Logic Programming](https://cgi.cse.unsw.edu.au/~cs4415/2010/resources/stable.pdf) - Gelfond.
+- [Mercury, an efficient purely declarative logic programming language](#) - Somogyi et al.
+- [Fifty Years of Prolog and Beyond](#) - Korner et. al.
 
