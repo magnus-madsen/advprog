@@ -67,7 +67,7 @@ one using an accumulator. Draw the proof trees produced by each on a small list.
 **Exercise 03.15**: A binary tree of natural numbers can be defined as:
 ```prolog
 tree(leaf).
-node(X, N, Y) :- nat(N), tree(X), tree(Y).
+tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
 ```
 - Assume the tree is *unsorted*, compute if it contains a given number.
 - Assume the tree is *sorted*, compute if it contains a given number.
