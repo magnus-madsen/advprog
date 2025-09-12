@@ -751,6 +751,65 @@ Prolog comes with several extensions:
 You will most likely need some of these for any serious Prolog programming. 
 \end{frame}
 
+
+\section{Getting Started with Prolog}
+
+\begin{frame}{Prolog Dialects and Implementations}
+As with Datalog there are many Prolog dialects and implementations.
+
+The most popular and battle-tested Prolog implementations are:
+
+\begin{itemize}
+    \item \textbf{Ciao Prolog} is an open-source research project from UPM and IMDEA 
+        \linebreak {\small \url{https://ciao-lang.org/}}
+    \item \textbf{Gnu Prolog} is an open-source Prolog implementation 
+        \linebreak {\small \url{http://www.gprolog.org/}}
+    \item \textbf{SWI Prolog} is an open-source Prolog implementation 
+        \linebreak {\small \url{https://www.swi-prolog.org/}}
+    \item \textbf{XSB Prolog} is a commercial Prolog implementation with tabling
+        \linebreak {\small \url{https://xsb.com/xsb-prolog/}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ciao Prolog}
+I recommend that you use \textbf{Ciao Prolog} (with SWI Prolog as backup)
+\begin{columns}
+\begin{column}{.7\textwidth}
+\begin{itemize}
+    \item Ciao has been developed for more than 40 years.
+    \item Ciao is large research project with many cool ideas. 
+    \item Runs in the browser via WebAssembly: \linebreak {\small \url{https://ciao-lang.org/playground/}}
+\end{itemize}
+\end{column}
+\begin{column}{.3\textwidth}
+    \centering
+    \includegraphics[width=0.8\columnwidth]{img/ciao-logo.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+    \node[at=(current page.center)] {
+        \includegraphics[keepaspectratio,
+                        width=\paperwidth,
+                        height=\paperheight]{img/ciao-playground.png}
+    };
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Ciao Playground}
+Your first task:
+
+\Large
+Run the Wolf, Goat, and Cabbage program on the playground.
+
+\bigskip
+
+\centering
+{\Large \url{https://ciao-lang.org/playground/}}
+\end{frame}
+
 \section{A Larger Example}
 
 \begin{frame}{The Wolf, Goat, and Cabbage Problem (1/2)}
@@ -974,64 +1033,6 @@ X = [goat, nothing, wolf, goat, cabbage, nothing, goat]
 \scriptsize
 % https://danielschlegel.org/wp/teaching/prolog-farmer-goat-wolf-cabbage/
 Example inspired by UCSD: {\tiny \url{https://cseweb.ucsd.edu/classes/fa09/cse130/misc/prolog/goat_etc.html}}
-\end{frame}
-
-\section{Getting Started with Prolog}
-
-\begin{frame}{Prolog Dialects and Implementations}
-As with Datalog there are many Prolog dialects and implementations.
-
-The most popular and battle-tested Prolog implementations are:
-
-\begin{itemize}
-    \item \textbf{Ciao Prolog} is an open-source research project from UPM and IMDEA 
-        \linebreak {\small \url{https://ciao-lang.org/}}
-    \item \textbf{Gnu Prolog} is an open-source Prolog implementation 
-        \linebreak {\small \url{http://www.gprolog.org/}}
-    \item \textbf{SWI Prolog} is an open-source Prolog implementation 
-        \linebreak {\small \url{https://www.swi-prolog.org/}}
-    \item \textbf{XSB Prolog} is a commercial Prolog implementation with tabling
-        \linebreak {\small \url{https://xsb.com/xsb-prolog/}}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Ciao Prolog}
-I recommend that you use \textbf{Ciao Prolog} (with SWI Prolog as backup)
-\begin{columns}
-\begin{column}{.7\textwidth}
-\begin{itemize}
-    \item Ciao has been developed for more than 40 years.
-    \item Ciao is large research project with many cool ideas. 
-    \item Runs in the browser via WebAssembly: \linebreak {\small \url{https://ciao-lang.org/playground/}}
-\end{itemize}
-\end{column}
-\begin{column}{.3\textwidth}
-    \centering
-    \includegraphics[width=0.8\columnwidth]{img/ciao-logo.png}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\begin{tikzpicture}[remember picture,overlay]
-    \node[at=(current page.center)] {
-        \includegraphics[keepaspectratio,
-                        width=\paperwidth,
-                        height=\paperheight]{img/ciao-playground.png}
-    };
-\end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Ciao Playground}
-Your first task:
-
-\Large
-Run the Wolf, Goat, and Cabbage program on the playground.
-
-\bigskip
-
-\centering
-{\Large \url{https://ciao-lang.org/playground/}}
 \end{frame}
 
 \begin{frame}{Summary}
