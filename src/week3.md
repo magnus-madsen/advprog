@@ -58,7 +58,7 @@ whether the list `Xs` is a prefix or suffix of `Ys`.
 
 **Exercise 03.12**: Implement `memberOf` in terms of `append`.
 
-**Exericse 03.13**: Implement two versions of `reverse`, one using `append` and
+**Exercise 03.13**: Implement two versions of `reverse`, one using `append` and
 one using an accumulator. Draw the proof trees produced by each on a small list.
 
 **Exercise 03.14**: Implement `substitute(A, B, Xs, Ys)` which relates `Xs` to
