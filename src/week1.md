@@ -1,19 +1,19 @@
-## Week 1 ([Reading](#reading) | [Slides](#slides) | [Exercises](#exercises))
+# Week 1
 
-### Reading
+## Reading
 
 - [What you always wanted to know about Datalog (and never dared to ask)](https://dl.acm.org/doi/abs/10.1109/69.43410) 
   - (Section I, Section II: A-D, Section VI: A-C)
 - [Datalog and Logic Databases](https://link.springer.com/book/10.1007/978-3-031-01854-1)
   - (Chapter 1, Chapter 2, Chapter 3, Chapter 4.1-4.3)
 
-### Slides
+## Slides
 
 <a href="./week1.pdf">
     <img src="./week1-02.png" alt="Download Slides" width="800" height="450"/>
 </a>
 
-### Exercises
+## Exercises
 
 **Exercise 01.00**: Follow the [Get Started with Flix](https://doc.flix.dev/getting-started.html) tutorial.
 
@@ -158,7 +158,7 @@ Loves("Caledon", "Rose").
 Happy(x) :- Loves(x, y), Loves(y, x).
 ```
 
-What are all the possible the interpretations?
+What are all the possible interpretations?
 
 **Hint**: There are many. You may want to write them up in a table. 
 

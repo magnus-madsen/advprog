@@ -1,4 +1,4 @@
-## Logic Programming Project
+# Logic Project
 
 The following ideas may be used for inspiration:
 

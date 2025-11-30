@@ -1,4 +1,4 @@
-## Paper Presentations
+# Paper Presentations
 
 - [Answer set programming at a glance](https://dl.acm.org/doi/10.1145/2043174.2043195) — Brewka et al.
 - [Dedalus: Datalog in Time and Space](https://link.springer.com/chapter/10.1007/978-3-642-24206-9_16) — Alvaro et al.
@@ -9,5 +9,5 @@
 - [Constraint Logic Programming](https://dl.acm.org/doi/10.1145/41625.41635) - Jaffar and Lassez.
 - [The Stable Model Semantics for Logic Programming](https://cgi.cse.unsw.edu.au/~cs4415/2010/resources/stable.pdf) - Gelfond.
 - [Mercury, an efficient purely declarative logic programming language](#) - Somogyi et al.
-- [Fifty Years of Prolog and Beyond](#) - Korner et. al.
+- [Fifty Years of Prolog and Beyond](#) - Körner et al.
 

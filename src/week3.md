@@ -1,17 +1,17 @@
-## Week 3 ([Reading](#reading) | [Slides](#slides) | [Exercises](#exercises))
+# Week 3
 
-### Reading
+## Reading
 
-- [An Introduction to Prolog Programming](https://staff.fnwi.uva.nl/u.endriss/teaching/prolog/prolog.pdf) - Ulle Endris
+- [An Introduction to Prolog Programming](https://staff.fnwi.uva.nl/u.endriss/teaching/prolog/prolog.pdf) - Ulle Endriss
   - (Chapter 1, Chapter 2, Chapter 3)
 
-### Slides
+## Slides
 
 <a href="./week3.pdf">
     <img src="./week3-02.png" alt="Download Slides" width="800" height="450"/>
 </a>
 
-### Exercises
+## Exercises
 
 **Exercise 03.01**: Get the Wolf, Goat, and Cabbage program to run.
 
@@ -107,7 +107,7 @@ substitution, or report if unification is impossible.
 - `unify([X, Y], [1, [X, 3]])`
 - `unify([X, [Y]], [1, [X, [Y]]])`
 
-**Exercise 03.18**: Describe why the *occurs check* is is necessary in the
+**Exercise 03.18**: Describe why the *occurs check* is necessary in the
 unification algorithm.   
 
 **Exercise 03.19**: When would you use Datalog to solve a programming problem? And Prolog?

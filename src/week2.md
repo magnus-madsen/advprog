@@ -1,17 +1,17 @@
-## Week 2 ([Reading](#reading) | [Slides](#slides) | [Exercises](#exercises))
+# Week 2
 
-### Reading
+## Reading
 
 - [Flix: A Meta Programming Language for Datalog](https://ceur-ws.org/Vol-3203/short8.pdf)
 - [Fixpoints for the Masses: Programming with First-Class Datalog Constraints](https://dl.acm.org/doi/10.1145/3428193)
 
-### Slides
+## Slides
 
 <a href="./week2.pdf">
     <img src="./week2-02.png" alt="Download Slides" width="800" height="450"/>
 </a>
 
-### Exercises
+## Exercises
 
 **Exercise 02.01**: Rewrite the following SQL query:
 
@@ -56,7 +56,7 @@ ORDER BY
 - Define a data type `Grade` which is one of: `-3, 00, 02, 4, 7, 10, 12`. 
 - Introduce a lattice on `Grade` with `-3` as the smallest element. 
 
-**Exercise 02.03**: The [Bacon number]([https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#Bacon_numbers) of an actor or actress is the number of
+**Exercise 02.03**: The [Bacon number](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon#Bacon_numbers) of an actor or actress is the number of
 degrees of separation they have from the actor Kevin Bacon. Per Wikipedia:
 
 - Kevin Bacon himself has a Bacon number of `0`.

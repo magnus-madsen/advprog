@@ -19,7 +19,7 @@ After the course, students will be able to:
 
 *Logic Programming:* 
 
-- The syntax of logic programs; fact and rules.
+- The syntax of logic programs; facts and rules.
 - Interpretations, Models, and Minimal Models. 
 - Negation and its Challenges. 
 - Stratified Negation.
