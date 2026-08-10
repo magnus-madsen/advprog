@@ -1,10 +1,14 @@
 name: Build
 
-on: [pull_request, merge_group]
+on:
+  push:
+    branches: [master]
+  pull_request:
+  merge_group:
 
-# Cancel previous runs if the PR is updated
+# Cancel previous runs if the PR is updated, but let pushes to master finish
 concurrency:
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
   group: build-${{ github.ref }}
 
 jobs:
@@ -12,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out master
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install XeLaTeX, latexmk, and pdftoppm
         run: |
           sudo apt-get update
@@ -40,7 +44,7 @@ jobs:
       MDBOOK_VERSION: 0.5.4
     steps:
       - name: Check out master
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install mdbook
         run: |
           set -euo pipefail
