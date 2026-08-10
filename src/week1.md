@@ -69,7 +69,7 @@ _constants_. Here is a template to get you started:
 
 **Exercise 01.04**: Given the following facts about roads, bridges, and flights:
 
-```
+```datalog
 Road("Aarhus", "Vejle").
 Road("Aarhus", "Aalborg").
 Road("Aalborg", "Skagen").
@@ -205,7 +205,7 @@ and which model is minimal?
 
 **Exercise 01.11**: Given the Datalog program:
 
-```
+```datalog
 God("Odin").
 Son("Odin", "Thor").
 Son("Odin", "Baldr").
