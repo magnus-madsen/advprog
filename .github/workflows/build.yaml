@@ -14,13 +14,19 @@ concurrency:
 jobs:
   build-slides:
     runs-on: ubuntu-latest
+    env:
+      TYPST_VERSION: 0.15.1
     steps:
       - name: Check out master
         uses: actions/checkout@v7
-      - name: Install XeLaTeX, latexmk, and pdftoppm
+      - name: Install XeLaTeX, latexmk, pdftoppm, and the emoji font
+        # fonts-noto-color-emoji is for the Typst deck: Typst embeds only its
+        # own text fonts, so without an emoji font the runner renders the
+        # emoji in welcome.typ as blanks instead of failing the build.
         run: |
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends \
+            fonts-noto-color-emoji \
             latexmk \
             poppler-utils \
             texlive-fonts-extra \
@@ -35,6 +41,14 @@ jobs:
           sudo mkdir -p /usr/local/share/fonts
           sudo cp /usr/share/texlive/texmf-dist/fonts/opentype/public/fira/*.otf /usr/local/share/fonts/
           sudo fc-cache -f
+      - name: Install Typst
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.local/bin"
+          curl -fsSL "https://github.com/typst/typst/releases/download/v$TYPST_VERSION/typst-x86_64-unknown-linux-musl.tar.xz" \
+            | tar -xJ --strip-components=1 -C "$HOME/.local/bin" \
+              typst-x86_64-unknown-linux-musl/typst
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Make slides
         run: make -C slides
 
