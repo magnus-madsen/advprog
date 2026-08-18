@@ -109,7 +109,7 @@
     [#hlblue[Reading material]:], [#icon(emoji.page) Research Papers + #icon(emoji.books) Textbooks],
     [#topic[Logic Programming]:], [A collection of programming exercises.],
     [#topic[Relaxed Memory]:], [A collection of modelling exercises.],
-    [#topic[Type Theory]:], [TBD],
+    [#topic[Type Theory]:], [A collection of pen-and-paper exercises.],
   )
 ]
 
