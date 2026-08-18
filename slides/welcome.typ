@@ -32,6 +32,11 @@
 #let grey = luma(110)
 #let aside(body) = text(fill: grey, body)
 
+// Emoji whose line box does not tower over the surrounding text. The emoji font
+// reports a full 1em cap-height, which would otherwise make its line taller and
+// push it out of alignment with neighbouring grid cells.
+#let icon(body) = text(top-edge: "x-height", body)
+
 // Lecturer name with their email underneath, in small grey type.
 #let lecturer(name, email) = {
   set par(leading: 10pt)
@@ -51,31 +56,40 @@
     table.header(hlblue[Weeks], hlblue[Lecturer], hlblue[Module]),
     table.hline(stroke: .05em),
     [1--3], lecturer([Magnus Madsen], "magnusm@cs.au.dk"),
-    topic[Logic Programming: Datalog & Prolog],
+    topic[Logic Programming],
 
     [4], lecturer([Troels Henriksen], "athas@di.ku.dk"),
     [#topic[Futhark] #aside[(guest lecture)]],
 
     [5--7], lecturer([Jean Pichon-Pharabod], "jean.pichon@cs.au.dk"),
-    topic[TBD],
+    topic[Relaxed Memory],
 
     [8--14], lecturer([Daniel Gratzer], "gratzer@cs.au.dk"),
-    topic[TBD],
+    topic[Type Theory],
   )
 
   #v(.8em)
 
   #align(center, text(size: .85em)[
-    🚨 The guest lecture takes place on Wed Sept. 16
+    #icon(emoji.siren) The guest lecture takes place on Wed Sept. 16
     from 09 to 12 AM in Nygaard 5335-091
   ])
 ]
 
 #slide(title: [Homework])[
   #set text(size: 1.2em)
-  - #topic[Logic Programming]: A collection of programming exercises.
-  - #topic[TBD]: TBD
-  - #topic[TBD]: TBD
+  // Right-aligned label column, so the colons line up across rows. The first
+  // gutter is wider to separate the reading material from the three modules.
+  #grid(
+    columns: (auto, 1fr),
+    align: (right, left),
+    column-gutter: 0.5em,
+    row-gutter: (1.6em, 0.8em),
+    [#hlblue[Reading material]:], [#icon(emoji.page) Research Papers + #icon(emoji.books) Textbooks],
+    [#topic[Logic Programming]:], [A collection of programming exercises.],
+    [#topic[Relaxed Memory]:], [TBD],
+    [#topic[Type Theory]:], [TBD],
+  )
 ]
 
 #slide(title: [Exam])[
