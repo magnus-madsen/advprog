@@ -45,6 +45,27 @@
   text(size: .55em, fill: grey, email)
 }
 
+#slide(title: [When and Where])[
+  #set text(size: 1.2em)
+  #table(
+    columns: (auto, auto, 1fr),
+    align: horizon,
+    stroke: none,
+    inset: (x: 0.6em, y: 0.5em),
+    table.hline(stroke: .05em),
+    table.header(hlblue[Day], hlblue[Time], hlblue[Room]),
+    table.hline(stroke: .05em),
+    topic[Tuesday], [09.15--11.00], [5342-020 #aside[(Ada 020)]],
+    topic[Friday], [09.15--10.00], [5523-131 #aside[(InCuba 131)]],
+  )
+
+  #v(.8em)
+
+  #align(center, text(size: .85em)[
+    #icon(emoji.clock.nine) We use the academic quarter, so 9 AM means 9.15 AM.
+  ])
+]
+
 #slide(title: [Course Overview])[
   #set text(size: 1.1em)
   #table(
@@ -87,7 +108,7 @@
     row-gutter: (1.6em, 0.8em),
     [#hlblue[Reading material]:], [#icon(emoji.page) Research Papers + #icon(emoji.books) Textbooks],
     [#topic[Logic Programming]:], [A collection of programming exercises.],
-    [#topic[Relaxed Memory]:], [TBD],
+    [#topic[Relaxed Memory]:], [A collection of modelling exercises.],
     [#topic[Type Theory]:], [TBD],
   )
 ]
