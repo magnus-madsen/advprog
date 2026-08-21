@@ -149,7 +149,7 @@ We can compute the solution to such an equation by various means.
 
 \begin{itemize}
     \item Guess! (Yes, why not?) 
-    \pause \item Use algebraic simplifications (subtract $x$ on both sides, and so on).
+    \pause \item Use algebraic simplifications (divide by $2$ on both sides, and so on).
     \pause \item Rewrite the equation to a system of linear equalities and use
     Gauss-Jordan Elimination (reduction to row echelon form).
     \pause \item Rewrite the equation to a system of linear inequalities and use
@@ -488,12 +488,12 @@ FriendOfFriend(x, z) :-
     Friend(x, y), 
     Friend(y, x), 
     Friend(y, z), 
-    if x != z.
+    if (x != z).
 
 ShareInterest(x, y) :- 
     Interest(x, i), 
     Interest(y, i), 
-    if x != y.
+    if (x != y).
 
 FriendSuggestion(x, y) :- 
     FriendOfFriend(x, y), 
@@ -1125,7 +1125,7 @@ sequence of programs $P_1, \cdots, P_n$:
 \draw[rounded corners, fill=gray!30] (6,0) rectangle (8,2);
 \node[align=center, text width=3cm] at (7,1) {\Large $P_i$};
 
-\draw[->, line width=1.25pt] (8,1) -- (10,1);
+\draw[->, line width=1.25pt] (8,1) -- (9,1);
 
 \draw[rounded corners, fill=gray!30]  (9,0) rectangle (11,2);
 \node[align=center, text width=3cm] at (10,1) {\Large $P_{i + 1}$};
