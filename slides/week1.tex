@@ -319,7 +319,7 @@ c \in \textsl{Constraint} = A_0 \Leftarrow A_1, \cdots, A_n.
 
 \pause
 
-Each $A_i$ is an atom. The atom $A_0$ is the head. The atoms $A_1, \cdots, A_N$ are the body. 
+Each $A_i$ is an atom. The atom $A_0$ is the head. The atoms $A_1, \cdots, A_n$ are the body. 
 
 \pause
 
@@ -354,7 +354,7 @@ t \in \textsl{Term} = k \mid x.
 \end{align*}
 }
 
-A constant $k$ is a primitive value, e.g. a number of string.
+A constant $k$ is a primitive value, e.g. a number or string.
 \end{frame}
 
 \begin{frame}[fragile]{Datalog Grammar}
@@ -393,7 +393,7 @@ k \in \textsl{Constants}    & = \text{is a finite set of constants.}
 \begin{frame}[fragile]{Ground Atoms and Rules}
 An \textbf{atom} is said to be \textbf{ground} if it does not contain a variable.
 
-A \textbf{rule} is said to be \textbf{ground} if it all of its atoms are ground.
+A \textbf{rule} is said to be \textbf{ground} if all of its atoms are ground.
 
 For example:
 \begin{lstlisting}[language=flix,xleftmargin=0.8cm]
@@ -553,7 +553,7 @@ In the same vein, there are also many Datalog dialects and solvers:
     \item Logica is an open source Datalog engine released by Google
     \small
     \url{https://logica.dev/}
-    \item Souffle is a open source and highly scalable Datalog engine {\small
+    \item Souffl\'e is an open source and highly scalable Datalog engine {\small
     \url{https://souffle-lang.github.io/}}
 \end{itemize}
 \end{frame}
@@ -561,13 +561,13 @@ In the same vein, there are also many Datalog dialects and solvers:
 \begin{frame}{Datalog Dialects and Implementations (2/2)}
 In this course, we shall use the \textbf{Flix programming language}:
 \begin{itemize}
-    \item Flix is fully-blown functional, logic, and imperative programming
-    language. 
+    \item Flix is a full-blown functional, logic, and imperative programming
+    language.
     \item A unique feature of Flix is its support for Datalog as a
     strongly-typed deeply embedded domain specific language (EDSL).
     \item Flix is developed by researchers from several universities, including
     Aarhus University, the University of Waterloo (Canada), the University of
-    Copenhagen, and the University of Tubingen (Germany).
+    Copenhagen, and the University of T\"ubingen (Germany).
 \end{itemize}  
 \end{frame}
 
@@ -756,7 +756,7 @@ The \textbf{model-theoretic} semantics define the meaning of a Datalog program
 in terms of interpretations and models. Briefly,
 \begin{itemize}
     \item An interpretation is a set of facts.
-    \item A model is an interpretation that satisfy all constraints in the program.
+    \item A model is an interpretation that satisfies all constraints in the program.
     \item The minimal model, which is unique, is smaller than all other models.
         \begin{itemize}
             \item We think of the minimal model as the solution to a Datalog program.
@@ -769,7 +769,7 @@ The model-theoretic semantics describes the \textbf{\emph{what}}, not the
 \textbf{\emph{how}}.
 \end{frame}
 
-\begin{frame}{Model-theoretic Semantics (1/2)}
+\begin{frame}{Model-theoretic Semantics (2/2)}
 We will need to learn several new definitions and concepts:
 \begin{itemize}
     \item Herbrand Base and Herbrand Universe
@@ -819,7 +819,7 @@ $$
 
 \begin{frame}{Herbrand Base}
 The Herbrand Base $\mathcal{B}$ of a Datalog program $P$ is the set of all
-ground atoms with predicates symbols drawn from $P$ and terms drawn from the
+ground atoms with predicate symbols drawn from $P$ and terms drawn from the
 Herbrand Universe $\mathcal{U}$.
 
 For our example, the Herbrand Base of $P$ is the set:
@@ -926,7 +926,7 @@ For example, the interpretation on the previous slide was a minimal model.
 
 \pause
 
-On other hand, the interpretation:
+On the other hand, the interpretation:
 $$
 M = \left\{
 \begin{array}{ll}
@@ -963,7 +963,7 @@ We now have the mathematical foundations to answer questions such as:
 
 \pause
 
-What we \emph{lack} is method to \textbf{compute} the minimal model of a program.
+What we \emph{lack} is a method to \textbf{compute} the minimal model of a program.
 \begin{itemize}
     \item We need the \textbf{\emph{how}}. Enter the fixpoint semantics.
 \end{itemize}
