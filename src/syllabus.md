@@ -16,3 +16,12 @@
 - [An Introduction to Prolog Programming](https://staff.fnwi.uva.nl/u.endriss/teaching/prolog/prolog.pdf) - Ulle Endriss
   - (Chapter 1, Chapter 2, Chapter 3)
 
+## PhD Level Variant: Extra Material
+
+The following extra material is required reading for the PhD level version of
+the course:
+
+- [Answer set programming at a glance](https://dl.acm.org/doi/10.1145/2043174.2043195) — Brewka et al.
+- [Answer Set Programming: A Primer](https://link.springer.com/chapter/10.1007/978-3-642-03754-2_2) — Eiter et al.
+  - (Sections 7 and 8 are optional)
+

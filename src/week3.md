@@ -5,6 +5,11 @@
 - [An Introduction to Prolog Programming](https://staff.fnwi.uva.nl/u.endriss/teaching/prolog/prolog.pdf) - Ulle Endriss
   - (Chapter 1, Chapter 2, Chapter 3)
 
+## Extra Reading (PhD Level)
+
+- [Answer Set Programming: A Primer](https://link.springer.com/chapter/10.1007/978-3-642-03754-2_2) — Eiter et al.
+  - (Sections 7 and 8 are optional)
+
 ## Slides
 
 <a href="./week3.pdf">

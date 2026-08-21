@@ -4,6 +4,10 @@
 
 - [Flix: A Design for Language-Integrated Datalog](https://dl.acm.org/doi/10.1145/3763126)
 
+## Extra Reading (PhD Level)
+
+- [Answer set programming at a glance](https://dl.acm.org/doi/10.1145/2043174.2043195) — Brewka et al.
+
 ## Slides
 
 <a href="./week2.pdf">
