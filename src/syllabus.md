@@ -9,8 +9,7 @@
 
 ## Week 2: Programming with Datalog in Flix
 
-- [Flix: A Meta Programming Language for Datalog](https://ceur-ws.org/Vol-3203/short8.pdf)
-- [Fixpoints for the Masses: Programming with First-Class Datalog Constraints](https://dl.acm.org/doi/10.1145/3428193)
+- [Flix: A Design for Language-Integrated Datalog](https://dl.acm.org/doi/10.1145/3763126)
 
 ## Week 3: Programming with Prolog
 
