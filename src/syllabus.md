@@ -17,6 +17,3 @@
 - [An Introduction to Prolog Programming](https://staff.fnwi.uva.nl/u.endriss/teaching/prolog/prolog.pdf) - Ulle Endriss
   - (Chapter 1, Chapter 2, Chapter 3)
 
-## Paper Presentation
-
-In addition, __all presented papers are part of the syllabus__!
