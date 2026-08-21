@@ -1134,8 +1134,8 @@ sequence of programs $P_1, \cdots, P_n$:
 
 The computed facts (the IDB) of $P_i$ become the facts (the EDB) of $P_{i + 1}$.
 \begin{itemize}
-    \item Critically, we must partition the predicate symbols such that if $p$
-    depends on $q$ then $q$ occurs in an earlier or the same program. 
+    \item Critically, we must partition the predicates carefully such that
+    there is no circular dependency with negation.
 \end{itemize}
 \end{frame}
 
