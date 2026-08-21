@@ -254,10 +254,10 @@ Datalog is a surgical instrument: You use it when the problem calls for it.
 \centering
 \medskip
 \medskip
-\begin{tikzpicture}[font=\sffamily, scale=0.8]
-\foreach \X/\col [count=\N, evaluate=\N as \Y using 5-\N] in {Prolog/blue, Datalog$^\neg$/green, Datalog/yellow, RA /orange}
+\begin{tikzpicture}[font=\sffamily, scale=1.0]
+\foreach \X/\col/\LY [count=\N, evaluate=\N as \Y using 4-\N] in {Prolog/blue/-3.0, Datalog$^\neg$/green/-2.0, Relational\\Algebra/orange/-0.5}
 {\draw[fill=\col!30] (-\Y,-\Y/2) circle ({1.5*\Y} and \Y);
-\node[align=center] at (1-2*\Y,-1.1*\Y) {\X}; }
+\node[align=center] at (1-2*\Y,\LY) {\X}; }
 \draw ([xshift=-0.5cm,yshift=-0.5cm] current bounding box.south west);
 \end{tikzpicture}
 \end{frame}
@@ -421,7 +421,7 @@ Datalog has several important theoretical properties:
 \begin{itemize}
     \item Every Datalog program has a unique solution.
     \item Every Datalog program eventually terminates.
-    \item Every polynomial time algorithm can be expressed in Datalog.
+    \item Every Datalog program can be evaluated in polynomial time.
 \end{itemize}
 
 \medskip
@@ -964,7 +964,7 @@ What we \emph{lack} is a method to \textbf{compute} the minimal model of a progr
 Assume that $I$ is an interpretation of a Datalog program $P$.
 
 We define the \textbf{\emph{immediate consequence operator}} $T_P$ as the head
-atoms of each ground rule instance satisfied by $I$. For example, if we have the
+atoms of each ground rule instance whose body is satisfied by $I$. For example, if we have the
 interpretation:
 $$
 I = \left\{
