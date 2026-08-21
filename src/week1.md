@@ -110,7 +110,7 @@ is a flight from `Aalborg` to `København` then there is also a flight from
   importantly, after taking a flight, one cannot drive further (since a car will
   not fit in the overhead bin). 
 - (f) Use `Reachable` to determine if it is possible to travel from `Nexø` to
-  `Aalborg`? And what about the other direction, from `Aalborg` to `Nexø`? 
+  `Aalborg`. And what about the other direction, from `Aalborg` to `Nexø`? 
 
 **Hint:** Lillebælt is beneath our notice.
 
@@ -143,9 +143,9 @@ Fruit("Strawberry", "Red").
 Vegetable("Tomato", "Red").
 ```
 
-What is its *Herbrand Universe* and the *Herbrand Base*?
+What are its *Herbrand Universe* and *Herbrand Base*?
 
-**Hint:** The Herbrand Base will be large. You may want to write them up in a table.
+**Hint:** The Herbrand Base will be large. You may want to write it up in a table.
 
 **Note**: You do not have to submit the complete table. An excerpt is sufficient.
 
@@ -183,7 +183,7 @@ Happy("Jack") :- Loves("Rose", "Jack"), Loves("Caledon", "Caledon")?
 Happy("Caledon") :- Loves("Caledon", "Caledon"), Loves("Caledon", "Caledon")?
 ```
 
-**Exercise 01.10**: Given the Datalog program above which of these
+**Exercise 01.10**: Given the Datalog program above, which of these
 interpretations are *models*?
 
 ```
@@ -240,7 +240,7 @@ Road("Pisae", "Ravenna").
 Road("Pisae", "Rome").
 ```
 
-Compute all pairs of cities `(s, t)` which are connected by a road that *passes
+Compute all pairs of cities `(s, t)` which are connected by a route that *passes
 through* `Rome`.
 
 **Hint:** If your solution includes `Messana` or `Syracuse` it is wrong!
@@ -248,7 +248,7 @@ through* `Rome`.
 **Exercise 01.13**: Given the following facts about compilers and interpreters:
 
 ```datalog
-/// Available hardware.
+// Available hardware.
 Machine("x86").
 Machine("x64").
 
@@ -286,7 +286,7 @@ Compiler("Rust", "x86", "OCaml").
 
 **Hint:** Remember that you can compile compilers!
 
-**Exercise 01.14** A student was asked to write a Datalog program to compute
+**Exercise 01.14**: A student was asked to write a Datalog program to compute
 orphans and wrote: 
 
 ```datalog
@@ -294,7 +294,7 @@ Orphan(c) :- Person(c), Person(p), not Parent(c, p).
 ```
 
 Initially, the program seemed to work fine, but later, when the student added
-additional facts the program started to give wrong answers.
+additional facts, the program started to give wrong answers.
 
 - (a) Give a collection of facts that show the program is broken.
 - (b) Describe why the program is incorrect.
@@ -349,7 +349,7 @@ StarringIn("Apocalypse Now", "Francis Ford Coppola").
 
 StarringIn("The Godfather", "Al Pacino").
 StarringIn("The Godfather", "Marlon Brando").
-StarringIn("The Godfather", "Robert de Niro").
+StarringIn("The Godfather", "Robert De Niro").
 
 DirectedBy("Reservoir Dogs", "Quentin Tarantino").
 DirectedBy("Pulp Fiction", "Quentin Tarantino").
@@ -378,9 +378,9 @@ Serves(bar, beer).
 
 Write Datalog programs to compute:
 
-- (a) All persons that frequents some bar that serve a beer they like.
-- (b) All persons that frequents some bar that serve some beer they don’t like.
-- (c) All persons that frequents some bar that serve only beer they don’t like.
+- (a) All persons that frequent some bar that serves a beer they like.
+- (b) All persons that frequent some bar that serves some beer they don't like.
+- (c) All persons that frequent some bar that serves only beer they don't like.
 - (d) Add some facts about your favorite bars and beverages to test your programs.
 
 **Hint:** Use negation.
