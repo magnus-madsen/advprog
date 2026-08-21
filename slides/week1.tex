@@ -997,7 +997,7 @@ of a Datalog program as the sequence:
 \text{Iteration 1} &= T_P(\emptyset) \\
 \text{Iteration 2} &= T_P(T_P(\emptyset)) \\
 \text{Iteration 3} &= T_P(T_P(T_P(\emptyset))) \\ 
-\text{Iteration i} &= T_P^i(\emptyset) = T_P(T_P^i(\emptyset))
+\text{Iteration i} &= T_P^i(\emptyset) = T_P(T_P^{i-1}(\emptyset))
 \end{align*}
 %
 That is, we repeatedly apply $T_P$, starting from the empty set, and until we do
@@ -1106,7 +1106,8 @@ $$
     M_1 = \{ P(42) \} \qquad M_2 = \{ Q(42) \}
 $$
 %
-\textbf{Neither of which is minimal! Yikes!}
+Both are minimal, but neither is contained in the other --- there is no
+unique minimal model! Yikes!
 \end{frame}
 
 \begin{frame}{Stratified Negation}
