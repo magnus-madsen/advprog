@@ -291,11 +291,11 @@ TwoWay(airline) :-
 \end{frame}
 
 \begin{frame}{Datalog Programs}
-A Datalog \textbf{program} $p$ is a finite sequence of constraints:
+A Datalog \textbf{program} $P$ is a finite sequence of constraints:
 %
 {\Large
 \begin{align*}
-p \in \textsl{Program} = c_1 \cdots c_n
+P \in \textsl{Program} = c_1 \cdots c_n
 \end{align*}
 }
 
@@ -363,7 +363,7 @@ The complete grammar for Datalog is:
 {
 \large
 \begin{align*}
-p \in \textsl{Program}      &= c_1 \cdots c_n \\
+P \in \textsl{Program}      &= c_1 \cdots c_n \\
 c \in \textsl{Constraint}   &= A_0 \Leftarrow A_1, \cdots, A_n. \\ 
 A \in \textsl{Atom}         &= p(t_1, \cdots, t_n) \\
 t \in \textsl{Term}         &= k \mid x. \\
@@ -1056,7 +1056,7 @@ We extend the grammar of Datalog to allow negated \emph{body} atoms:
 {
 \large
 \begin{align*}
-p \in \textsl{Program}      &= c_1 \cdots c_n \\
+P \in \textsl{Program}      &= c_1 \cdots c_n \\
 c \in \textsl{Constraint}   &= \Highlight{A_0 \Leftarrow B_1, \cdots, B_n.} \\ 
 \Highlight{A \in \textsl{HeadAtom}}     &= \Highlight{p(t_1, \cdots, t_n)} \\
 \Highlight{B \in \textsl{BodyAtom}}     &= \Highlight{p(t_1, \cdots, t_n) \mid \text{\textbf{not}} \, p(t_1, \cdots, t_n)} \\
