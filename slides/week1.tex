@@ -223,7 +223,7 @@ Declarative logic programming offers several benefits:
 \begin{itemize}
     \pause \item Research on Datalog goes back to the 1970s in the fields of artificial
     intelligence, deductive databases, and knowledge representation.
-    \pause \item Datalog (and Prolog) are cornerstones of classical A.I. based on
+    \pause \item Datalog and Prolog are cornerstones of classical A.I. based on
     symbolic reasoning --- before the golden age of machine learning.
 \end{itemize}
 
@@ -813,7 +813,7 @@ For example, the Herbrand Universe of $P$ is the set:
 %
 \Large
 $$
-U = \{ \textsf{"Bart"}, \textsf{"Lisa"}, \textsf{"Homer"}, \textsf{"Grampa"} \}
+\mathcal{U} = \{ \textsf{"Bart"}, \textsf{"Lisa"}, \textsf{"Homer"}, \textsf{"Grampa"} \}
 $$
 \end{frame}
 
@@ -825,7 +825,7 @@ Herbrand Universe $\mathcal{U}$.
 For our example, the Herbrand Base of $P$ is the set:
 \small
 $$
-B = \left\{
+\mathcal{B} = \left\{
 \begin{array}{ll}
 \textsf{Parent}(\textsf{"Bart"}, \textsf{"Bart"}),      & \textsf{GrandParent}(\textsf{"Bart"}, \textsf{"Bart"}), \\
 \textsf{Parent}(\textsf{"Bart"}, \textsf{"Lisa"}),      & \textsf{GrandParent}(\textsf{"Bart"}, \textsf{"Lisa"}), \\
