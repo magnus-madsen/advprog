@@ -11,10 +11,10 @@ COMMON := header.tex macro.tex pr-welcome.tex flix.sty oubraces.sty $(wildcard i
 .PHONY: all clean
 all: $(PDFS) $(THUMBS)
 
-# latexmk reruns XeLaTeX as many times as the table of contents and the
-# navigation bar need to settle.
+# XeLaTeX runs twice so the table of contents and the navigation bar settle.
 %.pdf: %.tex $(COMMON)
-	latexmk -xelatex -halt-on-error -interaction=nonstopmode $<
+	xelatex -halt-on-error -interaction=nonstopmode $<
+	xelatex -halt-on-error -interaction=nonstopmode $<
 
 # Typst decks are self-contained. Note that the first build needs network
 # access: touying is fetched from the package registry into the local cache.
@@ -27,6 +27,8 @@ all: $(PDFS) $(THUMBS)
 	pdftoppm -png -f 2 -l 2 -singlefile $< $*-02
 
 clean:
-	latexmk -C
-	rm -f $(TYPST:%=%.pdf) $(THUMBS) \
-	      $(SLIDES:%=%.nav) $(SLIDES:%=%.snm) $(SLIDES:%=%.vrb)
+	rm -f $(PDFS) $(THUMBS) \
+	      $(SLIDES:%=%.aux) $(SLIDES:%=%.log) $(SLIDES:%=%.nav) \
+	      $(SLIDES:%=%.out) $(SLIDES:%=%.snm) $(SLIDES:%=%.toc) \
+	      $(SLIDES:%=%.vrb) $(SLIDES:%=%.xdv) \
+	      $(SLIDES:%=%.fls) $(SLIDES:%=%.fdb_latexmk)
