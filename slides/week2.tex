@@ -277,10 +277,10 @@ We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs
 \textbf{Solving} --- Getting facts out of Datalog
 \begin{itemize}
     \small
-    \item The \Code{query e1, ..., en select (x1, ..., xm) from A1, ..., A_o}
+    \item The \Code{query e1, ..., en select (x1, ..., xm) from A1, ..., Ak}
     expression computes the minimal model of the expressions $e_1, \cdots, e_n$,
     and then it selects the variables $x_1, \cdots, x_m$ from the relations
-    $A_1, \cdots, A_o$. The result is a \Code{Vector} of tuples.
+    $A_1, \cdots, A_k$. The result is a \Code{Vector} of tuples.
 \end{itemize}
 \end{frame}
 
@@ -468,7 +468,7 @@ For example,
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 let nodes = Set#{1, 2, 3, 4};
-let edges = (1, 2) :: (2, 3) :: (3, 3) :: Nil
+let edges = (1, 2) :: (2, 3) :: (3, 3) :: Nil;
 inject nodes, edges into Node/1, Edge/2
 \end{lstlisting}
 
@@ -632,7 +632,9 @@ def main(): Unit \ IO =
 \end{lstlisting}
 
 % We have 4 issues: 2 are type system related and 2 are logical:
-% - Types: We have x bound by lexical scope in the def. of y and z.
+% - Types: x is captured by lexical scope in y and z -- and so is y in z.
+%          (A let-bound name is not in scope in its own definition, so the
+%           y in y and the z in z are genuine Datalog variables.)
 % - Types: The Leg predicate has arity 3, not 2.
 % - Logic: We were supposed to query Route, not Leg.
 % - Logic: We forgot to query the program y.
@@ -740,7 +742,7 @@ where $\tau$ ranges over the base types (e.g. \Code{Bool}, \Code{Int32}, \Code{S
 
 \pause
 
-We consider rows equivalent up to associativity and commutativity. 
+We consider rows equivalent up to commutativity.
 
 \medskip
 
