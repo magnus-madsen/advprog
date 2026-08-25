@@ -243,7 +243,8 @@ We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs
     \item The minimal model is itself a Datalog program value.
 \end{itemize}
 
-\textbf{Upshot:} We can create pipelines of Datalog programs.
+\textbf{Upshot:} Using \Code{query} and \Code{inject}, the model of one program
+can feed the next --- we can build pipelines of Datalog programs.
 \end{frame}
 
 \begin{frame}[fragile]{Fundamental Operations}
@@ -346,8 +347,9 @@ Datalog program values are first-class:
 Datalog program values do \emph{not} implement any traits.
 
 \begin{itemize}
-    \item In particular, they do \emph{not} implement \Code{Eq[t]} or \Code{Order[t]}.
-    \item Hence, we can only manipulate them using \Code{query}.
+    \item In particular, they do \emph{not} implement \Code{Eq[t]},
+    \Code{Order[t]}, or \Code{ToString[t]}.
+    \item Hence, we can only operate on them with \Code|<+>| and \Code{query}.
 \end{itemize}
 \end{frame}
 
@@ -1127,7 +1129,7 @@ We use the semicolon \Code{;} to indicate when we want lattice semantics.
 
 \pause
 
-A lattice has the following components:
+A \emph{bounded} lattice has the following components:
 
 \begin{itemize}
     \item Least and Greatest Elements (\Code{LowerBound} and \Code{UpperBound}).
@@ -1136,7 +1138,11 @@ A lattice has the following components:
     \item A greatest lower bound for any two elements (\Code{MeetLattice}).
 \end{itemize}
 
-which we define by implementing instances for the traits in parentheses.
+\medskip
+
+\small
+\textbf{Note:} For the fixpoint to terminate, the lattice must have no infinite
+ascending chains.
 
 \end{frame}
 
@@ -1246,7 +1252,7 @@ Count(n, Set.size(s))  :- fix Layer(n; s).
 \pause
 
 This Datalog program computes how many actors are separated from Kevin Bacon by
-$1, 2, 3, \cdots$ degrees. 
+$0, 1, 2, \cdots$ degrees.
 
 \pause
 
