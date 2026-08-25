@@ -226,3 +226,37 @@ i.e., the timestamps along the chain must be strictly increasing.
 
 Test your function by tracing the money from `acme-holdings` to
 `offshore-trust-x`.
+
+**Exercise 02.12**: You are given a database of currency exchange rates, where
+a fact `Rate("DKK", "EUR", 0.134)` states that 1 DKK buys 0.134 EUR:
+
+```flix
+Rate("DKK", "EUR", 0.134).
+Rate("DKK", "SEK", 1.55).
+Rate("SEK", "NOK", 0.98).
+Rate("EUR", "USD", 1.08).
+Rate("EUR", "GBP", 0.85).
+Rate("GBP", "USD", 1.27).
+Rate("USD", "JPY", 155.0).
+Rate("USD", "CHF", 0.88).
+Rate("CHF", "EUR", 1.06).
+Rate("KRW", "USD", 0.00072).
+```
+
+Write a Flix function:
+
+```flix
+def convert(amount: Float64, src: String, dst: String): Option[Float64]
+```
+
+which converts `amount` from currency `src` to currency `dst`, possibly through
+a chain of intermediate currencies, or returns `None` if no conversion chain
+exists. The effective rate of a conversion chain is the *product* of the rates
+along it.
+
+Test your function by converting 1,000 DKK to USD and 1,000 DKK to KRW.
+
+**(Hard, Optional)**: There are two ways to convert DKK to USD (via EUR, or
+via EUR and GBP) with slightly different effective rates. Which one does your
+function compute? How could you change the Datalog program such that the
+provenance path is guaranteed to be the chain with the *best* effective rate?
