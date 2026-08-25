@@ -162,25 +162,3 @@ You must test your functions on a non-trivial graph that contains cycles.
 **Exercise 02.09**: Benchmark (Exercise 02.07):
 
 - Write a simple benchmark to compare the performance of the three implementations.
-
-**Exercise 02.10**: Compute shortest paths using the rules from the slides
-(Attempt III), and the following lattice (which does not cause performance
-issues): 
-
-```flix
-enum P {
-    case Path(Int32, List[Int32])
-    case Bot
-}
-```
-
-**Exercise 02.11**: Extend your solution in (Exercise 02.10) to support graphs
-with negative edges (and hence potentially negative cycles).
-
-**Exercise 02.12**: The way we compute shortest paths using lattice semantics
-(Attempt II + Attempt III) is technically wrong. What's the problem? 
-
-**Hint:** Does the declarative semantics still coincide with what we want to
-compute? What happened?
-
-<!-- Future Idea: Use rho abstraction to split a large program into smaller functions. -->
