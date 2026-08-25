@@ -357,8 +357,8 @@ Datalog program values do \emph{not} implement any traits.
 Primitive values are permitted as terms:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-#{ A(1, 2, 3). };           // OK
-#{ A("Hello"). };           // OK
+#{ A(1, 2, 3). }            // OK
+#{ A("Hello"). }            // OK
 \end{lstlisting}
 
 \pause
@@ -366,8 +366,8 @@ Primitive values are permitted as terms:
 Compound values are also permitted as terms:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-#{ A((1, 1), (2, 2)). };    // OK
-#{ A(Set#{1, 2, 3}). };     // OK
+#{ A((1, 1), (2, 2)). }     // OK
+#{ A(Set#{1, 2, 3}). }      // OK
 \end{lstlisting}
 
 Any type that implements \Code{Eq[t]} and \Code{Order[t]} can be used as a
@@ -1175,7 +1175,6 @@ P(1; Top).
 \end{column}
 \begin{column}{.5\textwidth}
 \centering
-\tikzset{node/.style={circle, fill=black!20, minimum size=4em, align=center}}
 \begin{tikzpicture}
 \node (T) at ( 0, 1) {$\top$};
 \node (N) at (-1, 0) {\textsf{Neg}};
@@ -1225,7 +1224,7 @@ instance PartialOrder[Down[a]] with PartialOrder[a] {
         match (x, y) {
             case (Down.Down(xx), Down.Down(yy)) => 
                 yy `PartialOrder.lessEqual` xx
-    }
+        }
 }
 
 instance JoinLattice[Down[a]] with MeetLattice[a] {
@@ -1233,7 +1232,7 @@ instance JoinLattice[Down[a]] with MeetLattice[a] {
         match (x, y) {
             case (Down.Down(xx), Down.Down(yy)) => 
                 Down.Down(xx `MeetLattice.greatestLowerBound` yy)
-    }
+        }
 }
 \end{lstlisting}
 \end{frame}
