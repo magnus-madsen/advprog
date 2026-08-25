@@ -1254,14 +1254,32 @@ before \Code{Layer} which is computed before \Code{Count}.
 
 \section{Provenance}
 
-\begin{frame}[fragile]{Motivation}
-TODO: Motivating example of what we cannot do 
+\begin{frame}[fragile]{Motivation (1/2)}
+We have seen how to compute the transitive closure of a graph:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-TODO
+def main(): Unit \ IO =
+    let pr = #{
+        Edge(1, 2). Edge(2, 3). Edge(3, 4).
+        Path(x, y) :- Edge(x, y).
+        Path(x, z) :- Path(x, y), Edge(y, z).
+    };
+    let result = query pr select (x, y) from Path(x, y);
+    println(result)
 \end{lstlisting}
 
-but what if we wanted to compute the \emph{path} itself?
+which prints:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+Vector#{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)}
+\end{lstlisting}
+
+The minimal model contains \Code{Path(1, 4)}, hence a path \emph{exists} from
+$1$ to $4$.
+
+\pause
+
+{\large \textbf{But what if we wanted to compute the \emph{path} itself?}}
 \end{frame}
 
 \begin{frame}{Summary}
