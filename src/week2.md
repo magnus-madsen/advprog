@@ -162,3 +162,18 @@ You must test your functions on a non-trivial graph that contains cycles.
 **Exercise 02.09**: Benchmark (Exercise 02.07):
 
 - Write a simple benchmark to compare the performance of the three implementations.
+
+**Exercise 02.10**: Consider the Datalog program:
+
+```flix
+    Edge(1, 2). Edge(2, 4). Edge(1, 3). Edge(3, 5). Edge(5, 4).
+R1: Path(x, y) :- Edge(x, y).
+R2: Path(x, z) :- Path(x, y), Edge(y, z).
+```
+
+- Draw two distinct provenance trees for the fact `Path(1, 4)`. Label each
+  internal node with the rule (`R1` or `R2`) used to derive it, and mark the
+  EDB facts.
+- For each of your two trees, write down the provenance path w.r.t. `{Edge}`.
+- Flix guarantees that `pquery` computes a provenance tree of *minimal height*.
+  Which of your two trees can `pquery pr select Path(1, 4) with {Edge}` return?
