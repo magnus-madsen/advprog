@@ -1322,6 +1322,51 @@ The minimal model of $P$ is \emph{unique}, but a fact $A$ may have
 between two vertices in a graph.
 \end{frame}
 
+\begin{frame}[fragile]{Provenance Trees: Example}
+Consider the Datalog program:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+    Edge(1, 2). Edge(2, 3). Edge(3, 4).
+R1: Path(x, y) :- Edge(x, y).
+R2: Path(x, z) :- Path(x, y), Edge(y, z).
+\end{lstlisting}
+
+A provenance tree for the fact \Code{Path(1, 4)}:
+
+\begin{center}
+\footnotesize
+\begin{forest}
+for tree={
+    grow=south,
+    parent anchor=south,
+    child anchor=north,
+    edge={latex-},
+    l sep=1.4em,
+    s sep=1.8em,
+    anchor=north,
+    draw,
+    rounded corners,
+    text height=1.5ex,
+    text depth=0.20ex,
+},
+EDB/.style={fill=gray!20}
+[{$\textsf{Path}(1, 4)$}, label={left:{\scriptsize\texttt{\textbf{R2}}}}
+    [{$\textsf{Path}(1, 3)$}, label={left:{\scriptsize\texttt{\textbf{R2}}}}
+        [{$\textsf{Path}(1, 2)$}, label={left:{\scriptsize\texttt{\textbf{R1}}}}
+            [{$\textsf{Edge}(1, 2)$}, EDB, name=e12]
+        ]
+        [{$\textsf{Edge}(2, 3)$}, EDB, name=e23]
+    ]
+    [{$\textsf{Edge}(3, 4)$}, EDB, name=e34]
+]
+\node[anchor=north west, align=left] at ([xshift=2.5em, yshift=-1.6em]e23.north -| e34.east) {
+    \fcolorbox{black}{gray!20}{\makebox[2.2em]{EDB}} facts in gray \\
+    \fcolorbox{black}{white}{\makebox[2.2em]{IDB}} facts in white
+};
+\end{forest}
+\end{center}
+\end{frame}
+
 \begin{frame}{Summary}
 We have seen several extensions that enrich Datalog in Flix:
 
