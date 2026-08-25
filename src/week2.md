@@ -28,7 +28,7 @@ JOIN
 JOIN 
     Products P ON O.OrderID = P.OrderID
 WHERE 
-    P.ProductPrice > '10';
+    P.ProductPrice > 10;
 ```
 
 as a Flix function that uses Datalog. 
@@ -122,9 +122,9 @@ JOIN
     Departments D ON S.DepartmentID = D.DepartmentID
 WHERE
     S.DateReceived = (
-        SELECT MAX(S.DateReceived)
-        FROM Salaries S
-        WHERE E.EmployeeID = S.EmployeeID AND S.DepartmentID = D.DepartmentID
+        SELECT MAX(S2.DateReceived)
+        FROM Salaries S2
+        WHERE E.EmployeeID = S2.EmployeeID AND S2.DepartmentID = D.DepartmentID
     );
 ```
 
