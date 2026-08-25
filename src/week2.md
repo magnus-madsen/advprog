@@ -177,3 +177,52 @@ R2: Path(x, z) :- Path(x, y), Edge(y, z).
 - For each of your two trees, write down the provenance path w.r.t. `{Edge}`.
 - Flix guarantees that `pquery` computes a provenance tree of *minimal height*.
   Which of your two trees can `pquery pr select Path(1, 4) with {Edge}` return?
+
+**Exercise 02.11**: You are a financial crime investigator tracing laundered
+money. Money moves between accounts in three ways:
+
+- `Wire("acme-holdings", "Cayman National Bank", "shellcorp-7", 100)` states
+  that money was wired from account `acme-holdings` to account `shellcorp-7`
+  through the bank `Cayman National Bank` at time `100`.
+- `Cash("alpine-invest", "offshore-trust-x", 550)` states that cash was handed
+  over from `alpine-invest` to `offshore-trust-x` at time `550`.
+- `Crypto("shellcorp-7", "Binance", "shellcorp-12", 250)` states that money was
+  swapped from `shellcorp-7` to `shellcorp-12` on the crypto exchange `Binance`
+  at time `250`.
+
+The last component of each fact is a timestamp (a Unix-style integer). You are
+given the following transaction log:
+
+```flix
+Wire("acme-holdings", "Cayman National Bank", "shellcorp-7", 100).
+Wire("shellcorp-7", "Banco General", "tropical-imports", 110).
+Cash("tropical-imports", "shellcorp-7", 120).
+Wire("nordic-ventures", "LGT Bank", "offshore-trust-x", 150).
+Wire("pelican-trading", "Banco General", "shellcorp-12", 210).
+Crypto("shellcorp-7", "Binance", "shellcorp-12", 250).
+Wire("acme-holdings", "Danske Bank", "nordic-ventures", 300).
+Crypto("shellcorp-12", "Kraken", "riviera-estates", 320).
+Wire("nordic-ventures", "Danske Bank", "acme-holdings", 350).
+Wire("riviera-estates", "HSBC", "luxe-yachts", 380).
+Wire("shellcorp-12", "Julius Baer", "alpine-invest", 400).
+Cash("alpine-invest", "offshore-trust-x", 550).
+```
+
+Write a Flix function:
+
+```flix
+def followTheMoney(src: String, dst: String): Vector[String]
+```
+
+which documents how money flowed from account `src` to account `dst`, as a
+vector of human-readable strings, e.g.
+`"acme-holdings wired money to shellcorp-7 via Cayman National Bank"`,
+`"tropical-imports handed cash to shellcorp-7"`, or
+`"shellcorp-7 swapped crypto to shellcorp-12 on Binance"`.
+
+Your evidence must hold up in court: the transfers must form an unbroken chain
+from `src` to `dst`, and money cannot leave an account before it has arrived,
+i.e., the timestamps along the chain must be strictly increasing.
+
+Test your function by tracing the money from `acme-holdings` to
+`offshore-trust-x`.
