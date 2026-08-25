@@ -1282,6 +1282,29 @@ $1$ to $4$.
 {\large \textbf{But what if we wanted to compute the \emph{path} itself?}}
 \end{frame}
 
+\begin{frame}{Motivation (2/2)}
+The minimal model tells us \emph{that} a fact holds, but not \emph{why} it holds.
+
+The same problem appears in many domains:
+
+\begin{itemize}
+    \pause \item \textbf{Route planning:} A route exists from Paris to Rome. \\
+    $\Rightarrow$ \textcolor{red}{\bfseries Which roads should we follow?}
+    \pause \item \textbf{Taint analysis:} User input flows into an SQL query. \\
+    $\Rightarrow$ \textcolor{red}{\bfseries Along what dataflow path?}
+    \pause \item \textbf{Cyclic inheritance:} A Java program has a cycle in its
+    class hierarchy. \\
+    $\Rightarrow$ \textcolor{red}{\bfseries Which classes form the cycle?}
+\end{itemize}
+
+\pause
+
+\begin{center}
+\Large
+\textbf{Solution:} We need \emph{provenance} --- \emph{how} a fact was derived.
+\end{center}
+\end{frame}
+
 \begin{frame}{Summary}
 We have seen several extensions that enrich Datalog in Flix:
 
