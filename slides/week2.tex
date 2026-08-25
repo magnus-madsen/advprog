@@ -1322,7 +1322,11 @@ The minimal model of $P$ is \emph{unique}, but a fact $A$ may have
 between two vertices in a graph.
 \end{frame}
 
-\begin{frame}[fragile]{Provenance Trees: Example}
+\begin{frame}[fragile]{\only<1>{Provenance Trees: Example}\only<2->{Provenance Paths}}
+\vspace{0.5cm}
+
+\begin{overlayarea}{\textwidth}{2.7cm}
+\begin{onlyenv}<1>
 Consider the Datalog program:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
@@ -1332,6 +1336,18 @@ R2: Path(x, z) :- Path(x, y), Edge(y, z).
 \end{lstlisting}
 
 A provenance tree for the fact \Code{Path(1, 4)}:
+\end{onlyenv}
+\begin{onlyenv}<2->
+Given a fact $A$ and a set of query predicate symbols $\Pi$, a
+\textbf{provenance path} for $A$ is the sequence of facts with predicate symbol
+in $\Pi$ obtained by an in-order, left-to-right traversal of a provenance tree
+for $A$.
+
+\medskip
+
+For example, for the fact \Code{Path(1, 4)} and $\Pi = \{ \textsf{Edge} \}$:
+\end{onlyenv}
+\end{overlayarea}
 
 \begin{center}
 \footnotesize
@@ -1359,10 +1375,15 @@ EDB/.style={fill=gray!20}
     ]
     [{$\textsf{Edge}(3, 4)$}, EDB, name=e34]
 ]
-\node[anchor=north west, align=left] at ([xshift=2.5em, yshift=-1.6em]e23.north -| e34.east) {
+\node<1>[overlay, anchor=north west, align=left] at ([xshift=2.5em, yshift=-1.6em]e23.north -| e34.east) {
     \fcolorbox{black}{gray!20}{\makebox[2.2em]{EDB}} facts in gray \\
     \fcolorbox{black}{white}{\makebox[2.2em]{IDB}} facts in white
 };
+\draw<2->[overlay, dashed, bend right=45, -latex, red, thick] (e12) to (e23);
+\draw<2->[overlay, dashed, bend right=45, -latex, red, thick] (e23) to (e34);
+\node<2->[overlay, anchor=north west, align=left, red, font=\itshape]
+    at ([xshift=2.5em, yshift=-1.6em]e23.north -| e34.east)
+    {the provenance path};
 \end{forest}
 \end{center}
 \end{frame}
