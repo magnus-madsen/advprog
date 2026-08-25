@@ -278,7 +278,7 @@ We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs
 \begin{itemize}
     \small
     \item The \Code{query e1, ..., en select (x1, ..., xm) from A1, ..., A_o}
-    expression computes the minimal model of the expressions $e_1, \cdots, e_n$
+    expression computes the minimal model of the expressions $e_1, \cdots, e_n$,
     and then it selects the variables $x_1, \cdots, x_m$ from the relations
     $A_1, \cdots, A_o$. The result is a \Code{Vector} of tuples.
 \end{itemize}
@@ -338,7 +338,7 @@ Datalog program values are first-class:
     \item We can store them in local variables.
     \item We can pass them as arguments to functions.
     \item We can return them from functions.
-    \item We can store them inside data structures (e.g. in lists, maps).
+    \item We can store them inside data structures (e.g., lists and maps).
 \end{itemize}
 
 \pause
@@ -513,7 +513,7 @@ which evaluates to the union of the constraints in both $s_1$ and $s_2$.
 Composition is a well-behaved operation since the order of constraints in a
 Datalog program value is immaterial. 
 
-Composition is a low-level operation and we rarely use it directly.
+Composition is a low-level operation, and we rarely use it directly.
 \end{frame}
 
 \begin{frame}[fragile]{Querying the Minimal Model (1/3)}
@@ -545,7 +545,7 @@ let db = #{ A(1). A(2).   }
 let pr = #{ B(x) :- A(x). }
 \end{lstlisting}
 
-We can use query to compose them and compute their minimal model:
+We can use \Code{query} to compose them and compute their minimal model:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 query db, pr select x from B(x) 
@@ -1056,7 +1056,7 @@ def reach(origin: t, edges: List[(t, t)]): Vector[t] with Order[t] =
 
 \pause
 
-But, what if we wanted to compute the \textbf{shortest distance} to every vertex
+But what if we wanted to compute the \textbf{shortest distance} to every vertex
 from an origin, i.e. \emph{single-source shortest distance} (SSSD)?
 \end{frame}
 
@@ -1158,7 +1158,7 @@ Q(x; l) :- A(x; l), B(x; l).
 
 \pause
 
-Evaluates to a minimal model with:
+evaluates to a minimal model with:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 P(1; Top).
