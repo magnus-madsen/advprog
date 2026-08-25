@@ -1419,6 +1419,85 @@ def main(): Unit \ IO =
 which prints \Code{1 -> 2}, \Code{2 -> 3}, and \Code{3 -> 4}.
 \end{frame}
 
+\begin{frame}[fragile]{Example: Cyclic Inheritance (1/2)}
+We can use \Code{query} and \Code{pquery} to detect \emph{and explain} cyclic
+inheritance in Java:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+let db = #{ /* ... Extends and Implements facts ... */ };
+let pr = #{
+    SuperType(x, y) :- Extends(x, y).
+    SuperType(x, y) :- Implements(x, y).
+    SuperType(x, z) :- SuperType(x, y), Extends(y, z).
+    SuperType(x, z) :- SuperType(x, y), Implements(y, z).
+    Cycle(x) :- SuperType(x, x).
+};
+let cycles = query db, pr select x from Cycle(x);
+\end{lstlisting}
+
+We use \Code{query} to compute every type that is part of a cycle.
+\end{frame}
+
+\begin{frame}[fragile]{Example: Cyclic Inheritance (2/2)}
+For each such type, we use \Code{pquery} to explain its cycle:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+foreach (typ <- cycles) {
+    println("Cycle involving '${typ}':");
+    let p = pquery db, pr select Cycle(typ) with {Extends, Implements};
+    foreach (edge <- p) {
+        ematch edge {
+            case Extends(x, y)    => println("  ${x} extends ${y}")
+            case Implements(x, y) => println("  ${x} implements ${y}")
+        }
+    }
+}
+\end{lstlisting}
+
+The provenance path mixes \Code{Extends} and \Code{Implements} facts, hence the
+pattern match must handle both cases.
+\end{frame}
+
+\begin{frame}[fragile]{Example: Road Tolls}
+Consider a road network where each road has a toll:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+let db = #{ /* ... Road and Toll facts ... */ };
+let pr = #{
+    Path(x, y) :- Road(x, y), Toll(x, y, cost).
+    Path(x, z) :- Path(x, y), Road(y, z), Toll(y, z, cost).
+};
+\end{lstlisting}
+
+We can compute the total cost of driving from Toronto to Chicago:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+let p = pquery db, pr select Path("Toronto", "Chicago") with {Toll};
+Vector.sumWith(ematch Toll(x, y, cost) -> cost, p)
+\end{lstlisting}
+
+\pause
+
+\textbf{Upshot:} We are not always interested in the path itself; sometimes we
+want to compute over the facts \emph{used} to derive a fact.
+\end{frame}
+
+\begin{frame}{Provenance: Summary}
+\textbf{Provenance} explains \emph{how} a fact in the minimal model was derived:
+
+\begin{itemize}
+    \item A \textbf{provenance tree} records the complete derivation of a fact:
+    its leaves are EDB facts and its internal nodes are IDB facts.
+    \item A \textbf{provenance path} is the sequence of facts obtained by an
+    in-order, left-to-right traversal of a provenance tree.
+    \item The \Code{pquery} construct computes provenance paths for first-class
+    Datalog.
+\end{itemize}
+
+We can compute not only \textbf{\emph{what}} holds, but \textbf{\emph{why}} it
+holds.
+\end{frame}
+
 \begin{frame}{Summary}
 We have seen several extensions that enrich Datalog in Flix:
 
