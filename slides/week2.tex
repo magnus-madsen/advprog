@@ -154,7 +154,7 @@ This example demonstrates the \emph{elegance} of Datalog:
 
 \begin{itemize}
     \item We can extend the meaning of a program by adding new rules.
-    \item i.e. we have extension by \emph{addition}, not by \emph{modification}.
+    \item That is, we have extension by \emph{addition}, not by \emph{modification}.
 \end{itemize}
 \end{frame}
 
@@ -199,9 +199,9 @@ def getAncestors(withAdoptions: Bool): #{ ... } =
     if (withAdoptions) (p1 <+> p2) else p1
 \end{lstlisting}
 
-If \Code{withAdoptions} is \Code{true} we return the extended program with
-adoptions. Otherwise we return the original program with only biological
-parents. 
+If \Code{withAdoptions} is \Code{true}, we return the extended program with
+adoptions. Otherwise, we return the original program with only biological
+parents.
 \end{frame}
 
 \begin{frame}[fragile]{Example (2/2)}
@@ -326,8 +326,8 @@ A Datalog program is \emph{inert} until its minimal model is evaluated with
 \Code{query}. 
 
 \begin{itemize}
-    \item i.e. in the above Datalog literal the fact \lstinline{C(1)} is
-    \emph{not} automatically derived. 
+    \item That is, in the above Datalog literal the fact \lstinline{C(1)} is
+    \emph{not} automatically derived.
 \end{itemize}
 \end{frame}
 
@@ -346,7 +346,7 @@ Datalog program values are first-class:
 Datalog program values do \emph{not} implement any traits.
 
 \begin{itemize}
-    \item In particular they do \emph{not} implement \Code{Eq[t]} or \Code{Order[t]}.
+    \item In particular, they do \emph{not} implement \Code{Eq[t]} or \Code{Order[t]}.
     \item Hence, we can only manipulate them using \Code{query}.
 \end{itemize}
 \end{frame}
@@ -368,7 +368,7 @@ Compound values are also permitted as terms:
 #{ A(Set#{1, 2, 3}). };     // OK
 \end{lstlisting}
 
-Any type which implements \Code{Eq[t]} and \Code{Order[t]} can be used as a
+Any type that implements \Code{Eq[t]} and \Code{Order[t]} can be used as a
 term.
 
 \pause
@@ -491,7 +491,7 @@ The \Code{inject} construct works for any collection that implements
 \Code{Foldable[t]}. 
 
 \begin{itemize}
-    \item E.g. \texttt{List[t]}, \texttt{Set[t]} and \texttt{Map[k, v]}, and many more...
+    \item E.g. \texttt{List[t]}, \texttt{Set[t]}, \texttt{Map[k, v]}, and many more...
 \end{itemize}
 
 \pause
@@ -653,7 +653,7 @@ The Flix type system gives us three important properties:
 \medskip
 
 \small
-\textbf{Footnote:} Flix also has an \emph{effect system} which enables enforcement of purity.
+\textbf{Footnote:} Flix also has an \emph{effect system}, which enables enforcement of purity.
 \end{frame}
 
 \begin{frame}{What could possibly go wrong? (1/3)}
@@ -768,7 +768,7 @@ has the type:
 \forall \alpha. \left\{ B(\textsf{String}) \mid \left\{ A(\textsf{Int32}, \textsf{Int32}) \mid \alpha \right\} \right\}
 \]
 %
-\pause and more interestingly it also has the \emph{less general} type:
+\pause and, more interestingly, it also has the \emph{less general} type:
 %
 \[
 \forall \alpha. \left\{ A(\textsf{Int32}, \textsf{Int32}) \mid \left\{ B(\textsf{String}) \mid \left\{ C(\textsf{Bool}) \mid \alpha \right\} \right\} \right\}
@@ -1109,7 +1109,7 @@ The rule: \Code|Dist(y; d1 + Down(d2)) :- Dist(x; d1), Edge(x, d2, y).|
 \pause 
 
 What if there are two paths leading to \Code{y} but with different distances?
-In that case, we compute their \emph{join} which, according to the reversed lattice
+In that case, we compute their \emph{join}, which, according to the reversed lattice
 order, is the minimum of the two distances --- exactly what we want.
 \end{frame}
 
@@ -1249,7 +1249,7 @@ $1, 2, 3, \cdots$ degrees.
 \pause
 
 Importantly, the use of \Code{fix} enforces that \Code{Degree} is computed
-before \Code{Layer} which is computed before \Code{Count}.
+before \Code{Layer}, which is computed before \Code{Count}.
 \end{frame}
 
 \section{Provenance}
