@@ -28,7 +28,7 @@ JOIN
 JOIN 
     Products P ON O.OrderID = P.OrderID
 WHERE 
-    P.ProductPrice > '10'.
+    P.ProductPrice > '10';
 ```
 
 as a Flix function that uses Datalog. 
@@ -75,7 +75,7 @@ Assume we have a relation `StarsWith(Actor, Actor)`:
 
 ```flix
 let p1 = #{ A(x, y) :- B(x, x), C(y). };
-let p2 = #{ C(x) :- F(x, y), G(y, x) }.;
+let p2 = #{ C(x) :- F(x, y), G(y, x). };
 ```
 
 - What are the row types of `p1` and `p2`?
@@ -97,12 +97,12 @@ Ullman's Algorithm can be used to determine if a Datalog program is stratified,
 and if so, to compute the stratum of each predicate symbol. The algorithm can be
 described as follows: 
 
-- If there is a positive edge `A <- B` then the stratum of `A` must be at least
-  the stratum of `B`.
-- If there is a negative edge `A <- not B` then the stratum of `A` must be at
-  least the stratum of `B + 1`.
-- If we every encounter a stratum number higher than the number of predicate
-  symbols in the program then the program cannot be stratified.
+- If there is a positive edge `A <- B`, then the stratum of `A` must be at
+  least the stratum of `B`.
+- If there is a negative edge `A <- not B`, then the stratum of `A` must be at
+  least the stratum of `B` plus one.
+- If we ever encounter a stratum number higher than the number of predicate
+  symbols in the program, then the program cannot be stratified.
 
 **Hint:** Use lattice semantics.
 
@@ -251,12 +251,12 @@ You must test your functions on a non-trivial graph that contains cycles.
 
 **Hint:** You may want to use `MutSet` or `MutMap` for the imperative version.
 
-**Exercise 02.11**: Reflect on (Exercise 02.10):
+**Exercise 02.11**: Reflect on Exercise 02.10:
 
 - Which implementation was the fastest to write?
 - Which implementation do you find the most elegant?
 - How would you extend the functional and imperative versions with parallelism?
 
-**Exercise 02.12**: Benchmark (Exercise 02.10):
+**Exercise 02.12**: Benchmark Exercise 02.10:
 
 - Write a simple benchmark to compare the performance of the three implementations.
