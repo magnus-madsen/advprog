@@ -1305,6 +1305,23 @@ The same problem appears in many domains:
 \end{center}
 \end{frame}
 
+\begin{frame}{Provenance Trees}
+Given a Datalog program $P$ and a fact $A$ in its minimal model, a
+\textbf{provenance tree} for $A$ records its complete derivation:
+
+\begin{itemize}
+    \item The \textbf{leaves} are EDB facts, i.e. input facts.
+    \item The \textbf{internal nodes} are IDB facts, i.e. derived facts,
+    each annotated with the rule by which it was derived.
+\end{itemize}
+
+\pause
+
+The minimal model of $P$ is \emph{unique}, but a fact $A$ may have
+\emph{multiple} provenance trees --- e.g. there may be several distinct paths
+between two vertices in a graph.
+\end{frame}
+
 \begin{frame}{Summary}
 We have seen several extensions that enrich Datalog in Flix:
 
