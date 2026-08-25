@@ -126,7 +126,7 @@ ParentOf("Sextus", "Pompey").
 
 \pause
 
-We can compute the ancestor of every person:
+We can compute the ancestors of every person:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 AncestorOf(x, y) :- ParentOf(x, y).
@@ -497,7 +497,7 @@ The \Code{inject} construct works for any collection that implements
 \pause
 
 \textbf{Upshot:} \Code{Foldable[t]} can be implemented for user-defined data
-types, hence \Code{inject} builds upon an extensible foundation.
+types; hence, \Code{inject} builds upon an extensible foundation.
 \end{frame}
 
 
@@ -586,8 +586,8 @@ We have seen how \Code{inject} and \Code{query} bridge the gap between Datalog
 and Flix:
 
 \begin{itemize}
-    \item We can use \Code{inject} to translate any data type, which implements
-    the \Code{Foldable} trait, into a set of Datalog facts, and 
+    \item We can use \Code{inject} to translate any data type that implements
+    the \Code{Foldable} trait into a set of Datalog facts, and
     \item We can use \Code{query} to compute the minimal model of a collection
     of Datalog program values, and to extract tuples as an immutable
     \Code{Vector}.
@@ -734,7 +734,7 @@ A row type is of the form:
 $$
 \rho = \alpha \mid \epsilon \mid \left \{ p (\tau_1, \cdots, \tau_n) \mid \rho \right \}
 $$
-where $\tau$ is a collection of base types (e.g. \Code{Bool}, \Code{Int32}, \Code{String}).
+where $\tau$ ranges over the base types (e.g. \Code{Bool}, \Code{Int32}, \Code{String}).
 
 \medskip
 
@@ -849,7 +849,7 @@ def h(): #{ Edge(Int32, Int32), Path(Int32, Int32) } =
 \end{frame}
 
 \begin{frame}[fragile]{Pitfall (2/2)}
-What we should have done is to use \textbf{open rows}:
+What we should have done was to use \textbf{open rows}:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def f(): #{ Edge(Int32, Int32) | r } = #{ Edge(1, 2). }
@@ -983,7 +983,7 @@ We introduce \emph{rho abstraction} as a mechanism to \emph{hide} predicate symb
     \pause \item The row type of a rho abstraction includes only those predicates in
     the argument list. 
     \pause \item Evaluation of a rho abstraction renames all hidden predicate symbols
-    with fresh names. 
+    to fresh names.
 \end{itemize}
 
 \pause
@@ -1274,7 +1274,7 @@ which prints:
 Vector#{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)}
 \end{lstlisting}
 
-The minimal model contains \Code{Path(1, 4)}, hence a path \emph{exists} from
+The minimal model contains \Code{Path(1, 4)}; hence, a path \emph{exists} from
 $1$ to $4$.
 
 \pause
@@ -1339,7 +1339,7 @@ A provenance tree for the fact \Code{Path(1, 4)}:
 \end{onlyenv}
 \begin{onlyenv}<2->
 Given a fact $A$ and a set of query predicate symbols $\Pi$, a
-\textbf{provenance path} for $A$ is the sequence of facts with predicate symbol
+\textbf{provenance path} for $A$ is the sequence of facts with a predicate symbol
 in $\Pi$ obtained by an in-order, left-to-right traversal of a provenance tree
 for $A$.
 
@@ -1454,7 +1454,7 @@ foreach (typ <- cycles) {
 }
 \end{lstlisting}
 
-The provenance path mixes \Code{Extends} and \Code{Implements} facts, hence the
+The provenance path mixes \Code{Extends} and \Code{Implements} facts; hence, the
 pattern match must handle both cases.
 \end{frame}
 
