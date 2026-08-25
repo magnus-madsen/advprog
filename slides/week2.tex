@@ -406,11 +406,11 @@ We can take this idea further and write a function to convert a list of pairs
 into a Datalog program value with \Code{ParentOf} facts: 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-def mkParentOf(l: List[(String, String)]): #{ ... } = 
+def mkParentOfAll(l: List[(String, String)]): #{ ... } = 
     match l {
         case Nil          => #{}
         case (c, p) :: xs => 
-            #{ ParentOf(c, p). } <+> mkParentOf(xs)
+            #{ ParentOf(c, p). } <+> mkParentOfAll(xs)
     }
 \end{lstlisting}
 
