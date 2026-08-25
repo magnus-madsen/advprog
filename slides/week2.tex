@@ -180,7 +180,7 @@ How do we \textbf{maintain} and \textbf{develop} these programs?
 
 \begin{center}
 \large
-\textbf{Idea:} Datalog programs as a \emph{first-class} values.
+\textbf{Idea:} Datalog programs as \emph{first-class} values.
 \end{center}
 \end{frame}
 
@@ -205,7 +205,7 @@ parents.
 \end{frame}
 
 \begin{frame}[fragile]{Example (2/2)}
-We can use the \Code{getAncestors} as follows:
+We can use the \Code{getAncestors} function as follows:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def main(): Unit \ IO = 
@@ -239,7 +239,7 @@ We propose the idea of \textbf{first-class Datalog programs}:
 We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs.
 
 \begin{itemize}
-    \item The solution to Datalog program value is its minimal model.
+    \item The solution to a Datalog program value is its minimal model.
     \item The minimal model is itself a Datalog program value.
 \end{itemize}
 
@@ -258,7 +258,7 @@ We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs
 \textbf{Injection} --- Getting facts into Datalog
 \begin{itemize}
     \small
-    \item The \Code{inject e1, ..., en into A1/X1, ... An/Xn} expression returns a
+    \item The \Code{inject e1, ..., en into A1/X1, ..., An/Xn} expression returns a
     Datalog program where each tuple in the collection $e_i$ is associated with
     predicate symbol $A_i$ of arity $X_i$.
 \end{itemize}
@@ -346,7 +346,7 @@ Datalog program values are first-class:
 Datalog program values do \emph{not} implement any traits.
 
 \begin{itemize}
-    \item In particular they do \emph{not} implement \Code{Eq[t]} nor \Code{Order[t]}.
+    \item In particular they do \emph{not} implement \Code{Eq[t]} or \Code{Order[t]}.
     \item Hence, we can only manipulate them using \Code{query}.
 \end{itemize}
 \end{frame}
@@ -423,7 +423,7 @@ This works, but ...
 We have an \textbf{impedance mismatch} between functional programming and Datalog:
 
 \begin{itemize}
-    \item Functional languages uses data structures: lists, sets, and maps.
+    \item Functional languages use data structures: lists, sets, and maps.
     \item Datalog uses relations, i.e. sets of facts.
 \end{itemize}
 
@@ -436,7 +436,7 @@ How can we reconcile the two?
     relations. 
 \end{itemize}
 
-We introduce the \Code{inject} construct as mechanism to associate a collection
+We introduce the \Code{inject} construct as a mechanism to associate a collection
 with a predicate symbol and to translate it into a Datalog representation.
 \end{frame}
 
@@ -484,7 +484,7 @@ evaluates to the Datalog program value:
 The general form of \Code{inject} is:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-inject exp_1, exp_2, ... exp_n into sym_1/num_1, sym_2/num_2, ..., sym_n/num_n
+inject exp_1, exp_2, ..., exp_n into sym_1/num_1, sym_2/num_2, ..., sym_n/num_n
 \end{lstlisting}
 
 The \Code{inject} construct works for any collection that implements
@@ -530,7 +530,7 @@ facts:
 query p select x from B(x) 
 \end{lstlisting}
 
-which evaluates to the the vector:
+which evaluates to the vector:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 Vector#{ 1, 2 }
@@ -564,7 +564,7 @@ We can use \Code{query} for more complex queries.
 For example, given: 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-let p = #{ A(1). A(2). A(3), B(1, 2). }
+let p = #{ A(1). A(2). A(3). B(1, 2). }
 \end{lstlisting}
 
 We can write the more interesting query:
@@ -638,7 +638,7 @@ def main(): Unit \ IO =
 % - Logic: We forgot to query the program y.
 \end{frame}
 
-\section{A Type System for First-class Datalog}
+\section{A Type System for First-Class Datalog}
 
 \begin{frame}{Why a Type System?}
 The Flix type system gives us three important properties:
@@ -792,7 +792,7 @@ has the type:
 \pause whereas the Datalog program:
 %
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-#{ Path(x, z) :- Path(x, y), Edge(y, z) }
+#{ Path(x, z) :- Path(x, y), Edge(y, z). }
 \end{lstlisting}    
 %
 \pause has the type:
@@ -849,7 +849,7 @@ def h(): #{ Edge(Int32, Int32), Path(Int32, Int32) } =
 \end{frame}
 
 \begin{frame}[fragile]{Pitfall (2/2)}
-We we should have done is to use \textbf{open rows}:
+What we should have done is to use \textbf{open rows}:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def f(): #{ Edge(Int32, Int32) | r } = #{ Edge(1, 2). }
@@ -964,7 +964,7 @@ def disconnected():
 \pause
 
 \textbf{Observation:} The \Code{Vertex} and \Code{Path} relations are really
-internally implementations.
+internal implementation details.
 
 \pause
 
@@ -988,7 +988,7 @@ We introduce \emph{rho abstraction} as a mechanism to \emph{hide} predicate symb
 
 \pause
 
-\textbf{Example:} \Code|#(A, B) -> #{A(123). C("a").}| evaluates to \Code|#{A(123). C17("a").}|. 
+\textbf{Example:} \Code|#(A, B) -> #{A(123). C("a").}| evaluates to \Code|#{A(123). C17("a").}|,
 where \Code{C17} is a fresh predicate symbol that has never been used before.
 \end{frame}
 
@@ -1036,7 +1036,7 @@ where there is no longer any type error between \Code{Vertex17(123)} and \Code{V
 
 \pause
 
-\textbf{Upshot:} The abstracted predicate symbols have become truely local.
+\textbf{Upshot:} The abstracted predicate symbols have become truly local.
 \end{frame}
 
 \section{Datalog and Lattice Semantics}
@@ -1109,8 +1109,8 @@ The rule: \Code|Dist(y; d1 + Down(d2)) :- Dist(x; d1), Edge(x, d2, y).|
 \pause 
 
 What if there are two paths leading to \Code{y} but with different distances?
-In that case, we compute their \emph{join} which, according the reversed lattice
-order, is the minimum of the two distances-- exactly what we want.
+In that case, we compute their \emph{join} which, according to the reversed lattice
+order, is the minimum of the two distances --- exactly what we want.
 \end{frame}
 
 \begin{frame}{From Relations to Lattices}
@@ -1134,7 +1134,7 @@ A lattice has the following components:
     \item A greatest lower bound for any two elements (\Code{MeetLattice}).
 \end{itemize}
 
-which we define by implementing instances for the traits in parenthesis.
+which we define by implementing instances for the traits in parentheses.
 
 \end{frame}
 
@@ -1238,7 +1238,7 @@ stratification:
 Degree("Kevin Bacon"; Down(0)).
 Degree(x; n + Down(1)) :- Degree(y; n), StarsWith(y, x).
 Layer(n; Set#{ x })    :- fix Degree(x; n).
-Count(n, Set.size(s))  :- fix Layer(n; s)
+Count(n, Set.size(s))  :- fix Layer(n; s).
 \end{lstlisting}
 
 \pause
