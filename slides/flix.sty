@@ -1,92 +1,187 @@
+% Flix Listings Package
+%
+% Project repository:
+% https://github.com/flix/latex-flix
+%
+% The newest version of this package is available from the repository above.
+
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{flix}[2021/11/24 Flix]
+\ProvidesPackage{flix}[2026/08/25 Flix]
 
 \RequirePackage{listings}
 \RequirePackage{xcolor}
 
-\definecolor{linenumber-color}{RGB}{170, 170, 170}
-\definecolor{code-color}{RGB}{0, 0, 0}
-\definecolor{keyword-color}{RGB}{155, 70, 147}
-\definecolor{type-color}{RGB}{72, 118, 158}
-\definecolor{comment-color}{RGB}{150, 150, 150}
-\definecolor{background-color}{RGB}{248, 248, 248}
-\definecolor{string-color}{RGB}{80, 160, 80}
+\definecolor{flix-linenumber-color}{RGB}{170, 170, 170}
+\definecolor{flix-code-color}{RGB}{0, 0, 0}
+\definecolor{flix-keyword-color}{RGB}{155, 70, 147}
+\definecolor{flix-effect-keyword-color}{RGB}{0, 116, 102}
+\definecolor{flix-type-color}{RGB}{72, 118, 158}
+\definecolor{flix-comment-color}{RGB}{55, 55, 55}
+\definecolor{flix-string-color}{RGB}{30, 126, 19}
 
 \lstdefinelanguage{flix}{
-  basicstyle        = \ttfamily\footnotesize\color{code-color},
-  numberstyle       = \footnotesize\color{linenumber-color},
-  keywordstyle      = \color{keyword-color}\bfseries,
-  commentstyle      = \color{comment-color},
-  identifierstyle   = \color{black},
-  stringstyle       = \color{string-color},
-  backgroundcolor   = \color{background-color},
-  emph              = [1]{
-    Unit, Bool, Char, Float32, Float64, Int8, Int16, Int32, Int64, String,
-    Expr, Map, ParsedAst, TypedAst, LiftedAst, EverythingAst, Code, Option,
-    List, Nel, Seq, Type, Letter
-  },
-  emphstyle         = [1]{\color{type-color}},
-  showspaces        = false,
-  showstringspaces  = false,
-  tabsize           = 4,
-  numbers           = none,
-  xleftmargin       = 0cm,
+  emph              = [1]{Unit, Bool, Char, Float32, Float64, BigDecimal, Int8, Int16, Int32, Int64, BigInt, Null, String, Regex, Region},
   morecomment       = [l]{//},
   morecomment       = [n]{/*}{*/},
   morestring        = [b]",
   morestring        = [b]',
-  morestring        = [b]""",
-  morekeywords      = {
+  morekeywords      = [1]{
     alias,
     and,
     as,
     case,
-    chan,
+    catch,
+    checked_cast,
+    checked_ecast,
     choose,
-    class,
     def,
-    deref,
-    do,
+    discard,
     eff,
     else,
     ematch,
     enum,
     false,
     fix,
+    forA,
+    forall,
     force,
     foreach,
+    forM,
     from,
+    handler,
     if,
+    import,
+    inject,
     instance,
+    instanceof,
     into,
-    law,
     lazy,
     let,
     match,
-    namespace,
-    pquery,
+    mod,
+    mut,
     new,
     not,
-    of,
-    opaque,
+    null,
+    open_variant,
+    open_variant_as,
     or,
+    par,
+    pquery,
     project,
+    psolve,
     pub,
     query,
-    ref,
+    redef,
     region,
+    restrictable,
+    run,
+    rvadd,
+    rvand,
+    rvnot,
+    rvsub,
+    sealed,
     select,
     solve,
     spawn,
+    static,
+    Static,
+    struct,
+    super,
+    throw,
+    trait,
     true,
     try,
     type,
-    use,
-    with,
-    inject,
-    where,
+    unchecked_cast,
+    Univ,
     unsafe,
-    throw,
-    new
+    use,
+    where,
+    with,
+    xor,
+    xvar,
+    yield
   },
+  % Standard library effects listed at https://api.flix.dev/.
+  morekeywords      = [2]{
+    Abort,
+    AccessTime,
+    AppendBytes,
+    AppendFile,
+    AppendLines,
+    Assert,
+    Chan,
+    Clock,
+    Console,
+    CopyFile,
+    CreationTime,
+    Debug,
+    DeleteFile,
+    DirList,
+    Dns,
+    Env,
+    Exit,
+    FileExists,
+    FilePermission,
+    FileRead,
+    FileSize,
+    FileStat,
+    FileSystem,
+    FileTest,
+    FileTime,
+    FileWrite,
+    Glob,
+    Http,
+    Https,
+    IO,
+    IsDirectory,
+    IsExecutable,
+    IsReadable,
+    IsRegularFile,
+    IsSymbolicLink,
+    IsWritable,
+    KeyNotFound,
+    Logger,
+    MkDir,
+    MkDirs,
+    MkTempDir,
+    ModificationTime,
+    MoveFile,
+    NonDet,
+    OutOfBounds,
+    Ping,
+    Process,
+    Random,
+    ReadBytes,
+    ReadFile,
+    ReadLines,
+    Shuffle,
+    Sleep,
+    TcpAccept,
+    TcpBind,
+    TcpConnect,
+    Truncate,
+    WriteBytes,
+    WriteFile,
+    WriteLines
+  }
+}
+
+\lstdefinestyle{flix}{
+  language          = flix,
+  basicstyle        = \ttfamily\footnotesize\color{flix-code-color},
+  numberstyle       = \footnotesize\color{flix-linenumber-color},
+  keywordstyle      = [1]\color{flix-keyword-color}\bfseries,
+  keywordstyle      = [2]\color{flix-effect-keyword-color}\bfseries,
+  commentstyle      = \color{flix-comment-color},
+  stringstyle       = \color{flix-string-color},
+  emphstyle         = [1]{\color{flix-type-color}},
+  showspaces        = false,
+  showstringspaces  = false,
+  tabsize           = 4,
+  numbers           = left,
+  xleftmargin       = 0.5cm,
+  breaklines        = true,
+  breakatwhitespace = true
 }

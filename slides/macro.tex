@@ -7,4 +7,12 @@
 
 \let\Code\lstinline
 
-\lstset{language=flix}
+\definecolor{flix-background-color}{RGB}{248, 248, 248}
+
+\lstset{
+  style           = flix,
+  numbers         = none,
+  xleftmargin     = 0cm,
+  backgroundcolor = \color{flix-background-color},
+  moreemph        = [1]{Expr, Map, ParsedAst, TypedAst, LiftedAst, EverythingAst, Code, Option, List, Nel, Seq, Type, Letter}
+}
