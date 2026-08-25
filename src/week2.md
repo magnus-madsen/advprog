@@ -134,36 +134,7 @@ WHERE
 
 **Hint:** You will need more than one relation/lattice.
 
-**Exercise 02.07**: Given the Flix function signature:
-
-```flix
-def reachable(g: Set[(Int32, Int32)], src: Int32, dst: Int32): Bool
-```
-
-which takes a graph, represented as a set of edges, and returns `true` if there
-is a path from `src` to `dst` in the graph, write three implementations:
-
-- An implementation that uses first-class Datalog constraints.
-- An implementation that uses functional programming.
-- An implementation that uses imperative programming.
-
-You must test your functions on a non-trivial graph that contains cycles.
-
-**Hint:** You will need to use recursion.
-
-**Hint:** You may want to use `MutSet` or `MutMap` for the imperative version.
-
-**Exercise 02.08**: Reflect on (Exercise 02.07):
-
-- Which implementation was the fastest to write?
-- Which implementation do you find the most elegant?
-- How would you extend the functional and imperative versions with parallelism?
-
-**Exercise 02.09**: Benchmark (Exercise 02.07):
-
-- Write a simple benchmark to compare the performance of the three implementations.
-
-**Exercise 02.10**: Consider the Datalog program:
+**Exercise 02.07**: Consider the Datalog program:
 
 ```flix
     Edge(1, 2). Edge(2, 4). Edge(1, 3). Edge(3, 5). Edge(5, 4).
@@ -178,7 +149,7 @@ R2: Path(x, z) :- Path(x, y), Edge(y, z).
 - Flix guarantees that `pquery` computes a provenance tree of *minimal height*.
   Which of your two trees can `pquery pr select Path(1, 4) with {Edge}` return?
 
-**Exercise 02.11**: You are a financial crime investigator tracing laundered
+**Exercise 02.08**: You are a financial crime investigator tracing laundered
 money. Money moves between accounts in three ways:
 
 - `Wire("acme-holdings", "Cayman National Bank", "shellcorp-7", 100)` states
@@ -227,7 +198,7 @@ i.e., the timestamps along the chain must be strictly increasing.
 Test your function by tracing the money from `acme-holdings` to
 `offshore-trust-x`.
 
-**Exercise 02.12**: You are given a database of currency exchange rates, where
+**Exercise 02.09**: You are given a database of currency exchange rates, where
 a fact `Rate("DKK", "EUR", 0.134)` states that 1 DKK buys 0.134 EUR:
 
 ```flix
@@ -260,3 +231,32 @@ Test your function by converting 1,000 DKK to USD and 1,000 DKK to KRW.
 via EUR and GBP) with slightly different effective rates. Which one does your
 function compute? How could you change the Datalog program such that the
 provenance path is guaranteed to be the chain with the *best* effective rate?
+
+**Exercise 02.10**: Given the Flix function signature:
+
+```flix
+def reachable(g: Set[(Int32, Int32)], src: Int32, dst: Int32): Bool
+```
+
+which takes a graph, represented as a set of edges, and returns `true` if there
+is a path from `src` to `dst` in the graph, write three implementations:
+
+- An implementation that uses first-class Datalog constraints.
+- An implementation that uses functional programming.
+- An implementation that uses imperative programming.
+
+You must test your functions on a non-trivial graph that contains cycles.
+
+**Hint:** You will need to use recursion.
+
+**Hint:** You may want to use `MutSet` or `MutMap` for the imperative version.
+
+**Exercise 02.11**: Reflect on (Exercise 02.10):
+
+- Which implementation was the fastest to write?
+- Which implementation do you find the most elegant?
+- How would you extend the functional and imperative versions with parallelism?
+
+**Exercise 02.12**: Benchmark (Exercise 02.10):
+
+- Write a simple benchmark to compare the performance of the three implementations.
