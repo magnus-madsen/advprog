@@ -486,7 +486,7 @@ evaluates to the Datalog program value:
 The general form of \Code{inject} is:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-inject exp_1, exp_2, ..., exp_n into sym_1/num_1, sym_2/num_2, ..., sym_n/num_n
+inject e1, ..., en into A1/X1, ..., An/Xn
 \end{lstlisting}
 
 The \Code{inject} construct works for any collection that implements
@@ -507,10 +507,10 @@ types; hence, \Code{inject} builds upon an extensible foundation.
 We have already seen that we can compose Datalog programs with:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-s1 <+> s2
+e1 <+> e2
 \end{lstlisting}
 
-which evaluates to the union of the constraints in both $s_1$ and $s_2$.
+which evaluates to the union of the constraints in both $e_1$ and $e_2$.
 
 Composition is a well-behaved operation since the order of constraints in a
 Datalog program value is immaterial. 
