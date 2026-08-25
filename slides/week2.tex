@@ -1477,7 +1477,7 @@ let pr = #{
 };
 \end{lstlisting}
 
-We can compute the total cost of driving from Toronto to Chicago:
+We can compute the total toll along one route from Toronto to Chicago:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 let p = pquery db, pr select Path("Toronto", "Chicago") with {Toll};
@@ -1487,7 +1487,8 @@ Vector.sumWith(ematch Toll(x, y, cost) -> cost, p)
 \pause
 
 \textbf{Upshot:} We are not always interested in the path itself; sometimes we
-want to compute over the facts \emph{used} to derive a fact.
+want to compute over the facts \emph{used} to derive a fact --- for \emph{some}
+derivation, since a fact may have many.
 \end{frame}
 
 \begin{frame}{Provenance}
