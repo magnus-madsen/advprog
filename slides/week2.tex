@@ -1388,6 +1388,18 @@ EDB/.style={fill=gray!20}
 \end{center}
 \end{frame}
 
+\begin{frame}[fragile]{The \texttt{pquery} Construct}
+We extend Flix with a \textbf{provenance query} construct:
+
+\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+pquery e1, ..., en select F with {A1, ..., Am}
+\end{lstlisting}
+
+which computes the minimal model of the Datalog program values $e_1, \cdots,
+e_n$, finds a provenance tree for the fact $F$, and returns its provenance path
+w.r.t. the predicate symbols $A_1, \cdots, A_m$ as a \Code{Vector} of facts.
+\end{frame}
+
 \begin{frame}{Summary}
 We have seen several extensions that enrich Datalog in Flix:
 
