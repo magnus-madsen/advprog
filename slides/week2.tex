@@ -917,7 +917,7 @@ def reach(): #{ Edge(t, t), Path(t, t) | r} = #{
 \begin{frame}[fragile]{Motivation (2/2)}
 But such types can quickly become unwieldy:
 %
-\begin{lstlisting}[language=flix, xleftmargin=0.8cm]
+\begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 def disconnected(): 
     #{ Edge(t, t), Path(t, t), Vertex(t), Disconnected(t, t) | r} = #{
         Vertex(x)  :- Edge(x, _).
@@ -930,8 +930,8 @@ def disconnected():
 
 \pause
 
-\textbf{Observation:} The \Code{Vertex} and \Code{Path} relations are really
-internal implementation details.
+\textbf{Observation:} The \Code{Vertex} and \Code{Path} relations are internal
+implementation details.
 
 \pause
 
@@ -943,24 +943,27 @@ We introduce \emph{rho abstraction} as a mechanism to \emph{hide} predicate symb
 
 \small
 \begin{itemize}
-    \item A rho abstraction is of the form \Code{#(A, ...) -> e} where $e$ must
-    be a Datalog expression.
-    \pause \item A rho abstraction hides, by renaming, all predicate symbols \emph{not}
+    \item A rho abstraction is of the form \Code{#(A, ...) -> e} where $e$ is a Datalog expression.
+    \pause \item A rho abstraction hides, by renaming, all predicates \emph{not}
     listed in the argument list. 
     \pause \item The row type of a rho abstraction includes only those predicates in
     the argument list. 
-    \pause \item Evaluation of a rho abstraction renames all hidden predicate symbols
-    to fresh names.
 \end{itemize}
 
 \pause
 
-\textbf{Example:} \Code|#(A, B) -> #{A(123). C("a").}| evaluates to \Code|#{A(123). C17("a").}|,
-where \Code{C17} is a fresh predicate symbol that has never been used before.
+\textbf{Example:} The rho abstraction:
+%
+\begin{lstlisting}[language=flix, xleftmargin=0.5cm]
+#(A, B) -> #{A(123). C("a").}
+\end{lstlisting}
+%
+evaluates to \Code|#{A(123). C17("a").}| where \Code{C17} is a fresh predicate
+symbol.
 \end{frame}
 
 \begin{frame}[fragile]{Rho Abstraction: The Wrong Way}
-We may think that we can statically rename abstracted predicate symbols:
+We may erroneously think that we can statically rename predicate symbols:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def disconnected(): #{ Edge(t, t), Disconnected(t, t) | r} = 
