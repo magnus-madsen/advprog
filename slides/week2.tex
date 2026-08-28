@@ -285,7 +285,7 @@ can feed the next --- we can build pipelines of Datalog programs.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Datalog Literals (1/3)}
+\begin{frame}[fragile]{Datalog Literals (1/2)}
 A Datalog literal is written\footnote{The empty Datalog literal 
 %
 \lstinline{\#\{ \}} 
@@ -313,7 +313,7 @@ A Datalog literal may contain rules:
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Datalog Literals (2/3)}
+\begin{frame}[fragile]{Datalog Literals (2/2)}
 A Datalog literal may contain both facts and rules:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
@@ -329,27 +329,6 @@ A Datalog program is \emph{inert} until its minimal model is computed with
 \begin{itemize}
     \item That is, in the above Datalog literal the fact \lstinline{C(1)} is
     \emph{not} automatically derived.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Datalog Literals (3/3)}
-Datalog program values are first-class:
-
-\begin{itemize}
-    \item We can store them in local variables.
-    \item We can pass them as arguments to functions.
-    \item We can return them from functions.
-    \item We can store them inside data structures (e.g., lists and maps).
-\end{itemize}
-
-\pause
-
-Datalog program values do \emph{not} implement any traits.
-
-\begin{itemize}
-    \item In particular, they do \emph{not} implement \Code{Eq[t]},
-    \Code{Order[t]}, or \Code{ToString[t]}.
-    \item Hence, we can only operate on them with \Code|<+>| and \Code{query}.
 \end{itemize}
 \end{frame}
 
