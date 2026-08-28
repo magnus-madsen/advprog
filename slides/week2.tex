@@ -360,7 +360,7 @@ term.
 \begin{frame}[fragile]{Lexical Scope (1/2)}
 Datalog literals integrate with lexical scope.
 
-For example, we can capture variables from lexical scope:
+We can capture variables from lexical scope:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def mkParentOf(c: String, p: String): #{ ... } = 
@@ -385,11 +385,11 @@ We can take this idea further and write a function to convert a list of pairs
 into a Datalog program value with \Code{ParentOf} facts: 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
-def mkParentOfAll(l: List[(String, String)]): #{ ... } = 
+def mkParentsOfAll(l: List[(String, String)]): #{ ... } = 
     match l {
         case Nil          => #{}
         case (c, p) :: xs => 
-            #{ ParentOf(c, p). } <+> mkParentOfAll(xs)
+            #{ ParentOf(c, p). } <+> mkParentsOfAll(xs)
     }
 \end{lstlisting}
 
