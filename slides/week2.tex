@@ -930,7 +930,7 @@ def disconnected():
 
 \pause
 
-\textbf{Observation:} The \Code{Vertex} and \Code{Path} relations are internal
+\textbf{Observation:} The \Code{Vertex} and \Code{Path} predicates are internal
 implementation details.
 
 \pause
@@ -963,7 +963,7 @@ symbol.
 \end{frame}
 
 \begin{frame}[fragile]{Rho Abstraction: The Wrong Way}
-We may erroneously think that we can statically rename predicate symbols:
+We may erroneously think that we can simply statically rename predicate symbols:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def disconnected(): #{ Edge(t, t), Disconnected(t, t) | r} = 
@@ -992,7 +992,7 @@ and \Code{Vertex17("a")} -- which is a type error! We must rename predicates at
 \end{frame}
 
 \begin{frame}[fragile]{Rho Abstraction: The Right Way}
-Each evaluation of a rho abstraction introduces fresh names.
+Every evaluation of a rho abstraction introduces fresh names.
 
 Hence, in the previous example, we get:
 
