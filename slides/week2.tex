@@ -242,47 +242,6 @@ We can \textbf{construct}, \textbf{compose}, and \textbf{query} Datalog programs
     \item The solution to a Datalog program value is its minimal model.
     \item The minimal model is itself a Datalog program value.
 \end{itemize}
-
-\textbf{Upshot:} Using \Code{query} and \Code{inject}, the model of one program
-can feed the next --- we can build pipelines of Datalog programs.
-\end{frame}
-
-\begin{frame}[fragile]{Fundamental Operations}
-\textbf{Datalog Literals}
-\begin{itemize}
-    \small
-    \item A Datalog literal is written with bracket syntax \Code|#{...}|.
-\end{itemize}
-
-\pause
-
-\textbf{Injection} --- Getting facts into Datalog
-\begin{itemize}
-    \small
-    \item The \Code{inject e1, ..., en into A1/X1, ..., An/Xn} expression returns a
-    Datalog program where each element of the collection $e_i$ becomes a fact with
-    predicate symbol $A_i$ of arity $X_i$.
-\end{itemize}
-
-\pause
-
-\textbf{Composition}
-\begin{itemize}
-    \small
-    \item The \Code|e1 <+> e2| expression combines two Datalog programs $e_1$
-    and $e_2$.
-\end{itemize}
-
-\pause
-
-\textbf{Solving} --- Getting facts out of Datalog
-\begin{itemize}
-    \small
-    \item The \Code{query e1, ..., en select (x1, ..., xm) from A1, ..., Ak}
-    expression computes the minimal model of the expressions $e_1, \cdots, e_n$,
-    and then it selects the variables $x_1, \cdots, x_m$ from the relations
-    $A_1, \cdots, A_k$. The result is a \Code{Vector} of tuples.
-\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Datalog Literals (1/2)}
@@ -575,6 +534,39 @@ and Flix:
 \end{itemize}
 
 \textbf{Upshot:} We can easily transport data into and out of the Datalog world.
+\end{frame}
+
+
+\begin{frame}[fragile]{Overview: Fundamental Operations}
+\textbf{Datalog Literals}
+\begin{itemize}
+    \small
+    \item A Datalog literal is written with bracket syntax \Code|#{...}|.
+\end{itemize}
+
+\textbf{Injection} --- Getting facts into Datalog
+\begin{itemize}
+    \small
+    \item The \Code{inject e1, ..., en into A1/X1, ..., An/Xn} expression returns a
+    Datalog program where each element of the collection $e_i$ becomes a fact with
+    predicate symbol $A_i$ of arity $X_i$.
+\end{itemize}
+
+\textbf{Composition}
+\begin{itemize}
+    \small
+    \item The \Code|e1 <+> e2| expression combines two Datalog programs $e_1$
+    and $e_2$.
+\end{itemize}
+
+\textbf{Solving} --- Getting facts out of Datalog
+\begin{itemize}
+    \small
+    \item The \Code{query e1, ..., en select (x1, ..., xm) from A1, ..., Ak}
+    expression computes the minimal model of the expressions $e_1, \cdots, e_n$,
+    and then it selects the variables $x_1, \cdots, x_m$ from the relations
+    $A_1, \cdots, A_k$. The result is a \Code{Vector} of tuples.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Example I}
