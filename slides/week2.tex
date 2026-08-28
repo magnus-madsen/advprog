@@ -323,7 +323,7 @@ A Datalog literal may contain both facts and rules:
    C(x) :- A(x), B(x). }
 \end{lstlisting}
 
-A Datalog program is \emph{inert} until its minimal model is evaluated with
+A Datalog program is \emph{inert} until its minimal model is computed with
 \Code{query}. 
 
 \begin{itemize}
@@ -1122,7 +1122,7 @@ order, is the minimum of the two distances --- exactly what we want.
 We have seen that Flix supports \emph{constraints on relations}. 
 
 \begin{itemize}
-    \item But now also \emph{constraints on lattices}.
+    \item It now also supports \emph{constraints on lattices}.
 \end{itemize}
 
 We use the semicolon \Code{;} to indicate when we want lattice semantics.
@@ -1512,7 +1512,7 @@ We have seen several extensions that enrich Datalog in Flix:
 
 \begin{itemize}
     \item Rho abstraction as a mechanism to hide predicate symbols.
-    \item From \emph{constraints on relations}, to \emph{constraints on
+    \item From \emph{constraints on relations} to \emph{constraints on
     lattices}.
     \item How to compute provenance information with \lstinline{pquery}.
 \end{itemize}
