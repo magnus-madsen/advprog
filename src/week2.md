@@ -198,6 +198,8 @@ i.e., the timestamps along the chain must be strictly increasing.
 Test your function by tracing the money from `acme-holdings` to
 `offshore-trust-x`.
 
+**Hint:** Use `pquery`.
+
 **Exercise 02.09**: You are given a database of currency exchange rates, where
 a fact `Rate("DKK", "EUR", 0.134)` states that 1 DKK buys 0.134 EUR:
 
@@ -227,8 +229,10 @@ along it.
 
 Test your function by converting 1,000 DKK to USD and 1,000 DKK to KRW.
 
+**Hint:** Use `pquery`.
+
 **(Hard, Optional)**: There are two ways to convert DKK to USD (via EUR, or
-via EUR and GBP) with slightly different effective rates. Which one does your
+via EUR and GBP) with slightly effective rates. Which one does your
 function compute? How could you change the Datalog program such that the
 provenance path is guaranteed to be the chain with the *best* effective rate?
 
