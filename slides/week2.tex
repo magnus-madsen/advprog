@@ -816,7 +816,7 @@ def h(): #{ Edge(Int32, Int32), Path(Int32, Int32) } =
 \end{frame}
 
 \begin{frame}[fragile]{Pitfall (2/2)}
-What we should have done was to use \textbf{open rows}:
+We should have used \textbf{open rows}:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
 def f(): #{ Edge(Int32, Int32) | r } = #{ Edge(1, 2). }
@@ -825,7 +825,7 @@ def h(): #{ Edge(Int32, Int32), Path(Int32, Int32) | r} =
     f() <+> g()
 \end{lstlisting}
 
-Here, because each row is open, we can build bigger rows.
+Open rows can be extended with additional predicates, allowing us to combine the results of \Code{f} and \Code{g}.
 \end{frame}
 
 \begin{frame}{Summary}
