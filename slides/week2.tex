@@ -1130,8 +1130,6 @@ P(x; l) :- B(x; l).
 Q(x; l) :- A(x; l), B(x; l).
 \end{lstlisting}
 
-\pause
-
 evaluates to a minimal model with:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.8cm]
@@ -1203,7 +1201,7 @@ instance JoinLattice[Down[a]] with MeetLattice[a] {
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Relation and Lattice Semantics}
+\begin{frame}[fragile]{Lattice Stratification}
 We can combine relational and lattice semantics with a new form of
 stratification: 
 
