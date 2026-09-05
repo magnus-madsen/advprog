@@ -96,7 +96,7 @@ Prolog \emph{is} a logic programming language, but it is like the C of logic lan
 \medskip
 \medskip
 \begin{tikzpicture}[font=\sffamily, scale=0.8]
-\foreach \X/\col [count=\N, evaluate=\N as \Y using 5-\N] in {Prolog/blue, Datalog$^\neg$/green, Datalog/yellow, RA /orange}
+\foreach \X/\col [count=\N, evaluate=\N as \Y using 5-\N] in {Prolog/blue, Datalog$^\neg$/green, Datalog/yellow, RA/orange}
 {\draw[fill=\col!30] (-\Y,-\Y/2) circle ({1.5*\Y} and \Y);
 \node[align=center] at (1-2*\Y,-1.1*\Y) {\X}; }
 \draw ([xshift=-0.5cm,yshift=-0.5cm] current bounding box.south west);
@@ -269,7 +269,7 @@ Like in functional programming, we use constructors to build data structures.
 We can write:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-networth(person(steve, carrel),   80). % in millions USD
+networth(person(steve, carell),   80). % in millions USD
 networth(person(steve, jobs),    250). % in millions USD
 networth(person(jeff, bezos), 186000). % in millions USD
 \end{lstlisting}
@@ -280,7 +280,7 @@ And then we can ask:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 ?- networth(X, 80).
-X = person(steve,carrel)
+X = person(steve,carell)
 \end{lstlisting}
 
 \pause
@@ -289,7 +289,7 @@ We can also ask:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 ?- networth(person(steve, X), Y).
-X = carrel, Y =  80 ? ;
+X = carell, Y =  80 ? ;
 X = jobs,   Y = 250 ? ;
 no
 \end{lstlisting}
@@ -308,7 +308,7 @@ len(cons(_, Xs), R) :- len(Xs, N), R is N + 1.
 And then we can ask:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-len(cons(1, cons(2, cons(3, nil))), N).
+?- len(cons(1, cons(2, cons(3, nil))), N).
 N = 3 ? ;
 \end{lstlisting}
 
@@ -368,7 +368,7 @@ The \Code{is} operator forces evaluation \emph{on the right-hand side}.
 Prolog is dynamically typed, so if we write:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-appnd(apple, cons(1, nil), R).
+?- appnd(apple, cons(1, nil), R).
 \end{lstlisting}
 
 Prolog just tells us \textbf{no}. This may be okay.
@@ -384,7 +384,7 @@ R = apple ? ;
 
 Here \Code{R} is not a list! Oops!
 \end{frame}
-    
+
 \begin{frame}[fragile]{Prolog is Dynamically Typed (2/2)}
 Like in Scheme, we can add dynamic type checks. We define the list ``type'':
 
@@ -400,14 +400,14 @@ And then we update our implementation of \Code{appnd}:
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 appnd(nil, Ys, Ys) :- is_list(Ys).
 appnd(cons(X, Xss), Ys, cons(X, Rs)) :- 
-   is_list(Xss), is_list(Ys), is_list(Rs),  appnd(Xss, Ys, Rs).
+   is_list(Xss), is_list(Ys), is_list(Rs), appnd(Xss, Ys, Rs).
 \end{lstlisting}
 
 Now our silly query \Code{?- appnd(nil, apple, R)} returns \textbf{no}.
 \end{frame}
 
 \begin{frame}{Prolog Grammar}
-The core Prolog grammar is almost equivalent to the Datalog grammar:
+The core Prolog grammar is almost identical to the Datalog grammar:
 {
 \large
 \begin{align*}
@@ -417,10 +417,10 @@ A \in \textsl{HeadAtom}     &= p(t_1, \cdots, t_n) \\
 B \in \textsl{BodyAtom}     &= p(t_1, \cdots, t_n) \mid \Highlight{\textbackslash+} \, p(t_1, \cdots, t_n) \\
 t \in \textsl{Term}         &= k \mid x \mid \Highlight{c (t_1, \cdots, t_n)} \\
 \\
-p \in \textsl{Predicates}   & = \text{is a finite set of predicate symbols.} \\
-x \in \textsl{Variables}    & = \text{is a finite set of variable symbols.} \\
-\Highlight{c \in \textsl{Constructors}} & = \Highlight{\text{is a finite set of constructors.}} \\
-k \in \textsl{Constants}    & = \text{is a finite set of constants.}
+p \in \textsl{Predicates}   & = \text{a finite set of predicate symbols.} \\
+x \in \textsl{Variables}    & = \text{a finite set of variable symbols.} \\
+\Highlight{c \in \textsl{Constructors}} & = \Highlight{\text{a finite set of constructors.}} \\
+k \in \textsl{Constants}    & = \text{a finite set of constants.}
 \end{align*}
 }
 \end{frame}
@@ -440,13 +440,13 @@ len([_Head|Tail], R) :- len(Tail, N), R is N + 1.
 And we ask Prolog the query:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-? len([1, 2], X).
+?- len([1, 2], X).
 \end{lstlisting}
 
 which is really: 
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-? len([1 | [2 | []]], X).
+?- len([1 | [2 | []]], X).
 \end{lstlisting}
 
 \textbf{Question:} How does Prolog know which rule to evaluate?
@@ -496,8 +496,8 @@ The substitution, when applied to both terms, makes them \emph{syntactically} eq
 
 \pause
 
-\textbf{Sidenote:} A cool idea is when $=$ is replaced by $\equiv$ leading to
-\textbf{E-unification}, i.e. unification modulo some equational theory. 
+\textbf{Side note:} A cool idea is when $=$ is replaced by $\equiv$ leading to
+\textbf{E-unification}, i.e., unification modulo some equational theory. 
 \end{frame}  
 
 \begin{frame}[fragile]{A Unification Algorithm (in Flix) (1/6)}
@@ -640,7 +640,7 @@ len([_Head|Tail], R) :- len(Tail, N), R is N + 1.
 And we ask: 
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-? len([1 | [2 | []]], X).
+?- len([1 | [2 | []]], X).
 \end{lstlisting}
 
 \pause
@@ -685,7 +685,7 @@ path(X, Z) :- edge(X, Y), path(Y, Z), write('rule2\n').
 \pause And ask:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
--? path(1, 3).
+?- path(1, 3).
 \end{lstlisting}
 
 \pause Prolog prints:
@@ -707,7 +707,7 @@ path(X, Z) :- write('A'), edge(X, Y), write('B'), path(Y, Z), write('C').
 And asking:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
--? path(1, 3).
+?- path(1, 3).
 \end{lstlisting}
 
 \pause \textbf{Question:} What does this print?
@@ -741,7 +741,7 @@ The most popular and battle-tested Prolog implementations are:
         \linebreak {\small \url{http://www.gprolog.org/}}
     \item \textbf{SWI Prolog} is an open-source Prolog implementation 
         \linebreak {\small \url{https://www.swi-prolog.org/}}
-    \item \textbf{XSB Prolog} is a commercial Prolog implementation with tabling
+    \item \textbf{XSB Prolog} is an open-source Prolog implementation with tabling
         \linebreak {\small \url{https://xsb.com/xsb-prolog/}}
 \end{itemize}
 \end{frame}
@@ -848,13 +848,13 @@ We order the travelers as: \Code{farmer}, \Code{wolf}, \Code{goat},
     \item The list: \Code{[e, e, e, w]} means that the farmer, wolf, and goat are
     on the east bank whereas the cabbage is on the west bank --- which is okay.
     \item The list: \Code{[e, w, w, e]} means that the farmer and cabbage are on
-    the east bank whereas the wolf and the goat are on the east bank --- which is
+    the east bank whereas the wolf and the goat are on the west bank --- which is
     NOT OKAY!
 \end{itemize}
 \end{frame}
     
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (3/8)}
-We now define a ternary relation: \texttt{move(state1, moved, state2)}:
+We now define a ternary relation: \Code{move(state1, moved, state2)}:
 
 If the farmer and wolf are on the west bank then they can travel to the east bank. 
 
@@ -897,7 +897,7 @@ and we need three more rules:
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 move([X, W, X, C], goat,    [Y, W, Y, C]) :- travel(X, Y).
 move([X, W, G, X], cabbage, [Y, W, G, Y]) :- travel(X, Y).
-move([X, W, G, C], nothing, [Y, W, G, C]) :- travel(X, Y).    
+move([X, W, G, C], nothing, [Y, W, G, C]) :- travel(X, Y).
 \end{lstlisting}
 
 \pause
@@ -915,7 +915,7 @@ We define the states that are safe. There are two cases:
 (1) The goat is on the same bank as the farmer:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-safe([X, _, X, _]).  // Recall: farmer, wolf, goat, cabbage
+safe([X, _, X, _]).  % Recall: farmer, wolf, goat, cabbage
 \end{lstlisting}
 
 (2) Or the wolf and cabbage are on the same bank as the farmer:
@@ -958,7 +958,7 @@ solution(State, [FirstMove | OtherMoves]) :-
 We can now ask Prolog to compute a solution:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-? solution([w, w, w, w], X).
+?- solution([w, w, w, w], X).
 \end{lstlisting}
 
 \pause 
@@ -987,7 +987,7 @@ farmer is just going back and forth, forever.
 How? We fix the length of the list of moves:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-? length(X, 7), solution([w, w, w, w], X).
+?- length(X, 7), solution([w, w, w, w], X).
 \end{lstlisting}
 
 \pause
