@@ -258,8 +258,8 @@ The program loops! But why?
 Prolog supports constructors:
 
 \begin{itemize}
-    \item Allows us to construct compound value (lists, trees, etc).
-    \item Allows us to construct infinite values (oops.)
+    \item Allows us to construct compound values (lists, trees, etc.).
+    \item Allows us to construct infinite values (oops!)
 \end{itemize}
 
 Like in functional programming, we use constructors to build data structures.
@@ -343,7 +343,7 @@ We wrote:
 R is N + 1.
 \end{lstlisting}
 
-because wanted to force Prolog to evaluate \Code{R} to \Code{N + 1}. 
+because we wanted to force Prolog to evaluate \Code{R} to \Code{N + 1}. 
 
 Note that:
 
@@ -595,7 +595,7 @@ recursive call to \Code{unify}?
 \end{frame}  
 
 \begin{frame}[fragile]{A Unification Algorithm (in Flix) (5/6)}
-Lets try it out: 
+Let's try it out: 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 unify(Cst(123), Var("x")) 
@@ -665,7 +665,7 @@ And we ask:
 
 \pause
 
-Prolog uses unification to the determine that:
+Prolog uses unification to determine that:
 
 \begin{enumerate}
     \item We cannot unify $[]$ with $[1 | [2 | []]]$ so the first rule (fact) is
@@ -683,8 +683,8 @@ To recap:
 \begin{itemize}
     \pause \item Prolog searches for a fact or rule \emph{from top to bottom} of the
     file where the current goal unifies with the head atom.
-    \pause \item If a match is found, Prolog applies the found substition to the rule
-    body which now become the sub-goals of the query. 
+    \pause \item If a match is found, Prolog applies the found substitution to the rule
+    body, which now becomes the sub-goals of the query. 
     \pause \item The sub-goals are evaluated from left to right.
     \pause \item A goal is satisfied once we reach a fact.
 \end{itemize}
@@ -740,7 +740,7 @@ Prolog comes with several extensions:
     \item Cuts (a mechanism to control backtracking)
     \item Higher-order predicates (e.g. \Code{findall})
     \item Reflection (e.g. \Code{clause})
-    \item Tabling (ala Datalog)
+    \item Tabling (\`a la Datalog)
 \end{itemize}
 
 You will most likely need some of these for any serious Prolog programming. 
@@ -757,7 +757,7 @@ The most popular and battle-tested Prolog implementations are:
 \begin{itemize}
     \item \textbf{Ciao Prolog} is an open-source research project from UPM and IMDEA 
         \linebreak {\small \url{https://ciao-lang.org/}}
-    \item \textbf{Gnu Prolog} is an open-source Prolog implementation 
+    \item \textbf{GNU Prolog} is an open-source Prolog implementation
         \linebreak {\small \url{http://www.gprolog.org/}}
     \item \textbf{SWI Prolog} is an open-source Prolog implementation 
         \linebreak {\small \url{https://www.swi-prolog.org/}}
@@ -772,7 +772,7 @@ I recommend that you use \textbf{Ciao Prolog} (with SWI Prolog as backup)
 \begin{column}{.7\textwidth}
 \begin{itemize}
     \item Ciao has been developed for more than 40 years.
-    \item Ciao is large research project with many cool ideas. 
+    \item Ciao is a large research project with many cool ideas. 
     \item Runs in the browser via WebAssembly: \linebreak {\small \url{https://ciao-lang.org/playground/}}
 \end{itemize}
 \end{column}
@@ -865,10 +865,10 @@ We order the travelers as: \Code{farmer}, \Code{wolf}, \Code{goat},
 \begin{itemize}
     \item The list: \Code{[w, w, w, w]} means that everyone is on the west bank.
     \item The list: \Code{[e, e, e, e]} means that everyone is on the east bank.
-    \item The list: \Code{[e, e, e, w]} means that the farmer, wolf, and goat is
+    \item The list: \Code{[e, e, e, w]} means that the farmer, wolf, and goat are
     on the east bank whereas the cabbage is on the west bank --- which is okay.
-    \item The list: \Code{[e, w, w, e]} means that the farmer and cabbage is on
-    the east bank whereas the wolf and the goat is on the east bank --- which is
+    \item The list: \Code{[e, w, w, e]} means that the farmer and cabbage are on
+    the east bank whereas the wolf and the goat are on the east bank --- which is
     NOT OKAY!
 \end{itemize}
 \end{frame}
@@ -927,7 +927,7 @@ move([X, W, G, C], nothing, [Y, W, G, C]) :- travel(X, Y).
 
 \begin{frame}[fragile]{Wolf, Goat, and Cabbage in Prolog (5/8)}
 
-\textbf{Recall:} We want to ensure that the (a) wolf does not eat the goat, and
+\textbf{Recall:} We want to ensure that (a) the wolf does not eat the goat, and
 (b) the goat does not eat the cabbage.
 
 We define the states that are safe. There are two cases: 
@@ -1004,7 +1004,7 @@ farmer is just going back and forth, forever.
 
 \pause
 
-How? We fix the length of the list with moves:
+How? We fix the length of the list of moves:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 ? length(X, 7), solution([w, w, w, w], X).
