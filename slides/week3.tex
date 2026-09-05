@@ -323,7 +323,7 @@ We can also write:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 appnd(nil, Ys, Ys).
-appnd(cons(X, Xss), Ys, cons(X, Rs)) :- appnd(Xss, Ys, Rs).
+appnd(cons(X, Xs), Ys, cons(X, Rs)) :- appnd(Xs, Ys, Rs).
 \end{lstlisting}
 
 \pause
@@ -399,8 +399,8 @@ And then we update our implementation of \Code{appnd}:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 appnd(nil, Ys, Ys) :- is_list(Ys).
-appnd(cons(X, Xss), Ys, cons(X, Rs)) :- 
-   is_list(Xss), is_list(Ys), is_list(Rs), appnd(Xss, Ys, Rs).
+appnd(cons(X, Xs), Ys, cons(X, Rs)) :- 
+   is_list(Xs), is_list(Ys), is_list(Rs), appnd(Xs, Ys, Rs).
 \end{lstlisting}
 
 Now our silly query \Code{?- appnd(nil, apple, R)} returns \textbf{no}.
@@ -595,7 +595,7 @@ What about:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
 unify(Var("x"), Pair(Cst(123), Var("x")))
-    => Map#{x => Pair(Cst(123), Var(x))}
+    => Map#{x => Pair(Cst(123), Var("x"))}
 \end{lstlisting}
 
 \pause 
