@@ -91,14 +91,14 @@ Prolog \emph{is} a logic programming language, but it is like the C of logic lan
 \end{frame}
 
 \begin{frame}{Expressive Power}
-% Copied from week2.tex
+% Copied from week1.tex
 \centering
 \medskip
 \medskip
-\begin{tikzpicture}[font=\sffamily, scale=0.8]
-\foreach \X/\col [count=\N, evaluate=\N as \Y using 5-\N] in {Prolog/blue, Datalog$^\neg$/green, Datalog/yellow, RA/orange}
+\begin{tikzpicture}[font=\sffamily, scale=1.0]
+\foreach \X/\col/\LY [count=\N, evaluate=\N as \Y using 4-\N] in {Prolog/blue/-3.0, Datalog$^\neg$/green/-2.0, Relational\\Algebra/orange/-0.5}
 {\draw[fill=\col!30] (-\Y,-\Y/2) circle ({1.5*\Y} and \Y);
-\node[align=center] at (1-2*\Y,-1.1*\Y) {\X}; }
+\node[align=center] at (1-2*\Y,\LY) {\X}; }
 \draw ([xshift=-0.5cm,yshift=-0.5cm] current bounding box.south west);
 \end{tikzpicture}
 \end{frame}
@@ -777,7 +777,7 @@ I recommend that you use \textbf{Ciao Prolog} (with SWI Prolog as backup)
 Your first task:
 
 \Large
-Run the Wolf, Goat, and Cabbage program on the playground.
+Run the parent/grandparent program from the previous slide.
 
 \bigskip
 
