@@ -72,7 +72,7 @@ Datalog is based on \emph{bottom-up} tabling:
 \begin{itemize}
     \item Datalog has a unique minimal model.
     \item Datalog offers strong guarantees about termination.
-    \item Limited expressive power.
+    \item Datalog has limited expressive power.
 \end{itemize}
 
 \pause
@@ -200,7 +200,7 @@ Note that we are asking for ``an input'' that matches ``an output''.
 
 \pause
 
-\textbf{Question}: What is the answer to the query \Code{parent(X, Y)}?
+\textbf{Question:} What is the answer to the query \Code{parent(X, Y)}?
 \end{frame}
 
 \begin{frame}[fragile]{Recursion in Prolog (1/2)}
@@ -651,9 +651,9 @@ Prolog uses unification to determine that:
     \item We cannot unify $[]$ with $[1 | [2 | []]]$ so the first rule (fact) is
     not applicable. \pause 
     \item We \emph{can} unify $[\_Head|Tail]$ with $[1 | [2 | []]]$ using the
-    substitution $\{ \text{\_Head} \mapsto 1, \text{Tail} \mapsto [2 | []] \}$. \pause
+    substitution $\{ \text{\_Head} \mapsto 1, \text{Tail} \mapsto [2 | []], R \mapsto X \}$. \pause
     \item We then apply the substitution to the rule body to obtain the new
-    goals: $\text{len}([2 | []], R)$ and $R \text{ is } X + 1$, and recurse.
+    goals: $\text{len}([2 | []], N)$ and $X \text{ is } N + 1$, and recurse.
 \end{enumerate}
 \end{frame}
 
