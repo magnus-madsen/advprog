@@ -75,8 +75,6 @@ Datalog is based on \emph{bottom-up} tabling:
     \item Datalog has limited expressive power.
 \end{itemize}
 
-\pause
-
 Prolog is based on \emph{top-down} search:
 
 \begin{itemize}
@@ -84,8 +82,6 @@ Prolog is based on \emph{top-down} search:
     \item Prolog programs are imperative: the order of evaluation matters.
     \item Prolog is Turing-complete -- and hence programs may fail to terminate.
 \end{itemize}
-
-\pause
 
 Prolog \emph{is} a logic programming language, but it is like the C of logic languages.
 \end{frame}
@@ -153,16 +149,12 @@ parent(emma, magnus).
 parent(emma, daniela).
 \end{lstlisting}
 
-\pause
-
 We can ask:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 ?- parent(emma, magnus).
 yes
 \end{lstlisting}
-
-\pause
 
 And we can ask:
 
@@ -213,8 +205,6 @@ edge(b, c).
 path(X, Y) :- edge(X, Y).
 path(X, Z) :- edge(X, Y), path(Y, Z).
 \end{lstlisting}
-
-\pause
 
 And we can ask:
 
