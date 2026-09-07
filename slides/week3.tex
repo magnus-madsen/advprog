@@ -666,6 +666,9 @@ To recap:
     file where the current goal unifies with the head atom.
     \pause \item If a match is found, Prolog applies the found substitution to the rule
     body, which now becomes the sub-goals of the query. 
+    \pause \item If no match is found, or a later sub-goal fails, Prolog
+    \emph{backtracks}: it undoes the substitution and tries the next matching
+    fact or rule.
     \pause \item The sub-goals are evaluated from left to right.
     \pause \item A goal is satisfied once we reach a fact.
 \end{itemize}
