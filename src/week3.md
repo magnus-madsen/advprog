@@ -28,16 +28,44 @@ parent(magnus, oscar).
 parent(daniela, freja).
 ```
 
-Define `grandparent(X, Y)`. Then ask `?- grandparent(emma, X).` and
-`?- grandparent(X, freja).` — note that you can query in both directions.
+- Define `grandparent(X, Y)` and ask `?- grandparent(emma, X).`
+- Then ask `?- grandparent(X, freja).` — note that you can query in both
+  directions.
 
-**Exercise 03.02**: Write a Prolog program that does not terminate.
+**Exercise 03.02**: Enter the graph program:
 
-**Exercise 03.03**: Write a Datalog program that does not terminate when run with Prolog.
+```prolog
+edge(a, b).
+edge(b, c).
+
+path(X, Y) :- edge(X, Y).
+path(X, Z) :- edge(X, Y), path(Y, Z).
+```
+
+- Ask `?- path(a, X).` and collect all solutions.
+- Replace the second rule by `path(X, Z) :- path(X, Y), edge(Y, Z).` What
+  happens, and why?
+
+**Exercise 03.03**: Predict the answer to each query, then check it in Ciao:
+
+```prolog
+?- X = 1 + 2.
+?- X is 1 + 2.
+?- 3 = 1 + 2.
+?- f(X, b) = f(a, Y).
+?- [H | T] = [1, 2, 3].
+?- X = f(X).
+```
+
+What is the difference between `=` and `is`?
+
+**Exercise 03.04**: Write a Prolog program that does not terminate.
+
+**Exercise 03.05**: Write a Datalog program that does not terminate when run with Prolog.
 
 _From now on, the Prolog programs you write should always terminate._
 
-**Exercise 03.04**: The natural numbers are defined as:
+**Exercise 03.06**: The natural numbers are defined as:
 
 ```prolog
 nat(z).
@@ -45,11 +73,11 @@ nat(s(X)) :- nat(X).
 ```
 Implement the following relations on natural numbers: `+`, `-`, `*`, `<=` and `min`.
 
-**Exercise 03.05**: In a functional programming language, we cannot define
+**Exercise 03.07**: In a functional programming language, we cannot define
 subtraction in terms of addition. Describe how Prolog allows such a definition
 and implement it. 
 
-**Exercise 03.06**: Use Prolog to determine if the following equations have a solution:
+**Exercise 03.08**: Use Prolog to determine if the following equations have a solution:
 
 - `x = 1 + 2`
 - `x + 2 = 3`
@@ -58,25 +86,25 @@ and implement it.
 
 where `x` and `y` are natural numbers.
 
-**Exercise 03.07**: Implement `odd(X)` and `even(X)` to determine if a number is
+**Exercise 03.09**: Implement `odd(X)` and `even(X)` to determine if a number is
 odd or even.
 
-**Exercise 03.08**: Implement the Fibonacci function. 
+**Exercise 03.10**: Implement the Fibonacci function. 
 
-**Exercise 03.09**: Implement `prefix(Xs, Ys)` and `suffix(Xs, Ys)` to determine
+**Exercise 03.11**: Implement `prefix(Xs, Ys)` and `suffix(Xs, Ys)` to determine
 whether the list `Xs` is a prefix or suffix of `Ys`.
 
-**Exercise 03.10**: Implement `prefix` and `suffix` in terms of `append`.
+**Exercise 03.12**: Implement `prefix` and `suffix` in terms of `append`.
 
-**Exercise 03.11**: Implement `memberOf` in terms of `append`.
+**Exercise 03.13**: Implement `memberOf` in terms of `append`.
 
-**Exercise 03.12**: Implement two versions of `reverse`, one using `append` and
+**Exercise 03.14**: Implement two versions of `reverse`, one using `append` and
 one using an accumulator. Draw the proof trees produced by each on a small list.
 
-**Exercise 03.13**: Implement `substitute(A, B, Xs, Ys)` which relates `Xs` to
+**Exercise 03.15**: Implement `substitute(A, B, Xs, Ys)` which relates `Xs` to
 `Ys` such that every occurrence of `A` in `Xs` is replaced by `B` in `Ys`.
 
-**Exercise 03.14**: A binary tree of natural numbers can be defined as:
+**Exercise 03.16**: A binary tree of natural numbers can be defined as:
 ```prolog
 tree(leaf).
 tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
@@ -87,7 +115,7 @@ tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
 - Compute the sum of the elements of a tree.
 - Translate a tree to a list using a pre-, in-, and post-order traversal.
 
-**Exercise 03.15**: The following definition of `remove` for lists is incorrect.
+**Exercise 03.17**: The following definition of `remove` for lists is incorrect.
 Fix it:
 
 ```prolog
@@ -96,12 +124,12 @@ remove(x, [x | ys], rs) :- remove(x, ys, rs).
 remove(x, [y | ys], rs) :- remove(x, ys, rs).
 ```
 
-**Exercise 03.16**: Get the Wolf, Goat, and Cabbage program to run. Then extend
+**Exercise 03.18**: Get the Wolf, Goat, and Cabbage program to run. Then extend
 it with an Island (`I`) where the farmer, wolf, goat, and cabbage can move to.
 Add relevant rules for `move` and `safe`. Does it change the possible solutions
 to the problem?
 
-**Exercise 03.17**: For each pair of terms, manually compute a unifying
+**Exercise 03.19**: For each pair of terms, manually compute a unifying
 substitution, or report if unification is impossible.
 
 1. `unify(42, 42)`
@@ -124,7 +152,7 @@ substitution, or report if unification is impossible.
 18. `unify([X, Y], [1, [X, 3]])`
 19. `unify([X, [Y]], [1, [X, [Y]]])`
 
-**Exercise 03.18**: Describe why the *occurs check* is necessary in the
+**Exercise 03.20**: Describe why the *occurs check* is necessary in the
 unification algorithm.   
 
-**Exercise 03.19**: When would you use Datalog to solve a programming problem? And Prolog?
+**Exercise 03.21**: When would you use Datalog to solve a programming problem? And Prolog?
