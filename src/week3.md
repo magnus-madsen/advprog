@@ -117,11 +117,15 @@ one using an accumulator. Draw the proof trees produced by each on a small list.
 tree(leaf).
 tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
 ```
-- Assuming the tree is *unsorted*, determine whether it contains a given number.
-- Assuming the tree is *sorted*, determine whether it contains a given number.
-- Compute the minimum and maximum height of a tree.
-- Compute the sum of the elements of a tree.
-- Translate a tree to a list using pre-, in-, and post-order traversals.
+- Define a predicate `containsUnsorted(T, N)` which determines whether the
+  *unsorted* tree `T` contains the number `N`.
+- Define a predicate `containsSorted(T, N)` which does the same for a *sorted*
+  tree, visiting at most one subtree per node.
+- Define predicates `minHeight(T, N)` and `maxHeight(T, N)` which relate `T` to
+  the length of its shortest and longest path from the root to a leaf.
+- Define a predicate `sum(T, N)` which relates `T` to the sum of its elements.
+- Define predicates `preOrder(T, Xs)`, `inOrder(T, Xs)`, and `postOrder(T, Xs)`
+  which relate `T` to the list `Xs` of its elements in that traversal order.
 
 **Exercise 03.15**: The following definition of `remove` for lists is incorrect.
 Fix it:
