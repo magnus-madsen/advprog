@@ -88,6 +88,8 @@ Prolog is based on \emph{top-down} search:
     \item Prolog is Turing-complete -- and hence programs may fail to terminate.
 \end{itemize}
 
+\pause
+
 Prolog \emph{is} a logic programming language, but it is like the C of logic languages.
 \end{frame}
 
@@ -140,10 +142,6 @@ To write a Prolog program:
 \end{itemize}
 
 Prolog computes a \textbf{\emph{single}} solution at a time, answering \textbf{yes} or \textbf{no}.
-
-\medskip
-
-Here we can see Prolog's roots in expert systems and artificial intelligence.
 \end{frame}
 
 \begin{frame}[fragile]{A Few Simple Queries (1/3)}
@@ -231,8 +229,6 @@ But we have to be careful. If we change the program to:
 path(X, Z) :- path(Y, Z), edge(X, Y).
 path(X, Y) :- edge(X, Y).
 \end{lstlisting}
-
-\pause
 
 And ask:
 
@@ -335,7 +331,7 @@ no
 \end{frame}
 
 \begin{frame}[fragile]{Arithmetic in Prolog}
-We wrote:
+Earlier, we wrote:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 R is N + 1.
