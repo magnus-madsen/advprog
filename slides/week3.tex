@@ -341,7 +341,7 @@ We wrote:
 R is N + 1.
 \end{lstlisting}
 
-because we wanted to force Prolog to evaluate \Code{R} to \Code{N + 1}. 
+because we wanted to force Prolog to evaluate \Code{N + 1} and unify the result with \Code{R}. 
 
 Note that:
 
@@ -623,7 +623,7 @@ variable occurs recursively within the term it is unified with.
 
 \pause
 
-\textbf{Note:} The occurs check is expensive, so some Prolog implementations omit it.
+\textbf{Note:} The occurs check is expensive, so most Prolog implementations omit it by default.
 \end{frame}  
 
 \begin{frame}[fragile]{Matching a Goal to a Rule -- Continued (1/2)}
