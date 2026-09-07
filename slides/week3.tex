@@ -604,9 +604,10 @@ unify(Var("x"), Pair(Cst(123), Var("x")))
 \end{frame}
 
 \begin{frame}[fragile]{A Unification Algorithm (in Flix) (6/6)}
-We modify the two cases for variables as follows: 
+We modify the cases for variables as follows: 
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
+case (Term.Var(x), Term.Var(y)) if x == y => Map.empty()
 case (Term.Var(x), t) => 
     if (Set.memberOf(x, freeVars(t)))
         unsafe throw new Exception("Occurs Check") 
