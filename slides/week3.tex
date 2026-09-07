@@ -653,6 +653,8 @@ Prolog uses unification to determine that:
     substitution $\{ \text{\_Head} \mapsto 1, \text{Tail} \mapsto [2 | []], R \mapsto X \}$. \pause
     \item We then apply the substitution to the rule body to obtain the new
     goals: $\text{len}([2 | []], N)$ and $X \text{ is } N + 1$, and recurse.
+    Each use of a rule works on a \emph{fresh} copy of its variables
+    (\emph{renaming apart}).
 \end{enumerate}
 \end{frame}
 
