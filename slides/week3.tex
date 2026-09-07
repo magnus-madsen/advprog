@@ -72,7 +72,7 @@ French for ``programming in logic''.
 \end{frame}    
 
 \begin{frame}{From Datalog to Prolog: A Shift in Perspective}
-Datalog is based on \emph{bottom-up} tabling:
+Datalog is based on \emph{bottom-up} evaluation:
 
 \begin{itemize}
     \item Datalog has a unique minimal model.
@@ -724,7 +724,7 @@ Prolog comes with several extensions:
     \item Cuts (a mechanism to control backtracking)
     \item Higher-order predicates (e.g. \Code{findall})
     \item Reflection (e.g. \Code{clause})
-    \item Tabling (\`a la Datalog)
+    \item Tabling (a mechanism to memoize goals)
 \end{itemize}
 
 You will most likely need some of these for any serious Prolog programming. 
@@ -1018,7 +1018,7 @@ Example inspired by UCSD: {\tiny \url{https://cseweb.ucsd.edu/classes/fa09/cse13
 \textbf{Prolog} is a \textbf{goal-driven} logic programming language:
 %
 \begin{itemize}
-    \item Datalog is for tabling. Prolog is for search. 
+    \item Datalog computes all solutions. Prolog searches for one. 
 \end{itemize}
 
 \pause 
