@@ -124,12 +124,7 @@ remove(x, [x | ys], rs) :- remove(x, ys, rs).
 remove(x, [y | ys], rs) :- remove(x, ys, rs).
 ```
 
-**Exercise 03.18**: Get the Wolf, Goat, and Cabbage program to run. Then extend
-it with an Island (`I`) where the farmer, wolf, goat, and cabbage can move to.
-Add relevant rules for `move` and `safe`. Does it change the possible solutions
-to the problem?
-
-**Exercise 03.19**: For each pair of terms, manually compute a unifying
+**Exercise 03.18**: For each pair of terms, manually compute a unifying
 substitution, or report if unification is impossible.
 
 1. `unify(42, 42)`
@@ -152,7 +147,7 @@ substitution, or report if unification is impossible.
 18. `unify([X, Y], [1, [X, 3]])`
 19. `unify([X, [Y]], [1, [X, [Y]]])`
 
-**Exercise 03.20**: Describe why the *occurs check* is necessary in the
+**Exercise 03.19**: Describe why the *occurs check* is necessary in the
 unification algorithm.   
 
-**Exercise 03.21**: When would you use Datalog to solve a programming problem? And Prolog?
+**Exercise 03.20**: When would you use Datalog to solve a programming problem? And Prolog?
