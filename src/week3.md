@@ -59,13 +59,11 @@ path(X, Z) :- edge(X, Y), path(Y, Z).
 
 What is the difference between `=` and `is`?
 
-**Exercise 03.04**: Write a Prolog program that does not terminate.
-
-**Exercise 03.05**: Write a Datalog program that does not terminate when run with Prolog.
+**Exercise 03.04**: Write a Datalog program that does not terminate when run with Prolog.
 
 _From now on, the Prolog programs you write should always terminate._
 
-**Exercise 03.06**: The natural numbers are defined as:
+**Exercise 03.05**: The natural numbers are defined as:
 
 ```prolog
 nat(z).
@@ -73,11 +71,10 @@ nat(s(X)) :- nat(X).
 ```
 Implement the following relations on natural numbers: `+`, `-`, `*`, `<=`, and `min`.
 
-**Exercise 03.07**: In a functional programming language, we cannot define
-subtraction in terms of addition. Describe how Prolog allows such a definition
-and implement it. 
+_In the following exercises, use the representation of the natural numbers and
+the relations defined above._
 
-**Exercise 03.08**: Use Prolog to determine whether each of the following
+**Exercise 03.06**: Use Prolog to determine whether each of the following
 equations and inequalities has a solution:
 
 - `x = 1 + 2`
@@ -85,27 +82,37 @@ equations and inequalities has a solution:
 - `x * x + 1 = 5`
 - `x <= min(x, y)`
 
-where `x` and `y` are natural numbers.
+where `x` and `y` are natural numbers, and the numerals abbreviate their Peano
+form (e.g. `2` abbreviates `s(s(z))`).
 
-**Exercise 03.09**: Implement `odd(X)` and `even(X)` to determine whether a
+**Exercise 03.07**: Implement `odd(X)` and `even(X)` to determine whether a
 number is odd or even.
 
-**Exercise 03.10**: Implement the Fibonacci function. 
+**Exercise 03.08**: Implement the Fibonacci function. 
 
-**Exercise 03.11**: Implement `prefix(Xs, Ys)` and `suffix(Xs, Ys)` to determine
+A list can be defined as:
+
+```prolog
+list([]).
+list([_ | Xs]) :- list(Xs).
+```
+
+For example, `[1, 2, 3]` is shorthand for `[1 | [2 | [3 | []]]]`.
+
+**Exercise 03.09**: Implement `prefix(Xs, Ys)` and `suffix(Xs, Ys)` to determine
 whether the list `Xs` is a prefix or suffix of `Ys`.
 
-**Exercise 03.12**: Implement `prefix` and `suffix` in terms of `append`.
+**Exercise 03.10**: Implement `prefix` and `suffix` in terms of `append`.
 
-**Exercise 03.13**: Implement `memberOf` in terms of `append`.
+**Exercise 03.11**: Implement `memberOf` in terms of `append`.
 
-**Exercise 03.14**: Implement two versions of `reverse`, one using `append` and
+**Exercise 03.12**: Implement two versions of `reverse`, one using `append` and
 one using an accumulator. Draw the proof trees produced by each on a small list.
 
-**Exercise 03.15**: Implement `substitute(A, B, Xs, Ys)`, which relates `Xs` to
+**Exercise 03.13**: Implement `substitute(A, B, Xs, Ys)`, which relates `Xs` to
 `Ys` such that every occurrence of `A` in `Xs` is replaced by `B` in `Ys`.
 
-**Exercise 03.16**: A binary tree of natural numbers can be defined as:
+**Exercise 03.14**: A binary tree of natural numbers can be defined as:
 ```prolog
 tree(leaf).
 tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
@@ -116,7 +123,7 @@ tree(node(X, N, Y)) :- nat(N), tree(X), tree(Y).
 - Compute the sum of the elements of a tree.
 - Translate a tree to a list using pre-, in-, and post-order traversals.
 
-**Exercise 03.17**: The following definition of `remove` for lists is incorrect.
+**Exercise 03.15**: The following definition of `remove` for lists is incorrect.
 Fix it:
 
 ```prolog
@@ -125,7 +132,7 @@ remove(x, [x | ys], rs) :- remove(x, ys, rs).
 remove(x, [y | ys], rs) :- remove(x, ys, rs).
 ```
 
-**Exercise 03.18**: For each pair of terms, manually compute a unifying
+**Exercise 03.16**: For each pair of terms, manually compute a unifying
 substitution, or report if unification is impossible.
 
 1. `unify(42, 42)`
@@ -148,8 +155,8 @@ substitution, or report if unification is impossible.
 18. `unify([X, Y], [1, [X, 3]])`
 19. `unify([X, [Y]], [1, [X, [Y]]])`
 
-**Exercise 03.19**: Describe why the *occurs check* is necessary in the
+**Exercise 03.17**: Describe why the *occurs check* is necessary in the
 unification algorithm.   
 
-**Exercise 03.20**: When would you use Datalog to solve a programming problem?
+**Exercise 03.18**: When would you use Datalog to solve a programming problem?
 And when would you use Prolog?
