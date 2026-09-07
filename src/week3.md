@@ -92,25 +92,25 @@ remove(x, [y | ys], rs) :- remove(x, ys, rs).
 **Exercise 03.17**: For each pair of terms, manually compute a unifying
 substitution, or report if unification is impossible.
 
-- `unify(42, 42)`
-- `unify(21, 42)`
-- `unify(X, 42)`
-- `unify(42, X)`
-- `unify(X, Y)`
-- `unify(X, X)`
-- `unify(leaf, leaf)`
-- `unify(X, node(X, 21, X))`
-- `unify(X, node(Y, 21, Z))`
-- `unify(node(leaf, X, leaf), node(leaf, 42, leaf))`
-- `unify(node(X, Y, leaf), node(leaf, Z, leaf))`
-- `unify(node(X, Y, X), node(node(leaf, 42, leaf), 21, leaf))`
-- `unify(node(X, Y, Z), node(node(leaf, 42, leaf), 21, Z))`
-- `unify([X], [1, 2, 3])`
-- `unify([X, Y, Z], [Z, X, Y])`
-- `unify([[X], Y], [Y, [2, 3]])`
-- `unify([X, Y], [1, [2, 3]])`
-- `unify([X, Y], [1, [X, 3]])`
-- `unify([X, [Y]], [1, [X, [Y]]])`
+1. `unify(42, 42)`
+2. `unify(21, 42)`
+3. `unify(X, 42)`
+4. `unify(42, X)`
+5. `unify(X, Y)`
+6. `unify(X, X)`
+7. `unify(leaf, leaf)`
+8. `unify(X, node(X, 21, X))`
+9. `unify(X, node(Y, 21, Z))`
+10. `unify(node(leaf, X, leaf), node(leaf, 42, leaf))`
+11. `unify(node(X, Y, leaf), node(leaf, Z, leaf))`
+12. `unify(node(X, Y, X), node(node(leaf, 42, leaf), 21, leaf))`
+13. `unify(node(X, Y, Z), node(node(leaf, 42, leaf), 21, Z))`
+14. `unify([X], [1, 2, 3])`
+15. `unify([X, Y, Z], [Z, X, Y])`
+16. `unify([[X], Y], [Y, [2, 3]])`
+17. `unify([X, Y], [1, [2, 3]])`
+18. `unify([X, Y], [1, [X, 3]])`
+19. `unify([X, [Y]], [1, [X, [Y]]])`
 
 **Exercise 03.18**: Describe why the *occurs check* is necessary in the
 unification algorithm.   
