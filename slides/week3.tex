@@ -554,7 +554,7 @@ term and then applying $s_2$ to that, i.e. we want:
 We can now write a function to unify two terms:
 
 \begin{lstlisting}[language=flix, xleftmargin=0.5cm]
-def unify(t1: Term, t2: Term): Subst = match (t1, t2) {
+def unify(t1: Term, t2: Term): Subst \ Abort = match (t1, t2) {
     case (Term.Cst(c1), Term.Cst(c2)) if c1 == c2 => Map.empty()
     case (Term.Var(x), _) => Map.singleton(x, t2)
     case (_, Term.Var(y)) => Map.singleton(y, t1)
@@ -562,7 +562,7 @@ def unify(t1: Term, t2: Term): Subst = match (t1, t2) {
         let s1 = unify(t11, t21);
         let s2 = unify(applySubst(s1, t12), applySubst(s1, t22));
         compose(s1, s2)
-    case _ => unsafe throw new Exception("Unification failed")
+    case _ => Abort.abort("Unification failed")
 }
 \end{lstlisting}
 
@@ -609,7 +609,7 @@ We modify the cases for variables as follows:
 case (Term.Var(x), Term.Var(y)) if x == y => Map.empty()
 case (Term.Var(x), t) => 
     if (Set.memberOf(x, freeVars(t)))
-        unsafe throw new Exception("Occurs Check") 
+        Abort.abort("Occurs Check")
     else 
         Map.singleton(x, t)
 
