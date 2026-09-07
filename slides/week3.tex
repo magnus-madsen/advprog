@@ -677,7 +677,7 @@ To recap:
 \end{frame}
 
 \begin{frame}[fragile]{Print Debugging is Back! (1/2)}
-If we write: 
+Print debugging is back, baby! We can write:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 edge(1, 2).
@@ -686,13 +686,9 @@ path(X, Y) :- edge(X, Y), write('rule1\n').
 path(X, Z) :- edge(X, Y), path(Y, Z), write('rule2\n').
 \end{lstlisting}
 
-\pause And ask:
+\textbf{Question:} What does \Code{?- path(1, 3).} print?
 
-\begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-?- path(1, 3).
-\end{lstlisting}
-
-\pause Prolog prints:
+\pause \textbf{Answer:}
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
 rule1
@@ -702,19 +698,23 @@ yes
 \end{frame}
 
 \begin{frame}[fragile]{Print Debugging is Back! (2/2)}
-We can explore Prolog's evaluation order by writing:
+We can explore Prolog's evaluation order with the program:
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-path(X, Z) :- write('A'), edge(X, Y), write('B'), path(Y, Z), write('C').
+edge(1, 2).
+edge(2, 3).
+path(X, Z) :-
+    write('A'), edge(X, Y), write('B'), path(Y, Z), write('C').
 \end{lstlisting}
 
-And asking:
+\textbf{Question:} What does \Code{?- path(1, 3).} print?
+
+\pause \textbf{Answer:}
 
 \begin{lstlisting}[language=prolog, xleftmargin=0.5cm]
-?- path(1, 3).
+ABABA
+no
 \end{lstlisting}
-
-\pause \textbf{Question:} What does this print?
 \end{frame}
 
 \begin{frame}{Prolog Extensions}
