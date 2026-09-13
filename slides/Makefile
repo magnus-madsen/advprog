@@ -1,7 +1,7 @@
 # Builds each deck with XeLaTeX and renders slide 2 as a PNG thumbnail.
 # The thumbnails are the "Download Slides" images used by the book (see src/week1.md).
 
-SLIDES := week1 week2 week3
+SLIDES := week1 week2 week3 week4
 
 PDFS   := $(SLIDES:%=%.pdf)
 THUMBS := $(SLIDES:%=%-02.png)
