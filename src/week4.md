@@ -2,11 +2,24 @@
 
 ## Reading
 
-is for nerds
+- [Futhark Compared to Other Functional
+  Languages](https://futhark.readthedocs.io/en/latest/versus-other-languages.html)
+
+## Extra Reading (PhD Level)
+
+- [Prefix Sums and Their Applications](https://www.cs.cmu.edu/~scandal/papers/CMU-CS-90-190.html)
+
+- [A Parallel Cost Model for Futhark
+  Programs](https://futhark-book.readthedocs.io/en/latest/parallel-cost-model.html)
+
+- [Incremental Flattening for Nested Data
+  Parallelism](https://futhark-lang.org/publications/ppopp19.pdf)
 
 ## Slides
 
-<a href="../futhark.pdf">
+<a href="./week4.pdf">
+    <img src="./week4-02.png" alt="Download Slides" width="800" height="450" />
+</a>
 
 ## Exercises
 
@@ -16,8 +29,11 @@ better experience if you [install Futhark on your own
 system](https://futhark.readthedocs.io/en/stable/installation.html). You do not
 have to run any of your code on a GPU, and it is discouraged unless it works
 immediately, as configuring a GPU development environment is in many cases
-nontrivial. In fact, you can just stick to using `futhark repl` and ignore the
-questions that ask you to perform benchmarking.
+nontrivial. If you can compile C programs, it is possible that
+`--backend=multicore` will also work.
+
+However, you can just stick to using `futhark repl` and ignore the questions
+that ask you to perform benchmarking.
 
 If you use Windows, use WSL. To run compiled code, you must have a C compiler
 available in your shell environment.
@@ -54,8 +70,8 @@ stanza to your program:
 Then use `futhark bench process.fut` to benchmark your program. You can have
 multiple `random input` lines.
 
-* How does your program scale for different inputs? Does it scale as expected,
-  even for very small or very large inputs?
+* How does your program scale for different inputs? Does it scale as predicted
+  by the work-span cost model, even for very small or very large inputs?
 
 **Exercise 04.03**:
 
@@ -64,6 +80,8 @@ Create a version of `process`, called `process_idx : []i32 -> []i32 ->
 largest absolute difference is found.
 
 * What is the result of calling your function on `s1` and `s2`?
+
+**Hint:** you wil need to construct a new `reduce` operator.
 
 **Exercise 04.04**:
 
@@ -89,8 +107,6 @@ efficiently, by being clever about the indexes.
 
 * What is the work and span of your implementation? Is it work-efficient?
 
-</a>
-
 **Exercise 04.05**:
 
 The slides describe how to implement a segmented scan. A similar operation is a
@@ -103,6 +119,9 @@ def segreduce [n] 't (op: t -> t -> t) (ne: t)
 ```
 
 * What is the work and span of your implementation? Is it work-efficient?
+
+**Hint**: this is best done by performing a segmented scan, then extracting the
+last element of every segment.
 
 **Exercise 04.06**:
 

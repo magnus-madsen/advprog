@@ -910,7 +910,7 @@ def radix_sort [n] (xs: [n]u32): [n]u32 =
   \item Data parallel programming is about bulk operations on entire collections
     of data.
   \item Compelling because it fits hardware well, but is also semantically easy
-    to understand for humans.
+    to understand for humans because of its determinism.
   \item Requires us to think about algorithms in a different way.\pause
   \item Futhark is not the only language for data parallel programming, but it
     is the best one.
@@ -918,6 +918,8 @@ def radix_sort [n] (xs: [n]u32): [n]u32 =
     \item Others include: APL (and its variants), Accelerate (for Haskell), Jax,
       Single-Assignment C, Julia, Dex.
     \end{itemize}
+  \item You can also do data parallel programming in normal languages, but it
+    may not run so fast.
   \end{itemize}
 
   \hfill\includegraphics[width=4cm]{img/hedgehog.jpg}
