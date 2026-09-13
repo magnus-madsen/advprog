@@ -208,15 +208,17 @@ def sum (xs: []i32) =
   \frametitle{Computation DAG for parallel \texttt{sum}}
 
   \begin{center}
-  \begin{tikzpicture}
+\begin{tikzpicture}
     \node (1) {\texttt{length ys}};
     \node (2a) [below = 0.3cm,at=(1.south), xshift=-3cm]  {\texttt{take (length ys / 2) ys}};
     \node (2b) [right = 0.3cm,at=(2a.east)]  {\texttt{drop (length ys / 2) ys}};
-    \node (3) [below = 0.3cm,at=(2b.south), xshift=-3cm]  {\texttt{map2 (+) ys\_first ys\_last}};
+    \node (3) [below = 0.3cm,at=(2b.south), xshift=-3cm]
+      {\texttt{ys\_first[0]+ys\_last[0] \ldots~ys\_first[n/2-1]+ys\_last[n/2-1]}};
     \node (4) [below = 0.3cm,at=(3.south)]  {\texttt{...}};
     \node (5a) [below = 0.3cm,at=(4.south), xshift=-3cm]  {\texttt{take (length ys / 2) ys}};
     \node (5b) [right = 0.3cm,at=(5a.east)]  {\texttt{drop (length ys / 2) ys}};
-    \node (6) [below = 0.3cm,at=(5b.south), xshift=-3cm]  {\texttt{map2 (+) ys\_first ys\_last}};
+    \node (6) [below = 0.3cm,at=(5b.south), xshift=-3cm]
+      {\texttt{ys\_first[0]+ys\_last[0]}};
 
     \path[draw,thick,<-]
     (1) edge node {} (2a)
