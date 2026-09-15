@@ -12,9 +12,6 @@
 - [A Parallel Cost Model for Futhark
   Programs](https://futhark-book.readthedocs.io/en/latest/parallel-cost-model.html)
 
-- [Incremental Flattening for Nested Data
-  Parallelism](https://futhark-lang.org/publications/ppopp19.pdf)
-
 ## Slides
 
 <a href="./week4.pdf">
